@@ -1,0 +1,63 @@
+@charset "UTF-8";
+/*Register 2 css*/
+body{
+    background-color: #F8F7F6;
+}
+.register2Heading{
+    color:#565038;
+    text-align: center;
+}
+.cuisineHeading,.skillHeading{
+    color:#565038;
+}
+
+.lineBreak{
+    color:#a17d60;
+    border-top: 2px solid;
+}
+
+/* .cuisineSelect{
+    padding-left: 150px;
+    /* text-align: center;
+} */
+
+
+.skillDrop{
+    color:#a17d60;
+    /* text-align: center; */
+    padding-bottom: 20px;
+}
+.submitBtn{
+    text-decoration: underline;
+    border: solid 1px;
+}
+.submitBtn:hover{
+    color:#565038;
+}
+.buttons{
+    text-align: center;
+}
+
+/*screen size for md*/
+/* @media (min-width:768px) and (max-width: 1199px){
+.cuisineSelect{
+    padding-left: 75px;
+}
+
+} */
+
+/*screen size for lg*/
+/* @media (min-width:1200px){
+    .cuisineSelect{
+        padding-left: 150px;
+    }
+    
+} */
+
+/*screen size for lg*/
+/* @media (max-width:768px){
+    .cuisineSelect{
+        padding-left: 20px;
+    }
+    
+} */
