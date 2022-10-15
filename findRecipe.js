@@ -22,12 +22,13 @@ ingredientsCloseBtn.addEventListener('click', () =>{
     mealIngredientsContent.parentElement.classList.remove('showIngredients')
 })
 
+
 const apiKey = '29fdb3549a0e4975a7cca6cb2a387c24'
 
 function getRecipes() {
     let searchInputText = document.getElementById("search-input").value.trim()
     const url = "https://api.spoonacular.com/recipes/findByIngredients"
-
+    let n = 1
     axios.get(url, {
         params: {
             ingredients:  searchInputText,
@@ -47,9 +48,12 @@ function getRecipes() {
                                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                                     <a href="#" class="recipe-btn">Recipe</a>
                                     <a href="#" class="ingredients-btn">Ingredients</a>
+                                    <button id="like-btn${n}" class="like-btn" onclick='change(event)'><i class="fa-brands fa-gratipay"></i></button>
                                 </div>
                                 </div>
                               `
+                    
+                    n += 1
                 });
 
                 mealList.classList.remove('notFound')
@@ -72,6 +76,8 @@ function getMealRecipe(e) {
         let mealItem = e.target.parentElement.parentElement
         console.log(mealItem)
 
+        let img = mealItem.getElementsByTagName('img')[0].src
+        // console.log(img)
         let mealID = mealItem.dataset.id
         let recipeSummaryURL = `https://api.spoonacular.com/recipes/${mealID}/information?includeNutrition=false`
 
@@ -103,7 +109,7 @@ function getMealRecipe(e) {
                 let recipeInstructionsArray = response.data.analyzedInstructions
                 // console.log(recipeInstructionsArray)
 
-                mealRecipeModel(title, servings, prepTime, recipeInstructionsArray)
+                mealRecipeModel(title, servings, prepTime, recipeInstructionsArray, img)
 
             })
             .catch( error => {
@@ -145,10 +151,10 @@ function mealIngredientsModel(ingredientsArray) {
 }
 
 // Function to display Recipe Instructions
-function mealRecipeModel(title, servings, prepTime, recipeInstructionsArray) {
+function mealRecipeModel(title, servings, prepTime, recipeInstructionsArray, img) {
     meal = recipeInstructionsArray[0]
-    let steps = meal.steps
 
+    let steps = meal.steps
     if (prepTime <= 0) {
         prepTime = 10
     }
@@ -157,9 +163,8 @@ function mealRecipeModel(title, servings, prepTime, recipeInstructionsArray) {
     for (let step of steps) {
         directions = step.step
         stepNumber = step.number
-        console.log(step.step)
         directionOutput += `
-                                <p style="text-align: left;"><span style="font-weight: 500;">${stepNumber}</span>: ${directions}</p>
+                            <p style="text-align: left;"><span style="font-weight: 500;">${stepNumber}</span>: ${directions}</p>
                             `
     }
 
@@ -175,11 +180,7 @@ function mealRecipeModel(title, servings, prepTime, recipeInstructionsArray) {
                     </div>
 
                     <div class="recipe-meal-img">
-                    <img src="" alt="" class="img-fluid">
-                    </div>
-
-                    <div class="recipe-link">
-                    <a href="#" target="_blank">Watch Video</a>
+                    <img src="${img}" alt="" class="img-fluid">
                     </div>
                  `
     
@@ -187,49 +188,13 @@ function mealRecipeModel(title, servings, prepTime, recipeInstructionsArray) {
     mealDetailsContent.parentElement.classList.add('showRecipe')
 }
 
-
-// Retrieve recipes using EDAMAME
-// function getRecipes() {
-//     const url = "https://api.edamam.com/search"
-//     const app_id = "ccc48ec6"
-//     const app_key = "403e0be9ff6f16af44eb087dffa518ae"
-//     var q = document.getElementById("search-input").value.trim()
-
-//     axios.get(url, {
-//         params: {
-//             q: q,
-//             app_id: app_id,
-//             app_key: app_key
-//         }
-//     })
-//     .then(response => {
-//         console.log(response.data);
-//         var recipes = response.data.hits
-//         var output = ""
-
-//         for (let recipe of recipes) {
-//             let label = recipe.recipe.label
-//             let img = recipe.recipe.image
-//             let recipeURL = recipe.recipe.url
-
-//             let card = `
-//                         <div class="card mx-auto mb-3" style="width: 25rem;">
-//                         <img src="${img}" class="card-img-top" alt="...">
-//                         <div class="card-body">
-//                             <h5 class="card-title">${label}</h5>
-//                             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-//                             <a href="${recipeURL}" class="recipe-btn">Recipe</a>
-//                             <a href="#" class="recipe-btn">Ingredients</a>
-//                         </div>
-//                         </div>
-//                         `
-//             output += card
-//         }
-        
-//         document.getElementById("meal").innerHTML = output
-//     })
-//     .catch( error => {
-//         console.log(error.message);
-//     });
-// }
-
+// Change heart to red when user clicks it, then change it back when user clicks on it again
+function change(event) {
+    console.log(event.target.parentElement.id)
+    likeButton = document.getElementById(event.target.parentElement.id)
+    if (likeButton.style.color == "red") {
+        likeButton.style.color = "grey"
+    } else {
+        likeButton.style.color = "red"
+    }
+}

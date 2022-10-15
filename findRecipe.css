@@ -98,6 +98,22 @@ body{
     border-bottom-left-radius: 0;
 }
 
+.like-btn {
+    font-size: 2rem;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: grey;
+    float: right;
+    margin-right: 1rem;
+}
+
+.like-btn i:hover {
+    transition: all 0.4s linear;
+    cursor: pointer;
+    opacity: 0.6;
+}
+
 .search-btn:hover {
     background-color: #c99e7a;
 }
