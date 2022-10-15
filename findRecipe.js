@@ -1,7 +1,9 @@
 const searchBtn = document.getElementById('search-btn')
 const mealList = document.getElementById('meal')
 const mealDetailsContent = document.querySelector('.meal-intructions-content')
+const mealIngredientsContent = document.querySelector('.meal-ingredients-content')
 const recipeCloseBtn = document.getElementById('recipe-close-btn')
+const ingredientsCloseBtn = document.getElementById('ingredients-close-btn')
 
 // Add event listener
 var input = document.getElementById('search-input')
@@ -15,6 +17,9 @@ searchBtn.addEventListener('click', getRecipes)
 mealList.addEventListener('click', getMealRecipe)
 recipeCloseBtn.addEventListener('click', () =>{
     mealDetailsContent.parentElement.classList.remove('showRecipe')
+})
+ingredientsCloseBtn.addEventListener('click', () =>{
+    mealIngredientsContent.parentElement.classList.remove('showIngredients')
 })
 
 const apiKey = '29fdb3549a0e4975a7cca6cb2a387c24'
@@ -32,7 +37,7 @@ function getRecipes() {
         .then(response => {
             console.log(response.data);
             let output = "" 
-            if (response.data) {
+            if (response.data.length != 0) {
                 response.data.forEach(meal => {
                     output += `
                                 <div class="card mx-auto mb-3" data-id="${meal.id}" style="width: 25rem;">
@@ -46,6 +51,11 @@ function getRecipes() {
                                 </div>
                               `
                 });
+
+                mealList.classList.remove('notFound')
+            } else {
+                output = "Please enter a valid ingredient!"
+                mealList.classList.add('notFound')
             }
 
             mealList.innerHTML = output
@@ -63,7 +73,7 @@ function getMealRecipe(e) {
         console.log(mealItem)
 
         let mealID = mealItem.dataset.id
-        const recipeSummaryURL = `https://api.spoonacular.com/recipes/${mealID}/information?includeNutrition=false`
+        let recipeSummaryURL = `https://api.spoonacular.com/recipes/${mealID}/information?includeNutrition=false`
 
         axios.get(recipeSummaryURL, {
             params: {
@@ -99,8 +109,39 @@ function getMealRecipe(e) {
             .catch( error => {
                 console.log(error.message);
             });
+
+    } else if (e.target.classList.contains('ingredients-btn')) {
+        let mealItem = e.target.parentElement.parentElement
+        let mealID = mealItem.dataset.id
+        let recipeSummaryURL = `https://api.spoonacular.com/recipes/${mealID}/information?includeNutrition=false`
+
+        axios.get(recipeSummaryURL, {
+            params: {
+                apiKey: apiKey
+            }
+        })
+            .then(response => {
+                // INGREDIENTS
+                let ingredientsArray = response.data.extendedIngredients
+                mealIngredientsModel(ingredientsArray)
+            })
+            .catch( error => {
+                console.log(error.message);
+            });
+
     }
 
+}
+
+function mealIngredientsModel(ingredientsArray) {
+    let output = `<h3 class="title">Ingredients</h3><ul class="fa-ul">`
+    for (ingredient of ingredientsArray) {
+        output += `<li> <i class="fa-solid fa-cart-shopping"></i><span class="ingredient">${ingredient.original}</span></li></li>`
+    }
+
+    output += "</ul>"
+    mealIngredientsContent.innerHTML = output
+    mealIngredientsContent.parentElement.classList.add('showIngredients')
 }
 
 // Function to display Recipe Instructions
