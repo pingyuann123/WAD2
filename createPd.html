@@ -76,7 +76,7 @@
           <div class="buttons container-fluid">
             <button id = "createBtn" class="submitBtn btn btn-lg btn-block" type="button">Create New Listing</button>
             
-            <button id = "bckBtn" class="bckBtn btn btn-lg btn-block" type="button" onclick="window.location.href='marketplace.html';">Back</button>
+            <button id = "bckBtn" class="bckBtn btn btn-lg btn-block" type="button">Back</button>
           </div>
           
           <!-- <div class="container">
@@ -135,6 +135,8 @@
 
 
     let addbtn = document.getElementById("createBtn");
+    let bckbtn = document.getElementById("bckBtn");
+
     // let updatebtn = document.getElementById("update");
     // let delbtn = document.getElementById("del");
     // let readbtn = document.getElementById("read");
@@ -162,10 +164,18 @@
         alert("Creation Unsuccessful" + error);
       });
     }
+
+    function back(){
+      alert("Important: Leaving This Page Will Not Save This Listing");
+      window.location = "marketplace.html";
+
+    }
     // function Redirect() {
     //   window.location = "marketplace.html";
     // }
     addbtn.addEventListener("click",AddDocument_AutoID);
+    bckbtn.addEventListener("click",back);
+
     // addbtn.addEventListener("click",Redirect);
 
 
