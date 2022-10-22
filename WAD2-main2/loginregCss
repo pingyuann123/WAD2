@@ -1,0 +1,66 @@
+@charset "UTF-8";
+
+
+/*Login CSS*/
+body{
+    background-color: #F8F7F6;
+}
+.Maintitle{
+    font-weight:bold;
+    font-size: 70px;
+}
+#leftBox{
+    background-color: #D2B6BA;
+    padding:25px;
+}
+.rightBox{
+    background-color: #F8F7F6;
+}
+.loginWord,.registerWord{
+    letter-spacing: 1px;
+    color:#565038;
+    text-align: center;
+    font-weight: normal;
+}
+.loginsub,.registersub{
+    text-align: center;
+    color:#565038;
+}
+.loginImg{
+    object-fit: cover; 
+    object-position: left;
+    height:520px;
+    padding: 5px;
+}
+.loginForm,.registerForm{
+    width: 23rem;
+}
+.emailLabel,.passwordLabel,.nameLabel{
+    color:#565038;
+}
+.loginBtn,.registerBtn{
+    color:#565038;
+    border: #565038 1px solid;
+}
+
+
+
+/* Register 2 css
+.register2Heading,.cuisineHeading,.skillHeading{
+    color:#565038;
+    text-align: center;
+}
+
+.lineBreak{
+    color:#a17d60;
+    border-top: 2px solid;
+}
+
+.cuisineSelect{
+    padding-left: 150px;
+}
+.skillDrop{
+    color:#a17d60;
+    text-align: center;
+    padding-bottom: 20px;
+} */
