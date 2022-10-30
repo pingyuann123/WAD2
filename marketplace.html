@@ -11,6 +11,15 @@
   <!-- Add icon library -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+   <!-- VUE -->
+   <script src="https://unpkg.com/vue@next"></script>
+  <style>
+    .card {
+      margin: 10px;
+    }
+  </style>
+
+
     <title>Home</title>
 </head>
 <body>
@@ -69,11 +78,99 @@
             <button class="chatBtn btn btn-md btn-block" ><i class="fa fa-comments"></i> Chat</button>
           </div>
 
+
           <!-- <div class="col-lg-6">
             <p class="subtext">where you share your unused ingredients or cooked food</p  >
           </div> -->
         </div>
+        <div id = 'app' style = 'display: flex;'>
+        </div>
+                    <!-- firebase -->
+          
+                    <script type = 'module'>
 
+                      // Import the functions you need from the SDKs you need
+                      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-app.js";
+                 
+                       // TODO: Add SDKs for Firebase products that you want to use
+                       // https://firebase.google.com/docs/web/setup#available-libraries
+                     
+                       // Your web app's Firebase configuration
+                       // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+                       const firebaseConfig = {
+                         apiKey: "AIzaSyCUwFb-W_pR0s_iO2tplBAxXXakhVWs8lM",
+                         authDomain: "g2t5-wad2.firebaseapp.com",
+                         databaseURL: "https://g2t5-wad2-default-rtdb.asia-southeast1.firebasedatabase.app",
+                         projectId: "g2t5-wad2",
+                         storageBucket: "g2t5-wad2.appspot.com",
+                         messagingSenderId: "634091812622",
+                         appId: "1:634091812622:web:9c1e64920c60792226495f",
+                         measurementId: "G-MJKTY27Q23"
+                       };
+                     
+                       // Initialize Firebase
+                       initializeApp(firebaseConfig);
+                   
+                       import{
+                           getFirestore, collection, getDocs
+                       }
+                       from "https://www.gstatic.com/firebasejs/9.12.1/firebase-firestore.js";
+                   
+                       const db = getFirestore();
+                       
+                       console.log('no')
+          
+          
+                       const app = Vue.createApp({
+                         data(){
+                           return{
+                           title: '',
+                           desc: '',
+                           price: '',
+                           date: '',
+                           location: '', 
+                         }}, 
+          
+                         methods:{
+                            async GetADocument(){
+                             const querySnapshot = await getDocs(collection(db, 'ProductList'));
+          
+                             querySnapshot.forEach((doc) => {
+                               this.price = doc.data().productPrice;
+                               this.location = doc.data().productLoc;
+                               this.date = doc.data().productDate;
+                               this.title = doc.data().productTitle;
+                               this.desc = doc.data().productDesc;
+                               console.log(doc.id, " => ", doc.data());
+                               addToList(this.price, this.date, this.title);
+                             })
+                         }},
+          
+                         created(){
+                           this.GetADocument()
+                         }
+          
+                 }).mount('#app')
+                   </script>
+                   <script>
+                     function addToList(price, date, title) {
+
+                      var div = document.getElementById('app');
+                      var divcard = document.createElement('div');
+                      divcard.innerHTML = `
+                            <div class="card" style="width: 18rem;">
+                              <img class="card-img-top" src="img/food1.jpg" alt="Card image cap">
+                              <div class="card-body">
+                              <h5 class="card-title">${title}<span style = 'float:right'>$${price}</span></h5>
+                              <p class="card-text"><strong><small>GOOD TILL: ${date}</small><strong></p>
+                              </div>
+                            </div>
+                            <br>
+                            `
+
+                      div.appendChild(divcard);
+                     }
+                   </script>
       </div>
 
 
