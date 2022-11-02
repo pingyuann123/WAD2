@@ -189,12 +189,24 @@ function mealRecipeModel(title, servings, prepTime, recipeInstructionsArray, img
 }
 
 // Change heart to red when user clicks it, then change it back when user clicks on it again
+
+var likedRecipes = []
 function change(event) {
-    console.log(event.target.parentElement.id)
-    likeButton = document.getElementById(event.target.parentElement.id)
+    let likeButton = document.getElementById(event.target.parentElement.id)
+    let img = likeButton.parentElement.parentElement.getElementsByTagName('img')[0].src
+
+    // let img = likeButton.parentElement.parentElement.getElementsByTagName('img')
+    // console.log(img)
     if (likeButton.style.color == "red") {
         likeButton.style.color = "grey"
+        // localStorage.removeItem('meal-img')
+        likedRecipes = likedRecipes.filter(recipe => recipe !== img)
     } else {
         likeButton.style.color = "red"
+        likedRecipes.push(img)
+        // localStorage.setItem('meal-img', img)
     }
+
+    localStorage.setItem('meal-imgs', JSON.stringify(likedRecipes))
+    // console.log(likedRecipes)
 }
