@@ -37,11 +37,13 @@ function getRecipes() {
     })
         .then(response => {
             console.log(response.data);
-            let output = "" 
+            let output = `<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">`
             if (response.data.length != 0) {
                 response.data.forEach(meal => {
+
                     output += `
-                                <div class="card mx-auto mb-3" data-id="${meal.id}" style="width: 25rem;">
+                        <div class = "col">
+                            <div class="card" data-id="${meal.id}">
                                 <img src="${meal.image}" class="card-img-top" alt="...">
                                 <div class="card-body">
                                     <h5 class="card-title">${meal.title}</h5>
@@ -49,12 +51,15 @@ function getRecipes() {
                                     <a href="#" class="recipe-btn">Recipe</a>
                                     <a href="#" class="ingredients-btn">Ingredients</a>
                                     <button id="like-btn${n}" class="like-btn" onclick='change(event)'><i class="fa-brands fa-gratipay"></i></button>
-                                </div>
-                                </div>
-                              `
-                    
+                                </div> 
+                            </div>
+                        </div>
+                    `
                     n += 1
                 });
+                output += `
+                    </div>
+                `
 
                 mealList.classList.remove('notFound')
             } else {
@@ -170,7 +175,6 @@ function mealRecipeModel(title, servings, prepTime, recipeInstructionsArray, img
 
     let output = `
                     <h2 class="recipe-title">${title}</h2>
-                    <p class="recipe-category">Category Name</p>
                     <p class="recipe-time"><i class="fa-solid fa-clock"></i> <span id="time-required">${prepTime}</span></p>
                     <p class="recipe-servings"><i class="fa-solid fa-utensils"></i> <span id="servings">${servings}</span></p>
 

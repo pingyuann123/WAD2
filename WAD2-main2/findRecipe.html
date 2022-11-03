@@ -15,7 +15,9 @@
     <link rel="stylesheet" href="findRecipe.css"/>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+  <!-- Vue 3 -->
+  <script src='https://cdn.jsdelivr.net/npm/vue@next'></script>
+  
 </head>
 <body>
     <div class="container-fluid">
@@ -54,9 +56,10 @@
               </nav>
             </div>
         </div>
+        </div>
         <!-- END NAV BAR -->
 
-        <div class="box">
+        <div class="container text-center">
             <div class="meal-search">
                 <h2 class="title">Find Recipes For Your Ingredients</h2>
 
@@ -67,53 +70,42 @@
                       <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
                 </div>
-
-                <!-- Display API results retrieved -->
-                <div class="meal-result">
-                    <!-- <h2 class="title"> your search results:</h2> -->
-                    <div id="meal">
-                      <!--EXAMPLE-->
-                      <!-- <div class="card mx-auto mb-3" data-id="${meal.id}" style="width: 25rem;">
-                        <img src="${meal.image}" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">${meal.title}</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="recipe-btn">Recipe</a>
-                            <a href="#" class="ingredients-btn">Ingredients</a>
-                            <button id="like-btn" class="like-btn"><i class="fa-brands fa-gratipay"></i></button>
-                        </div>
-                      </div> -->
-                        <!--EXAMPLE END -->
-                    </div>
-                </div>
-            </div>
-
-            <div class="meal-details">
-              <!-- Recipe close button -->
-              <button class="recipe-close-btn button" id="recipe-close-btn">
-                <i class="fa-solid fa-right-from-bracket"></i>
-              </button>
-
-              <!-- Recipe Instructions Content -->
-              <div class="meal-intructions-content">
-
-              </div>
-            </div>
-
-            <div class="ingredient-details">
-              <!-- Ingredients close button -->
-              <button class="ingredients-close-btn button" id="ingredients-close-btn">
-                <i class="fa-solid fa-right-from-bracket"></i>
-              </button>
-              
-              <!-- Ingredients Content -->
-              <div class="meal-ingredients-content">
-
-              </div>
             </div>
         </div>
+
+        <div class="container-fluid">
+                          <!-- Display API results retrieved -->
+          <div class="meal-result text-center">
+            <div id="meal">
+
+            </div>
+          </div>
+                    
         
-    </div>
+          <div class="meal-details text-center">
+            <!-- Recipe close button -->
+            <button class="recipe-close-btn button" id="recipe-close-btn">
+              <i class="fa-solid fa-right-from-bracket"></i>
+            </button>
+
+            <!-- Recipe Instructions Content -->
+            <div class="meal-intructions-content">
+
+            </div>
+          </div>
+        
+          <div class="ingredient-details text-center">
+            <!-- Ingredients close button -->
+            <button class="ingredients-close-btn button" id="ingredients-close-btn">
+              <i class="fa-solid fa-right-from-bracket"></i>
+            </button>
+            
+            <!-- Ingredients Content -->
+            <div class="meal-ingredients-content">
+
+            </div>
+          </div>
+        </div>
 
     </script>
     <!-- Bootstrap Javascript -->
@@ -125,3 +117,5 @@
         
 </body>
 </html>
+
+
