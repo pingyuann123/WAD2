@@ -20,6 +20,10 @@ body{
     border: #565038 1px solid;
     /* text-align: center; */
 }
+.selBtn{
+    color:black;
+    border: #565038 1px solid;
+}
 .createTitle, .uploadTitle{
     letter-spacing: 1px;
     color:#565038;
@@ -33,4 +37,10 @@ body{
 .submitBtn{
     margin-left: 60px;
     float:left;
+}
+.myImg{
+    height:300px;
+    width:300px;
+    /* border: 1px black; */
+
 }

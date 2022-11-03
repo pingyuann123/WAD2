@@ -6,9 +6,17 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-    <link rel="stylesheet" href="createPD.Css"/>
+    <link rel="stylesheet" href="createPd.Css"/>
 
     <title>Create A Post</title>
+    
+    <style>
+      /* img{
+        height: 300px;
+        width:300px;
+        /* border:2px black solid;} */
+
+    </style>
 </head>
 <body>
     <!-- https://icons.getbootstrap.com/ -->
@@ -31,8 +39,23 @@
                   <p>App Name</p> -->
                   <h3 class="uploadTitle">Upload Image</h3>
                   </br>
-                  <input id="imgfile" type="file" name="" />
-            </div>
+                  <label>Image Name</label>
+                  <input type="text" id="imgName"/>
+                  <label id="extlab"></label> <br><br>
+
+                  
+                  <button id="selBtn" class="selBtn btn btn-md">Select Image</button>
+                  </br></br>
+                  <!-- <button id="upBtn">Upload Image</button>
+                  <button id="downBtn">Download</button> -->
+
+                  <img id="myImg" class="myImg"/>
+                  <label id="upprogress"></label> <br>
+
+
+                  <!-- <input id="imgfile" type="file" name="" /> -->
+                  <!-- <button id = "cfmBtn" class="cfmBtn btn btn-lg btn-block" type="button">Confirm Upload</button> -->
+          </div>
 
           <div class="col-sm-6 text-black">
               
@@ -41,9 +64,18 @@
               <form class="createForm" action ="">
                 <h3 class="createTitle">List Details</h3>
               </br>
-  
+
+              <div class="form-outline mb-4">
+                <label class="userLabel form-label" for="User">Username</label>
+                <input type="text" id="listUser" class="form-control form-control-lg" />
+              </div>
+
+              <div class="form-outline mb-4">
+                <label class="titleLabel form-label" for="Title">Listing Title</label>
+                <input type="text" id="listTitle" class="form-control form-control-lg" />
+              </div>
                 <!-- <label class="emailLabel form-label" for="email">Email address</label> -->
-                <input type="text" id="listTitle" class="form-control form-control-lg" placeholder="Title of Your Listing"/>
+                <!-- <input type="text" id="listTitle" class="form-control form-control-lg" placeholder="Title of Your Listing"/> -->
       
                   <!-- <hr class="lineBreak"></hr> -->
                 </br>
@@ -51,9 +83,14 @@
                       <label class="priceLabel form-label" for="Price">Price $</label>
                       <input type="number" id="listPrice" class="form-control form-control-lg" />
                   </div>
+
+                  <div class="form-outline mb-4">
+                    <label class="qtyLabel form-label" for="Qty">Quantity</label>
+                    <input type="number" id="listQty" class="form-control form-control-lg" />
+                  </div>
       
                   <div class="form-outline mb-4">
-                      <label class="dateLabel form-label" for="date">Date</label>
+                      <label class="dateLabel form-label" for="date">Date of Expiry</label>
                       <input type="date" id="listDate" class="form-control form-control-lg" />
                   </div>
 
@@ -91,12 +128,12 @@
    <!-- Bootstrap Bundle with Popper -->
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 
-
    <script type="module">
+    
     // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-app.js";
     import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-analytics.js";
-    import { getStorage, ref} from "https://www.gstatic.com/firebasejs/9.12.1/firebase-storage.js";
+    // import { getStorage, ref} from "https://www.gstatic.com/firebasejs/9.12.1/firebase-storage.js";
     // TODO: Add SDKs for Firebase products that you want to use
     // https://firebase.google.com/docs/web/setup#available-libraries
   
@@ -125,14 +162,28 @@
     }
     from "https://www.gstatic.com/firebasejs/9.12.1/firebase-firestore.js";
 
+    import{
+      getStorage, ref as sRef, uploadBytesResumable, getDownloadURL, uploadBytes 
+    }
+    from "https://www.gstatic.com/firebasejs/9.12.1/firebase-storage.js";
+
+    //realtime database
+    import{
+      getDatabase, ref, set, child, get, update, remove 
+    }
+    from "https://www.gstatic.com/firebasejs/9.12.1/firebase-database.js";
+
 
     const db = getFirestore();
+    const realdb = getDatabase();
+
+    let userInput = document.getElementById("listUser")
     let titleInput = document.getElementById("listTitle");
     let priceInput = document.getElementById("listPrice");
     let dateInput = document.getElementById("listDate");
+    let qtyInput = document.getElementById("listQty");
     let descInput = document.getElementById("listDesc");
     let locInput = document.getElementById("listLoc");
-
 
     let addbtn = document.getElementById("createBtn");
     let bckbtn = document.getElementById("bckBtn");
@@ -143,27 +194,230 @@
     // let custbtn = document.getElementById("addCust");
 
     //add
-    async function AddDocument_AutoID(){
-      var ref = collection(db, "ProductList");
+    // async function AddDocument_AutoID(){
+    //   var ref = collection(db, "ProductList");
 
-      const docRef = await addDoc(
-        ref, {
+    //   const docRef = await addDoc(
+    //     ref, {
+    //       productTitle:titleInput.value,
+    //       productPrice:priceInput.value,
+    //       productDate:dateInput.value,
+    //       productQty:qtyInput.value,
+    //       productDesc:descInput.value,
+    //       productLoc:locInput.value
+    //         }
+    //     )
+    //   .then(()=>{
+    //     alert("Created Successfully");
+    //       window.location = "marketplace.html";
+    //       window.history.forward();
+    //   })
+    //   .catch((error)=>{
+    //     alert("Creation Unsuccessful" + error);
+    //   });
+    // }
+    //img var
+    var files = [];
+    var reader = new FileReader();
+
+    var imgName = document.getElementById("imgName");
+    var extlab = document.getElementById("extlab");
+    var myImg = document.getElementById("myImg");
+    var progLab = document.getElementById("upprogress");
+    var selBtn = document.getElementById("selBtn");
+    var upBtn = document.getElementById("upBtn");
+    var downBtn = document.getElementById("downBtn");
+
+    var input = document.createElement('input');
+    input.type = 'file';
+
+    input.onchange = e =>{
+      files = e.target.files;
+
+      var extention = GetFileExt(files[0]);
+      var name = GetFileName(files[0]);
+
+      imgName.value = name;
+      extlab.innerHTML = extention;
+
+      reader.readAsDataURL(files[0]);
+      
+
+    }
+
+    reader.onload = function(){
+      myImg.src = reader.result;
+    }
+
+    //select
+    selBtn.onclick = function(){
+      input.click();
+    }
+
+    function GetFileExt(file){
+      var temp = file.name.split('.');
+      var ext = temp.slice((temp.length-1),(temp.length));
+
+      return '.' + ext[0];
+    }
+
+    function GetFileName(file){
+      var temp = file.name.split('.');
+      var fname = temp.slice(0,-1).join('.');
+
+      return fname;
+    }
+
+    //upload
+
+    // async function UploadProcess(){
+    //   var ImgToUpload = files[0];
+
+    //   var ImgName = imgName.value + extlab.innerHTML;
+
+    //   console.log(ImgName);
+
+
+    //   if(!validateName()){
+    //     alert('name cannot contain ".", "#", "$", "[", or "]"');
+    //     return;
+    //   }
+      
+    //   const metaData = {
+    //     contentType:ImgToUpload.type
+    //   }
+
+    //   const storage = getStorage();
+
+    //   const storageRef = sRef(storage,"Images/"+ImgName);
+
+    //   const UploadTask = uploadBytesResumable(storageRef, ImgToUpload, metaData);
+
+    //   UploadTask.on('state-changed',(snapshot)=>{
+    //     var progress = (snapshot.bytesTransferred / snapshot.totalBytes * 100)
+    //     progLab.innerHTML = "Upload" + progress + "%";
+    //   },
+    //   (error)=>{
+    //     alert("error: image not uploaded!");
+    //   },
+    //   ()=>{
+    //     getDownloadURL(UploadTask.snapshot.ref).then((downloadURL)=>{
+    //       console.log(downloadURL);
+    //     });
+    //   }
+    //   );
+    // }
+
+    // var productId = 0;
+
+    function InsertData(){
+      // for (productId = 0; productId < 1000;){
+        var ImgToUpload = files[0];
+
+        var ImgName = imgName.value + extlab.innerHTML;
+
+        console.log(ImgName);
+
+
+        if(!validateName()){
+          alert('name cannot contain ".", "#", "$", "[", or "]"');
+          return;
+        }
+
+        const metaData = {
+          contentType:ImgToUpload.type
+        }
+
+        const storage = getStorage();
+
+        const storageRef = sRef(storage,"Images/"+ImgName);
+
+        const UploadTask = uploadBytesResumable(storageRef, ImgToUpload, metaData);
+
+        UploadTask.on('state-changed',(snapshot)=>{
+          var progress = (snapshot.bytesTransferred / snapshot.totalBytes * 100)
+          progLab.innerHTML = "Upload" + progress.toFixed(2) + "%";
+          getDownloadURL(UploadTask.snapshot.ref).then((downloadURL)=>{
+            console.log(downloadURL);
+            var downloadURL = downloadURL;
+          });
+        },
+        (error)=>{
+          alert("error: image not uploaded!");
+        },
+        // ()=>{
+        //   getDownloadURL(UploadTask.snapshot.ref).then((downloadURL)=>{
+        //     console.log(downloadURL);
+        //   });
+        // }
+        );
+
+        // console.log(downloadURL);
+
+        set(ref(realdb,"ProductList/"+userInput.value+titleInput.value),{
+          // productId:productId,
+          productID:userInput.value+titleInput.value,
+          productUser:userInput.value,
           productTitle:titleInput.value,
           productPrice:priceInput.value,
           productDate:dateInput.value,
+          productQty:qtyInput.value,
           productDesc:descInput.value,
-          productLoc:locInput.value
-            }
-        )
-      .then(()=>{
-        alert("Created Successfully");
+          productLoc:locInput.value,
+          productImgName:ImgName
+          // productImgURL:downloadURL
+        })
+        .then(()=>{
+          alert("Created Successfully");
           window.location = "marketplace.html";
           window.history.forward();
-      })
-      .catch((error)=>{
-        alert("Creation Unsuccessful" + error);
-      });
+        })
+        .catch((error)=>{
+          alert("Creation Unsuccessful" + error);
+        });
+
+        // setTimeout(function(){
+        //   set();
+        // },5000);
+
+        // productId = productId + 1;
+      }
+      
+    // }
+    // //upload url to realtime database
+    // function SaveURLtoRealtimeDB(URL){
+    //   var name = imgName.value;
+    //   var ext = extlab.innerHTML;
+
+    //   set(ref(realdb,"ImagesLinks/"+name),{
+    //     ImageName: (name+ext),
+    //     ImgUrl:URL
+    //   });
+    // }
+
+    // function GetURLfromRealtimeDB(){
+    //   var name = imgName.value;
+    //   var dbRef = ref(realdb);
+    //   get(child(dbRef,"ImagesLinks/"+name)).then((snapshot)=>{
+    //     if(snapshot.exists()){
+    //       myImg.src = snapshot.val().ImgUrl;
+    //     }
+    //   })
+    // }
+
+    function validateName(){
+      var regex = /[\.#$\[\]]/
+      return !(regex.test(imgName.value));
     }
+
+
+
+
+
+    // upBtn.onclick = UploadProcess;
+
+    // downBtn.onclick = GetURLfromRealtimeDB;
+
 
     function back(){
       alert("Important: Leaving This Page Will Not Save This Listing");
@@ -173,12 +427,14 @@
     // function Redirect() {
     //   window.location = "marketplace.html";
     // }
-    addbtn.addEventListener("click",AddDocument_AutoID);
+    addbtn.addEventListener("click",InsertData);
     bckbtn.addEventListener("click",back);
+
+
 
     // addbtn.addEventListener("click",Redirect);
 
-
+    // console.log(imgInput);
 
 
     
