@@ -1,0 +1,55 @@
+@charset "UTF-8";
+
+/* Home Css */
+.profileIcon{
+    width: 25px;
+    height:25px;
+}
+body{
+    background-color: #F8F7F6;
+}
+.nav-item{
+    color:#a17d60;
+}
+.appName{
+    color:#a17d60;
+}
+.receipeLabel,.communityLabel,.locationLabel{
+    padding-top: 30px;
+    text-align: center;
+    color:#a17d60;
+    text-decoration: underline;
+}
+.receipeLabel:hover,.communityLabel:hover,.locationLabel:hover{
+    /* padding-top: 30px;
+    text-align: center; */
+    color:#4c482e;
+    /* text-decoration: underline; */
+}
+.receipeIcon,.communityIcon,.locationIcon{
+    border-radius: 5%;
+    width:270px;
+}
+.menuItems{
+    padding-bottom: 30px;
+}
+
+.carousel-inner{
+    /* height:520px; */
+    padding-left: 15px;
+    padding-right: 15px;
+}
+/* #carouselHome{
+    height:520px;
+} */
+.carouselcontainer{
+    height: relative;
+	width: relative;
+	display: block;
+}
+.carousel-item{
+	width: relative;
+	height: relative;
+	transition: transform 1.5s ease, opacity .1s ease-out;
+}
+
