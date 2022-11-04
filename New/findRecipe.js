@@ -37,25 +37,29 @@ function getRecipes() {
     })
         .then(response => {
             console.log(response.data);
-            let output = "" 
+            let output = `<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">`
             if (response.data.length != 0) {
                 response.data.forEach(meal => {
+
                     output += `
-                                <div class="card mx-auto mb-3" data-id="${meal.id}" style="width: 25rem;">
+                        <div class = "col">
+                            <div class="card" data-id="${meal.id}">
                                 <img src="${meal.image}" class="card-img-top" alt="...">
                                 <div class="card-body">
                                     <h5 class="card-title">${meal.title}</h5>
                                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                                     <a href="#" class="recipe-btn">Recipe</a>
                                     <a href="#" class="ingredients-btn">Ingredients</a>
-                                    <button id="like-btn${n}" class="like-btn" onclick='addRecipe({id:${meal.id},img:'${meal.image}',title:'${meal.title}'})"><i class="fa-brands fa-gratipay"></i></button>
-                                    </div>)'><i class="fa-brands fa-gratipay"></i></button>
-                                </div>
-                                </div>
-                              `
-                    
+                                    <button id="like-btn${n}" class="like-btn" onclick='change(event)'><i class="fa-brands fa-gratipay"></i></button>
+                                </div> 
+                            </div>
+                        </div>
+                    `
                     n += 1
                 });
+                output += `
+                    </div>
+                `
 
                 mealList.classList.remove('notFound')
             } else {
@@ -171,7 +175,6 @@ function mealRecipeModel(title, servings, prepTime, recipeInstructionsArray, img
 
     let output = `
                     <h2 class="recipe-title">${title}</h2>
-                    <p class="recipe-category">Category Name</p>
                     <p class="recipe-time"><i class="fa-solid fa-clock"></i> <span id="time-required">${prepTime}</span></p>
                     <p class="recipe-servings"><i class="fa-solid fa-utensils"></i> <span id="servings">${servings}</span></p>
 
@@ -190,12 +193,24 @@ function mealRecipeModel(title, servings, prepTime, recipeInstructionsArray, img
 }
 
 // Change heart to red when user clicks it, then change it back when user clicks on it again
+
+var likedRecipes = []
 function change(event) {
-    console.log(event.target.parentElement.id)
-    likeButton = document.getElementById(event.target.parentElement.id)
+    let likeButton = document.getElementById(event.target.parentElement.id)
+    let img = likeButton.parentElement.parentElement.getElementsByTagName('img')[0].src
+
+    // let img = likeButton.parentElement.parentElement.getElementsByTagName('img')
+    // console.log(img)
     if (likeButton.style.color == "red") {
         likeButton.style.color = "grey"
+        // localStorage.removeItem('meal-img')
+        likedRecipes = likedRecipes.filter(recipe => recipe !== img)
     } else {
         likeButton.style.color = "red"
+        likedRecipes.push(img)
+        // localStorage.setItem('meal-img', img)
     }
+
+    localStorage.setItem('meal-imgs', JSON.stringify(likedRecipes))
+    // console.log(likedRecipes)
 }
