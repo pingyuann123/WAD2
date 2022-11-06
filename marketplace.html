@@ -91,6 +91,7 @@
 
                       // Import the functions you need from the SDKs you need
                       import { initializeApp } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-app.js";
+                      import { getDatabase, ref, child, onValue, get } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-database.js";
                  
                        // TODO: Add SDKs for Firebase products that you want to use
                        // https://firebase.google.com/docs/web/setup#available-libraries
@@ -109,18 +110,9 @@
                        };
                      
                        // Initialize Firebase
-                       initializeApp(firebaseConfig);
-                   
-                       import{
-                           getFirestore, collection, getDocs
-                       }
-                       from "https://www.gstatic.com/firebasejs/9.12.1/firebase-firestore.js";
-                   
-                       const db = getFirestore();
-                       
-                       console.log('no')
-          
-          
+                       const firebase_app = initializeApp(firebaseConfig);
+                       const db = getDatabase();
+  
                        const app = Vue.createApp({
                          data(){
                            return{
@@ -133,17 +125,23 @@
           
                          methods:{
                             async GetADocument(){
-                             const querySnapshot = await getDocs(collection(db, 'ProductList'));
-          
-                             querySnapshot.forEach((doc) => {
-                               this.price = doc.data().productPrice;
-                               this.location = doc.data().productLoc;
-                               this.date = doc.data().productDate;
-                               this.title = doc.data().productTitle;
-                               this.desc = doc.data().productDesc;
-                               console.log(doc.id, " => ", doc.data());
-                               addToList(this.price, this.date, this.title);
-                             })
+                              const dbRef = ref(db, 'ProductList');
+                              console.log(dbRef)
+                              onValue(dbRef, (snapshot) => {
+                              snapshot.forEach((childSnapshot) => {
+                                  const childKey = childSnapshot.key;
+                                  const childData = childSnapshot.val();
+                                  console.log(childKey);
+                                  console.log(childData)
+                                  var price = childData.productPrice;
+                                  var title = childData.productTitle;
+                                  var image = childData.productImgName;
+                                  var expiry = childData.productDate;
+                                  addToList(price, expiry, title, image)
+                          });}, 
+                              {
+                                onlyOnce: true
+                                });
                          }},
           
                          created(){
@@ -153,13 +151,13 @@
                  }).mount('#app')
                    </script>
                    <script>
-                     function addToList(price, date, title) {
+                     function addToList(price, date, title, image) {
 
                       var div = document.getElementById('app');
                       var divcard = document.createElement('div');
                       divcard.innerHTML = `
                             <div class="card" style="width: 18rem;">
-                              <img class="card-img-top" src="img/food1.jpg" alt="Card image cap">
+                              <img class="card-img-top" src="img/${image}" alt="Card image cap">
                               <div class="card-body">
                               <h5 class="card-title">${title}<span style = 'float:right'>$${price}</span></h5>
                               <p class="card-text"><strong><small>GOOD TILL: ${date}</small><strong></p>
