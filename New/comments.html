@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="comments.css">
+    <title>All Comments</title>
+</head>
+<body>
+
+    <!--NavBar-->
+    <div class = 'container-fluid'>
+        <div class="row navBar">
+        <div class="col ps-3">
+            <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <a class="marketplaceName navbar-brand" href="marketplace.html">Community MarketPlace</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNavbar" aria-controls="collapseNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse " id="collapseNavbar">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                
+                    <li class="nav-item px-2">
+                    <a class="nav-link" href="home" role="button">
+                        Home
+                    </a>
+                    </li>
+
+                    <li class="nav-item px-2">
+                    <a class="nav-link" href="profile" role="button">
+                        <img class="profileIcon" src="img/user.png" alt="Profile"/>
+                    </a>
+                    </li>
+
+                    <li class="nav-item px-2">
+                    <a class="nav-link" href="login.html" role="button">
+                        Log Out
+                    </a>
+                    </li>                  
+                </ul>                  
+                </div>
+            </div>
+            </nav>
+        </div>
+        </div>
+    </div>
+
+    <!--display comment-->
+    <div class = "container-fluid outline">
+        <div class="row">
+            <img class="postIcon" src="img/user.png" alt="profileicon">
+            <div class="col">
+                <div class="row comment m-0">
+                    <div class="col comment m-0" id="findName">
+                        name
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col comment m-0" id="findComment">
+                        comment
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        
+    </div>
+
+    <!--add comment-->
+    <form action="" id="addcomment">
+        <div class="form-control">
+            <div class="row">
+                <div class="col p-0">
+                    <div class="form-group">
+                        <textarea class="newcomment" id="newcomment" rows="1" placeholder="add comment..."></textarea>
+                    </div>
+                </div>
+                <div class="col-1 p-0">
+                    <button type="submit" id="submit" class="btn btn-info">post</button>
+                </div>
+            </div>
+                
+        </div>
+    </form>
+
+    
+    <footer class="mt-auto">
+        <hr>
+            <p class="text-center text-muted">&copy; 2022 Easycook, Inc</p>
+            <ul class="nav justify-content-center  mb-3">
+                <li class="nav-item"><a href="home.html" class="nav-link px-2 text-muted">Home</a></li>
+                <li class="nav-item"><a href="findRecipe.html" class="nav-link px-2 text-muted">Recipes</a></li>
+                <li class="nav-item"><a href="marketplace.html" class="nav-link px-2 text-muted">Marketplace</a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">FAQs</a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>
+            </ul>
+    </footer>
+
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-analytics.js";
+        import { getStorage, ref} from "https://www.gstatic.com/firebasejs/9.12.1/firebase-storage.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+          apiKey: "AIzaSyDnTYOrGQrdQWC9RtjAYFLVDD1w5ctGXu4",
+          authDomain: "comments-section-e5855.firebaseapp.com",
+          databaseURL: "https://comments-section-e5855-default-rtdb.asia-southeast1.firebasedatabase.app",
+          projectId: "comments-section-e5855",
+          storageBucket: "comments-section-e5855.appspot.com",
+          messagingSenderId: "944932243874",
+          appId: "1:944932243874:web:40d1b816d9478943dc4afb"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+
+        import {getFirestore, doc, getDoc, setDoc, collection, addDoc, updateDoc, deleteDoc, deleteField} from "https://www.gstatic.com/firebasejs/9.13.0/firebase-firestore.js";
+
+        const db = getFirestore();
+
+        var postBtn = document.getElementById("submit");
+
+        async function insertComment(){
+            let username = sessionStorage.getItem('username')
+            let name = sessionStorage.getItem('name')
+            let email = sessionStorage.getItem('email')
+            let uid = sessionStorage.getItem('uid')
+            let comment = document.querySelector('#newcomment').value;
+            console.log(comment)
+            console.log(username)
+            console.log(name)
+            console.log(email)
+            console.log(uid)
+        
+
+            var ref = doc(db, "Comments");
+            const docRef = await setDoc(
+                ref, {
+                    uid: uid,
+                    name: name,
+                    username: username,
+                    comment: comment,
+                    }
+                )
+            .then(()=>{
+                alert("Created Successfully");
+                sessionStorage.clear()
+                window.location = "product_page.html";
+                window.history.forward();
+                
+            })
+            .catch((error)=>{
+                alert("Creation Unsuccessful:" + error);
+            });
+            }
+
+        postBtn.addEventListener('click', insertComment);
+
+        /*var newcomment = document.getElementById("newcomment"); // new comment to be posted
+        var username = document.getElementById("username"); // username of user who is commenting
+        var postid = document;
+
+        var findName = document.getElementById("findName"); // name of user who already posted a comment
+        var findComment = document.getElementById("findComment"); // comment
+
+        
+
+        function insertComment() {
+            set( ref(db, "Comments"), {
+                comment: newcomment.value,
+            })
+            .then(() =>{
+                alert("Comment posted successfully!")
+            } )
+            .catch((error)=>{
+                alert(error)
+            })
+        }
+
+        function findData() {
+            const dbref = ref(db)
+
+            get(child(dbref, "Comments" + postid.value))
+            .then((snapshot)=>{
+                if (snapshot.exists()) {
+                    findName.innerText = snapshot.val().Name; // find name of person who commented
+                    findComment.innerText = snapshot.val().Comment; // find comment 
+                } else {
+                    alert("No data found");
+                }
+            })
+            .catch((error)=>{
+                alert(error)
+            })
+        }*/
+      </script>
+</body>
+
+
+</html>
