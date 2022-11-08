@@ -13,7 +13,7 @@ body{
 }
 .marketplaceName{
     color:#a17d60;
-    font-weight: bolder;
+    /* font-weight: bolder; */
 }
 
 .subtext{

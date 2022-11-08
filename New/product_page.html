@@ -12,72 +12,19 @@
     
     <!-- VUE -->
     <script src="https://unpkg.com/vue@next"></script>
-        <style>
-            .header{
-                /* background-color: pink; */
-                /* color: brown; */
-                padding: 20px;
-            }
+    <script type="text/javascript" src="https://unpkg.com/default-passive-events"></script>
+    <link rel="stylesheet" href="product__page.css"/>
 
-            .body{
-              padding:20px;
-            }
-            .button {
-                display: inline-block;
-                padding: 10px 20px;
-                font-size: 19px;
-                cursor: pointer;
-                text-align: center;
-                text-decoration: none;
-                outline: none;
-                color: #fff;
-                background-color: brown;
-                border: none;
-                border-radius: 25px;
-                box-shadow: 0 9px #999;
-            }
-
-            .button:hover {
-                background-color: brown
-            }
-
-            .button:active {
-                background-color:brown;
-                transform: translateY(4px);
-            }
-
-            h1{
-              display:inline;
-            }
-
-            #map {
-              height: 300px;  
-              width: 500px; 
-            }
-            .profileIcon{
-            width: 25px;
-            height:25px;
-            }
-            body{
-                background-color: #F8F7F6;
-            }
-            .nav-item{
-                color:#a17d60;
-            }
-            .marketplaceName{
-                color:#a17d60;
-                /* font-weight: bolder; */
-            }
-        </style>
     </head>
     <body>
       <!-- nav bar missing -->
-        <div class = 'container-fluid'>
-          <div class="row navBar">
+        <div class = ' container-fluid'>
+          <div class="row navBar" >
             <div class="col ps-3">
               <nav class="navbar navbar-expand-lg">
                 <div class="container-fluid">
-                  <a class="marketplaceName navbar-brand" href="marketplace.html">Community MarketPlace</a>
+                  <a class="marketplace navbar-brand" href="marketplace.html" style="color:#a17d60;">EasyCook</a>
+                  
                   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNavbar" aria-controls="collapseNavbar" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                   </button>
@@ -92,19 +39,20 @@
   
                       <li class="nav-item px-2">
                         <a class="nav-link" href="profile" role="button">
-                          <img class="profileIcon" src="img/user.png" alt="Profile"/>
+                          Profile <img class="profileIcon" src="img/user.png" alt="Profile"/>
                         </a>
                       </li>
   
                       <li class="nav-item px-2">
-                        <a class="nav-link" href="login.html" role="button">
+                        <a class="nav-link" href="img/login.html" role="button">
                           Log Out
                         </a>
                       </li>                  
-                    </ul>                  
+                    </ul>                
                   </div>
                 </div>
               </nav>
+              <!-- <small style="color:#a17d60; padding-left:10px">Marketplace</small> -->
             </div>
           </div>
         </div>
@@ -112,18 +60,19 @@
 
         <div class="container-fluid" id = 'app'>
           <div class = 'row'>
-              <div class = 'col-6 p-0' style = 'float: left;  height:100%;' >
-                <img src=""/>
+              <div class = 'col-6 p-0' style = 'float: right;  height:100%;' >
+                <img  style = 'float: right;  height:100%;'  class="d-block w-100" :src='image' alt="{{Title}}">
+                
                   <!-- carousel -->
                     <!-- <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                       <div class="carousel-inner">
                           <div class="carousel-item active"> -->
                               <!-- set 1 slide as default active -->
-                              <!-- <img class="d-block w-100" src="food1.jpg"
+                              <!-- <img class="d-block w-100" :src='image'>
                                   alt="food1">
                           </div>
                           <div class="carousel-item ">
-                              <img class="d-block w-100" src="login.jpeg"
+                              <img class="d-block w-100" src="img/loginPic.jpg"
                                   alt="food2">
                           </div>
                       </div> -->
@@ -138,188 +87,201 @@
                           <span class="carousel-control-next-icon" aria-hidden="true"></span>
                           <span class="visually-hidden">Next</span>
                       </button>
-                    </div>-->
+                    </div> -->
               </div>
               <div class = 'col-6 p-0 ' style = 'float: right; height:100%;'>
                     <!-- product info -->
                     <!-- product name, price and expiry date-->
                     <section class ='header'>
-                    <h2>{{title}}</h2>
-                    <hr>
-                    <h5 style = 'float:left'>${{price}}</h5>
+                    <h3>{{title}}</h3>
+                    <hr style="width:20%;text-align:left;margin-left:0">
+                    <p style = 'float:left'>${{price}}</p>
+                    <!-- <br>
+                    <br> -->
                     <small style = 'float:right'>BEST BY: {{date}}</small>
                     </section>
                     <section class = 'body'>
                         <!-- product info  -->
 
                         <!-- product title -->
-                    </br>
 
-                        <!-- <h5>Product Details</h5> -->
+                        <!-- <h4>Details</h4> -->
                         <!-- bio area -->
-                        <p><i>{{desc}}</i></p>
-                    </section>
-                    <section class ='header'>
-                        <h5 >Pickup Location</h5>
-                        <p>{{location}}</p>
-                    </br>
-                        <!-- map api -->
-                        <div id = 'map'>
-                          <!-- map api -->
-                        <script>
-                                            
-                          // default lat/lng value at SMU
-                          var lat = "1.2973784"
-                          var lng = "103.8495219"
-                          var title = "Hello SMU"
-                          /* todo: 
-                              Load the map using Google Maps API
-                              Initialize the map to point to SMU at the start
-                          */
-                          let map
-                          function initMap() {
-                              // default: The location of SIS, SMU
-                              lat = parseFloat(lat)
-                              lng = parseFloat(lng)
-                              // var uluru = {lat: -25.344, lng: 131.036};
-                              var loc = {lat: lat, lng: lng}
-
-                              // The map, centered at SIS, SMU
-                              map = new google.maps.Map(
-                                  // play with the zoom value to zoom in or out
-                                  document.getElementById('map'), 
-                                  {center: loc, zoom: 14})
-                              // The marker, positioned at SIS, SMU
-                              const marker = new google.maps.Marker({position: loc, map: map, title: title})
-                          }
-                          // window is a global object that has the properties of the current DOM object, eg. window.document
-                          console.log(window.innerWidth)
-                          // we can add additioanl property like initMap so that we can access it whenever necessary
-                          
-                          window.initMap = initMap
-                        </script>
-                        <script>
-                         // Async call
-                         function getLoc(action) {
-                             var addr = this.location;
-                             console.log(addr);
-                             var url = "https://maps.googleapis.com/maps/api/geocode/json";
-                             var key = "AIzaSyDAo304l1NlMbOwhtCNbbQEhuEd4NEmoTo"
-                             
-                             axios.get(url, {
-                                         params: {
-                                             address : addr,
-                                             key : key
-                                         }
-                                     })
-                                     .then(response =>  {
-                                         let data = response.data
-                                         console.log(data);
-                 
-                                         let info = '';
-                                         if (addr == 'postcode') {
-                                             // display postal code, given an address
-                                             info = getPostCode(data);
-                                         } else {
-                                             // display full address, given post code or partial addr
-                                             info = getFullAddress(data);
-                                         }
-                                         console.log(info);
-                                         
-                                         document.getElementById("display").innerText = info;
-                                         // refresh the hidden input values with new lat lng coordinates
-                                         let coordinate = getLatLng(data);
-                                         lat = coordinate["lat"];
-                                         lng = coordinate["lng"];
-                                         title = "Hello " + addr
-                                         // now refresh the map
-                                         initMap();
-                                     })
-                                     .catch(error => {
-                                         // not a good idea to directly show err.message 
-                                         // as it may contain sensitive info
-                                         // document.getElementById("display").innerText = error.message;
-                                         // show a predefined error message string
-                                         document.getElementById("display").innerText = "Sorry, invalid address. Please try again!";
-                                     }); 
-                         }
-                 
-                         function getFullAddress (data) {
-                             var addr = data["results"][0]["formatted_address"];
-                             var loc = getLatLng(data);
-                             return addr + ", lat: " + loc["lat"] + ", lng: " + loc["lng"];
-                         }
-                 
-                         function getLatLng(data) {
-                             var location= data["results"][0]["geometry"]["location"];
-                             return location; 
-                         }
-                 
-                         function getPostCode(data) {
-                             var addrcomponents = data["results"][0]["address_components"];
-                             var postcode = addrcomponents.filter(postcodeHelper);
-                             // country is an array but there should be only one element
-                             return postcode[0]["long_name"];
-                         }
-                 
-                         function postcodeHelper(addr) {  
-                             return addr["types"][0] == "postal_code" ;
-                         }
-                 
-                 
-                         function getKeys(data){
-                             // data["results"][0] is an object
-                             // this gets the keys/properties of results[0] object
-                             var keys = Object.keys(data["results"][0]);
-                             for (key of keys) {
-                                 // this prints --
-                                 /*  address_components
-                                     formatted_address
-                                     geometry
-                                     place_id
-                                     plus_code
-                                     types */
-                                 document.getElementById("display").innerText += key + "; ";
-                             }
-                         }
-                 
-                         function getCountry(data) {
-                             // this is an array
-                             var addrcomponents = data["results"][0]["address_components"];
-                             // The filter() method creates a new array with array elements that passes a test.
-                             var country = addrcomponents.filter(countryHelper);
-                             // country is an array but there should be only one element
-                             return country[0]["long_name"];
-                         }
-                 
-                         function countryHelper(addr, index) {  
-                             return addr["types"][0] == "country" ;
-                         }
-                     </script>
-                        </div>
                         <br>
-                        <!-- <h5>{{location}}</h5> -->
+                        <p><i>{{desc}}</i></p>
+                        <br>
+                        <!-- <div class="container-fluid">
+                          <div class="row">
+                            <p>Quantity:</p>
+                            <p style = 'float:right'>{{qty}}</p>
+                          </div>
+
+                        </div> -->
+                        <b><p style = 'float:left'>Quantity: <p style = 'float:right'>{{qty}}</p> </p></b>
+                        <br>
+
+                        <b><p style = 'float:left'>Pickup Location:</b> <p style = 'float:right'id = "address">{{location}}
+                          <button id = "pickBtn" class="button btn btn-sm btn-block" type="button" onclick="initMap()" title="Click to show location on map">
+                            <img style = "height:14px; float:left"src="img/info.png"/>
+                          </button>
+                          <p style = 'float:left' id = "lat">{{lat}}</p>
+                          <p style = 'float:left' id = "lng">{{lng}}</p>
+                        </p>
+                      </p>
+                        <!-- map api -->
+                        <!-- <br> -->
+
+                        <!-- <br> -->
+
+                        <div id="map" ></div>
+                        <script>
+                            var geocoder;
+                            var map;
+                            function initMap() {
+                              var locationAdd = document.getElementById('address').textContent;
+                              var maplat = document.getElementById('lat').textContent;
+                              var maplng = document.getElementById('lng').textContent;
+                              console.log(locationAdd);
+                              console.log(maplat);
+                              console.log(maplng);
+
+                              if (locationAdd != null && maplat!='' && maplng!=''){
+                                var latlng = new google.maps.LatLng(1.290270, 103.851959);
+                                var mapOptions = {
+                                  zoom: 10.6,
+                                  center: latlng
+                                }
+                                map = new google.maps.Map(document.getElementById('map'), mapOptions);
+                                var address = document.getElementById('address').textContent;
+                                var latitude = parseFloat(document.getElementById('lat').textContent);
+                                var longitude = parseFloat(document.getElementById('lng').textContent);
+                                console.log(latitude)
+                                // var latInt = parseInt(lat);
+                                // console.log(latitude.type)
+                                var marker = new google.maps.Marker({
+                                  map:map,
+                                  position:{lat:latitude,lng:longitude},
+                                  content:'<h3>' + address + '</h3>'
+                                });
+                                // var infowindow = new google.maps.InfoWindow({
+                                // content:'<h3>' + address + '</h3>'
+                                // });
+                              }else if( locationAdd != null &&  maplat=='' && maplng==''){
+                                geocoder = new google.maps.Geocoder();
+                                var latlng = new google.maps.LatLng(1.290270, 103.851959);
+                                var mapOptions = {
+                                  zoom: 10.9,
+                                  center: latlng
+                                }
+                                map = new google.maps.Map(document.getElementById('map'), mapOptions);
+                                var address = document.getElementById('address').textContent;
+                                console.log(address);
+                                geocoder.geocode( { 'address': address}, function(results, status) {
+                                  if (status == 'OK') {
+                                    map.setCenter(results[0].geometry.location);
+                                    var marker = new google.maps.Marker({
+                                        map: map,
+                                        position: results[0].geometry.location,
+                                        content:'<h3>' + address + '</h3>'
+                                    });
+                                  } else {
+                                    // alert('Geocode was not successful for the following reason: ' + status);
+                                  }
+                                });
+                                // var infowindow = new google.maps.InfoWindow({
+                                // content:'<h3>' + address + '</h3>'
+                                // });
+
+                              }
+                              // geocoder = new google.maps.Geocoder();
+                              // var latlng = new google.maps.LatLng(1.290270, 103.851959);
+                              // var mapOptions = {
+                              //   zoom: 10.9,
+                              //   center: latlng
+                              // }
+                              // map = new google.maps.Map(document.getElementById('map'), mapOptions);
+                              // var address = document.getElementById('address').textContent;
+                              // var latitude = parseFloat(document.getElementById('lat').textContent);
+                              // var longitude = parseFloat(document.getElementById('lng').textContent);
+                              // console.log(latitude)
+                              // // var latInt = parseInt(lat);
+                              // console.log(latitude.type)
+                              // var marker = new google.maps.Marker({
+                              //   map:map,
+                              //   position:{lat:latitude,lng:longitude}
+                              // });
+
+
+                              // console.log(address);
+                              // geocoder.geocode( { 'address': address}, function(results, status) {
+                              //   if (status == 'OK') {
+                              //     map.setCenter(results[0].geometry.location);
+                              //     var marker = new google.maps.Marker({
+                              //         map: map,
+                              //         position: results[0].geometry.location
+                              //     });
+                              //   } else {
+                              //     // alert('Geocode was not successful for the following reason: ' + status);
+                              //   }
+                              // });
+
+
+                            }
+
+                            // function codeAddress() {
+                            //   var address = document.getElementById('address').value;
+                            //   geocoder.geocode( { 'address': address}, function(results, status) {
+                            //     if (status == 'OK') {
+                            //       map.setCenter(results[0].geometry.location);
+                            //       var marker = new google.maps.Marker({
+                            //           map: map,
+                            //           position: results[0].geometry.location
+                            //       });
+                            //     } else {
+                            //       alert('Geocode was not successful for the following reason: ' + status);
+                            //     }
+                            //   });
+                            // }
+                      </script>
+
                         <br>
                         <!-- retrieve location input, connect w map api via axios, display map here-->
-                        <!-- <button class = 'button'>Chat with seller</button> -->
+                        
+                        <div class="buttons container-fluid">
+                          <button id ="chatBtn" class = 'btn btn-sm btn-block' type="button">Chat with Seller</button>
+                          
+                          <button style = 'float:right' id = "chatBtn" class="bckBtn btn btn-md btn-block" type="button" onclick="window.location.href='marketplace.html';">Back</button>
+                          <!-- <button style = 'float:right' id = "testbtn" class="bckBtn btn btn-md btn-block" type="button">test</button> -->
+                        </div>
                         <!-- profile pic and name in same inline as button -->
                     </section>
-                    <div class="buttons container-fluid">
-                      <!-- <button id = "createBtn" class="submitBtn btn btn-lg btn-block" type="button">Create New Listing</button> -->
-                      
-                      <button id = "bckBtn" class="bckBtn btn btn-md btn-block" type="button">Back</button>
-                    </div>
                 </div>
             </div>
           </div>
-          
-          
+<!--           
+          <script>
+
+            let testbtn = document.getElementById("testbtn");
+            function getUrlVars() {
+              // var vars = {};
+              // var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+              //     vars[key] = value;
+              // });
+              // return vars;
+              // document.getElementById("write").innerHTML = window.location.search; 
+              console.log("ok")
+              console.log(window.location.search)
+            }
+            testbtn.addEventListener("click",getUrlVars);
+          </script> -->
           <!-- firebase -->
           
           <script type = 'module'>
 
              // Import the functions you need from the SDKs you need
              import { initializeApp } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-app.js";
+             import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-database.js";
+             import { getAuth } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-auth.js";
         
               // TODO: Add SDKs for Firebase products that you want to use
               // https://firebase.google.com/docs/web/setup#available-libraries
@@ -339,16 +301,21 @@
             
               // Initialize Firebase
               initializeApp(firebaseConfig);
-          
-              import{
-                  getFirestore, collection, getDocs
-              }
-              from "https://www.gstatic.com/firebasejs/9.12.1/firebase-firestore.js";
-          
-              const db = getFirestore();
-              
-              console.log('no')
+              const db = getDatabase();
+              const auth = getAuth();
 
+              // let testbtn = document.getElementById("testbtn");
+              let vars = "";
+              function getUrlVars() {
+              
+                var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+                vars = value;
+                });
+                // return vars;
+                // document.getElementById("write").innerHTML = window.location.search; 
+                // console.log("ok")
+                console.log(vars)
+              }
 
               const app = Vue.createApp({
                 data(){
@@ -358,22 +325,36 @@
                   price: '',
                   date: '',
                   location: '', 
+                  user: '',
+                  image: 'img/',
+                  qty: 0,
+                  lat:'',
+                  lng:''
+
                 }}, 
 
                 methods:{
                   async GetADocument(){
-                    const querySnapshot = await getDocs(collection(db, 'ProductList'));
-
-                    querySnapshot.forEach((doc) => {
-                      this.price = doc.data().productPrice;
-                      this.location = doc.data().productLoc;
-                      this.date = doc.data().productDate;
-                      this.title = doc.data().productTitle;
-                      this.desc = doc.data().productDesc;
-                      console.log(doc.id, " => ", doc.data());
-                    })
+                    getUrlVars();
+                    // const productID =  'Admin1Strawberry'
+                    const product_data = ref(db, 'ProductList/' + vars);
+                    onValue(product_data, (snapshot) => {
+                      const data = snapshot.val();
+                      this.price = data.productPrice;
+                      this.title = data.productTitle;
+                      this.image += data.productImgName;
+                      this.date = data.productDate;
+                      this.qty = data.productQty;
+                      this.location = data.productLoc;
+                      this.desc = data.productDesc;
+                      this.user = data.productUser;
+                      this.lat = data.productLat;
+                      this.lng = data.productLng;
+                      console.log(data.productPrice);
+                      console.log(this.image);
+                      //updateStarCount(postElement, data);
+                    });
                   }},
-
                 created(){
                   this.GetADocument()
                 }
@@ -381,20 +362,8 @@
         }).mount('#app')
 
 
-        //back button
-        let bckbtn = document.getElementById("bckBtn");
-
-        function back(){
-          // alert("Important: Leaving This Page Will Not Save This Listing");
-          window.location = "marketplace.html";
-
-        }
-        // function Redirect() {
-        //   window.location = "marketplace.html";
-        // }
-        // addbtn.addEventListener("click",InsertData);
-        bckbtn.addEventListener("click",back);
-              </script>
+            // testbtn.addEventListener("click",getUrlVars);
+        </script>
            <!-- Bundled Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" 
     integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" 
@@ -408,10 +377,16 @@
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     
-    <script
+    <!-- <script 
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDAo304l1NlMbOwhtCNbbQEhuEd4NEmoTo&callback=initMap&v=weekly"
     defer
-    ></script>
+    ></script> -->
+    <script async
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDAo304l1NlMbOwhtCNbbQEhuEd4NEmoTo&callback=initMap&v=weekly"
+    defer>
+    </script>
+    
+
         </body>
 
 

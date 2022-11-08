@@ -1,6 +1,12 @@
+<!-- <?php
+// Start the session
+session_start();
+?> -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -20,7 +26,7 @@
   </style>
 
 
-    <title>Marketplace</title>
+    <title>Home</title>
 </head>
 <body>
     <!-- https://icons.getbootstrap.com/ -->
@@ -48,7 +54,7 @@
 
                     <li class="nav-item px-2">
                       <a class="nav-link" href="profile" role="button">
-                        <img class="profileIcon" src="img/user.png" alt="Profile"/>
+                        Profile <img class="profileIcon" src="img/user.png" alt="Profile"/>
                       </a>
                     </li>
 
@@ -69,8 +75,7 @@
       <div class="container-fluid">
         <div class="header2 row">
           <div class="col-lg-6">
-            <!-- <p class="subtext">Marketplace</p> -->
-            <p class="subtext">Marketplace - Where You Share Your Unused Ingredients or Cooked Food</p>
+            <p class="subtext">Marketplace | Where you share your unused ingredients or cooked food</p>
           </div>
         
 
@@ -85,6 +90,7 @@
           </div> -->
         </div>
         <div id = 'app' style = 'display: flex;'>
+          <divcard @storekey="storekey"></divcard>
         </div>
                     <!-- firebase -->
           
@@ -92,6 +98,7 @@
 
                       // Import the functions you need from the SDKs you need
                       import { initializeApp } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-app.js";
+                      import { getDatabase, ref, child, onValue, get } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-database.js";
                  
                        // TODO: Add SDKs for Firebase products that you want to use
                        // https://firebase.google.com/docs/web/setup#available-libraries
@@ -110,18 +117,10 @@
                        };
                      
                        // Initialize Firebase
-                       initializeApp(firebaseConfig);
-                   
-                       import{
-                           getFirestore, collection, getDocs
-                       }
-                       from "https://www.gstatic.com/firebasejs/9.12.1/firebase-firestore.js";
-                   
-                       const db = getFirestore();
-                       
-                       console.log('no')
-          
-          
+                       const firebase_app = initializeApp(firebaseConfig);
+                       const db = getDatabase();
+                      //  var childkey = "";
+
                        const app = Vue.createApp({
                          data(){
                            return{
@@ -129,42 +128,77 @@
                            desc: '',
                            price: '',
                            date: '',
-                           location: '', 
+                           location: '',
+                           childkey:'' 
                          }}, 
           
                          methods:{
                             async GetADocument(){
-                             const querySnapshot = await getDocs(collection(db, 'ProductList'));
-          
-                             querySnapshot.forEach((doc) => {
-                               this.price = doc.data().productPrice;
-                               this.location = doc.data().productLoc;
-                               this.date = doc.data().productDate;
-                               this.title = doc.data().productTitle;
-                               this.desc = doc.data().productDesc;
-                               console.log(doc.id, " => ", doc.data());
-                               addToList(this.price, this.date, this.title);
-                             })
-                         }},
+                              const dbRef = ref(db, 'ProductList');
+                              console.log(dbRef)
+                              onValue(dbRef, (snapshot) => {
+                              snapshot.forEach((childSnapshot) => {
+                                  const childKey = childSnapshot.key;
+                                  const childData = childSnapshot.val();
+                                  console.log(childKey);
+                                  console.log(childData)
+                                  var price = childData.productPrice;
+                                  var title = childData.productTitle;
+                                  var image = childData.productImgName;
+                                  var expiry = childData.productDate;
+                                  var childkey = childData.productID;
+                                  addToList(price, expiry, title, image,childkey);
+                                  // let childkey = childKey;
+                                  // console.log(childkey);
+                                  
+
+
+                          });}, 
+                              {
+                                onlyOnce: true
+                                });
+                         },
+                         storekey:function storekey(){
+                  
+                            var para = new URLSearchParams();
+
+                            console.log(childKey);
+                            para.append("productid", childKey);
+                            window.location = "product_page.html?" + para.toString();
+                              // (C) REDIRECT
+                            window.location = "product_page.html";
+                            // window.open("1b-session.html")
+                        }
+                        },
           
                          created(){
                            this.GetADocument()
                          }
           
                  }).mount('#app')
+                //  console.log(childkey);
+                //  let passBtn = document.getElementById("passBtn");
+                //  console.log(passBtn);  
+
+
+                //  passBtn.addEventListener("click",storekey);
                    </script>
                    <script>
-                     function addToList(price, date, title) {
+                     function addToList(price, date, title, image,childkey) {
 
                       var div = document.getElementById('app');
                       var divcard = document.createElement('div');
                       divcard.innerHTML = `
                             <div class="card" style="width: 18rem;">
-                              <img class="card-img-top" src="img/food1.jpg" alt="Card image cap">
+                              <form action ="product_page.html" method="get" target="_blank">
+                              <img class="card-img-top" src="img/${image}" alt="Card image cap">
                               <div class="card-body">
                               <h5 class="card-title">${title}<span style = 'float:right'>$${price}</span></h5>
                               <p class="card-text"><strong><small>GOOD TILL: ${date}</small><strong></p>
+                              <input type ="text" value ="${childkey}" name="productid" style = 'display:none'/>
                               </div>
+                              <button id = "passBtn" class="bckBtn btn btn-sm btn-block"type="submit">Details</button>
+                              </form
                             </div>
                             <br>
                             `
@@ -173,18 +207,6 @@
                      }
                    </script>
       </div>
-      <footer class="py-3 my-4">
-        <hr>
-          <p class="text-center text-muted">&copy; 2022 Easycook, Inc</p>
-          <ul class="nav justify-content-center  mb-3">
-              <li class="nav-item"><a href="home.html" class="nav-link px-2 text-muted">Home</a></li>
-              <li class="nav-item"><a href="findRecipe.html" class="nav-link px-2 text-muted">Recipes</a></li>
-              <li class="nav-item"><a href="marketplace.html" class="nav-link px-2 text-muted">Marketplace</a></li>
-              <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">FAQs</a></li>
-              <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>
-            </ul>
-          
-        </footer>
 
 
     </body>
