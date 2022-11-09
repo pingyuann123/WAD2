@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Recipe</title>
+    <!-- Bootstrap CSS -->
+    <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css' 
+        rel='stylesheet' integrity='sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx' 
+        crossorigin='anonymous'>
+    <!-- Axios -->
+    <script src='https://unpkg.com/axios/dist/axios.js'></script>
+
+    <link rel="stylesheet" href="findRecipe.css"/>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- Vue 3 -->
+  <script src='https://cdn.jsdelivr.net/npm/vue@next'></script>
+  
+</head>
+<body  class="d-flex flex-column min-vh-100">
+    <div class="container-fluid">
+        <!-- START NAV BAR -->
+        <div class="row navBar">
+            <div class="col ps-3">
+              <nav class="navbar navbar-expand-lg">
+                <div class="container-fluid">
+                  <a class="appName navbar-brand" >App Name</a>
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNavbar" aria-controls="collapseNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="collapse navbar-collapse " id="collapseNavbar">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    
+                      <li class="nav-item px-2">
+                        <a class="nav-link" href="home.html" role="button">
+                          Home
+                        </a>
+                      </li>
+  
+                      <li class="nav-item px-2">
+                        <a id='profileIcon'class="nav-link" href="profile.html" role="button">
+                          <img class="profileIcon" src="img/user.png" alt="Profile"/>
+                        </a>
+                      </li>
+  
+                      <li class="nav-item px-2">
+                        <a class="nav-link" href="login.html" role="button">
+                          Log Out
+                        </a>
+                      </li>                  
+                    </ul>                  
+                  </div>
+                </div>
+              </nav>
+            </div>
+        </div>
+        </div>
+        <!-- END NAV BAR -->
+
+        <div class="container text-center">
+            <div class="meal-search">
+                <h2 class="title">Find Recipes For Your Ingredients</h2>
+
+                <!-- Search Input -->
+                <div class="meal-search-box">
+                    <input type="text" class="search-control" placeholder="Enter Ingredients" id="search-input">
+                    <button class="search-btn button" id="search-btn">
+                      <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+                          <!-- Display API results retrieved -->
+          <div class="meal-result text-center">
+            <div id="meal">
+
+            </div>
+          </div>
+                    
+        
+          <div class="meal-details text-center">
+            <!-- Recipe close button -->
+            <button class="recipe-close-btn button" id="recipe-close-btn">
+              <i class="fa-solid fa-right-from-bracket"></i>
+            </button>
+
+            <!-- Recipe Instructions Content -->
+            <div class="meal-intructions-content">
+
+            </div>
+          </div>
+        
+          <div class="ingredient-details text-center">
+            <!-- Ingredients close button -->
+            <button class="ingredients-close-btn button" id="ingredients-close-btn">
+              <i class="fa-solid fa-right-from-bracket"></i>
+            </button>
+            
+            <!-- Ingredients Content -->
+            <div class="meal-ingredients-content">
+
+            </div>
+          </div>
+        </div>
+
+        <footer class="mt-auto">
+          <hr>
+              <p class="text-center text-muted">&copy; 2022 Easycook, Inc</p>
+              <ul class="nav justify-content-center  mb-3">
+                  <li class="nav-item"><a href="home.html" class="nav-link px-2 text-muted">Home</a></li>
+                  <li class="nav-item"><a href="findRecipe.html" class="nav-link px-2 text-muted">Recipes</a></li>
+                  <li class="nav-item"><a href="marketplace.html" class="nav-link px-2 text-muted">Marketplace</a></li>
+                  <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">FAQs</a></li>
+                  <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>
+              </ul>
+        </footer>
+
+    
+    <!-- Bootstrap Javascript -->
+    <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js'
+        integrity='sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa' 
+        crossorigin='anonymous'></script>
+
+    <script src="findRecipe.js"></script>
+    
+    
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-analytics.js";
+      // import { getStorage, ref, push, set} from "https://www.gstatic.com/firebasejs/9.12.1/firebase-storage.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+  
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      const firebaseConfig = {
+          apiKey: "AIzaSyCUwFb-W_pR0s_iO2tplBAxXXakhVWs8lM",
+          authDomain: "g2t5-wad2.firebaseapp.com",
+          databaseURL: "https://g2t5-wad2-default-rtdb.asia-southeast1.firebasedatabase.app",
+          projectId: "g2t5-wad2",
+          storageBucket: "g2t5-wad2.appspot.com",
+          messagingSenderId: "634091812622",
+          appId: "1:634091812622:web:9c1e64920c60792226495f",
+          measurementId: "G-MJKTY27Q23"
+          };
+      
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const analytics = getAnalytics(app);
+      // const storage = getStorage();
+      // const storageRef = ref(storage);
+  
+  
+      import{
+          getFirestore, doc, getDoc, setDoc, collection, addDoc, updateDoc, deleteDoc, deleteField
+      }
+      from "https://www.gstatic.com/firebasejs/9.12.1/firebase-firestore.js";
+  
+  
+      const db = getFirestore();
+      //retrieve registration information from session storage
+      const email = sessionStorage.getItem("email")
+      const likedRecipes = localStorage.getItem('recipes')
+
+      async function UpdateRecipes(){
+        let email = sessionStorage.getItem('email')
+        let likedRecipes = JSON.parse(localStorage.getItem('likedRecipes'))
+        console.log(email)
+          var ref = doc(db, "Users", email);
+          const docRef = await updateDoc(
+              ref, {
+                  recipes: likedRecipes,
+                  }
+              )
+          .then(()=>{
+              alert("Recipes Saved");
+          })
+          .catch((error)=>{
+              alert("Savinng Unsuccessful:" + error);
+          });
+          }
+
+      //When any of the nav bar icon is clicked, we will update recipe to database
+      navHomeIcon = document.getElementById("navHomeIcon")
+      navHomeIcon.addEventListener("click",UpdateRecipes)
+      navProfileIcon = document.getElementById("navProfileIcon")
+      navProfileIcon.addEventListener("click",UpdateRecipes)
+      navLogOutIcon = document.getElementById("navLogOutIcon")
+      navLogOutIcon.addEventListener("click",UpdateRecipes)
+      
+
+      // const app2 = Vue.createApp({
+      // //options 
+      // data(){
+      //     return{
+      //       //name: value pairs
+      //       recipes: [],
+      //     }
+      // },
+      // methods:{
+      //   // async GetADocument(){
+        //   const email = sessionStorage.getItem('email'); //unique identifier
+        //   const docSnap = await getDoc(doc(db,"Users",email))
+        //   if (!docSnap.exists) {
+        //     console.log('No such document!');
+        //   } else {
+        //     console.log(docSnap.data())
+        //     this.recipes = docSnap.data().recipes;
+        //     console.log(this.recipes)
+        //   }
+        
+      //   addRecipe(recipeObj){
+      //     this.recipes.push(recipeObj)
+      //     likeButton = document.getElementById(event.target.parentElement.id)
+      //     if (likeButton.style.color == "red") {
+      //         likeButton.style.color = "grey"
+      //     } else {
+      //         likeButton.style.color = "red"
+      //     }
+      //     console.log(this.recipes)
+      //   },
+      //   async updateRecipes(){
+      //     const ref = doc(db,"Users", email, recipes)
+          
+      //     await set(
+      //         ref,{
+      //             recipes: this.recipes 
+      //         },{merge: true}
+      //     )
+      //     .then(()=>{
+      //         console.log("Update Successful")
+      //     })
+      //     .error((error)=>{
+      //         console.log("Update error: "+ error)
+      //     })
+      // }
+        
+    //     },
+      
+
+    // }).mount("#app2")
+
+
+      
+
+    </script>
+</body>
+</html>
+
+
