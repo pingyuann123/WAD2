@@ -1,0 +1,65 @@
+.profileIcon{
+    width: 25px;
+    height:25px;
+}
+body{
+    background-color: #F8F7F6;
+    font-weight: 300;
+    line-height: 1.6;
+    font-size: 1.05rem;
+}
+.nav-item{
+    color:#a17d60;
+}
+.appName{
+    color:#a17d60;
+}
+
+.outline{
+    border: 1px solid #a17d60;
+    border-radius: 10px;
+}
+
+.postIcon{
+    width: 25px;
+    height:25px;
+    margin: 10px;
+}
+
+.comment{
+    padding: 0px;
+}
+
+.newcomment{
+    border-radius: 20px;
+    border: 1px solid #a17d60;
+    width: 100%;
+    color: #565038;
+}
+
+.btn-style {
+    color:#c99e7a;
+    background-color: #F8F7F6;
+    border: 0px;
+    width: 100%;
+}
+
+.btn-style:hover{
+    color: #a17d60;
+    background-color: #F8F7F6;
+}
+
+.btn-style:active{
+    color: #a17d60;
+    background-color: #F8F7F6;
+}
+
+.titleheader{
+    background-color: #c99e7a;
+    color: #F8F7F6;
+    border: 1px solid #F8F7F6;
+    padding: 0px;
+    margin: 0px;
+    text-align: center;
+
+}

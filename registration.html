@@ -13,7 +13,7 @@
             }
       
             body{
-              background-color:#F8F7F6;
+              background-color:rgb(255, 255, 255);
               font-weight: 300;
               line-height: 1.6;
               font-size: 1.05rem;
@@ -28,98 +28,90 @@
               margin-left: 15%;
               margin-right: 15%;
             }
-            .emailLabel,.passwordLabel,.nameLabel{
-                color:#565038;
-            }
+
       
       
       
           </style>
 
     </head>
-    <body>
-      <!-- Navigation bar -->
-      <nav class="navbar navbar-expand-lg  pb-5" id="headerNav">
-          <div class="container-fluid">
-              <ul class="navbar-nav mx-auto pb-5">
-                <li class="nav-item d-none d-lg-block">
-                  <a class="nav-link mx-2 appName" href="#">
-                  
-                  </a>
-                  </li>
-              </ul>
-            </div>
-        </nav>
-       <!-- End of Navigation bar -->
-  
-       <div class="container-fluid">
-          <div class="row mb-2">
+    <body class="d-flex flex-column min-vh-100">
+             <!-- Navigation bar -->
+             <!-- <nav class="navbar navbar-expand-lg " id="headerNav">
+              <div class="container-fluid">
+                  <ul class="navbar-nav mx-auto">
+                    <li class="nav-item d-none d-lg-block">
+                      <a class="nav-link mx-2 appName" href="#">
+                      </a>
+                      </li>
+                  </ul>
+                </div>
+            </nav> -->
+           <!-- End of Navigation bar -->
+       <div class="container-fluid mb-5">
+          <div class="row mb-5">
+
               <!-- left side -->
               
-              <div class="col-lg-6 col-md-6 col-sm-5 col-xs-4 d-flex mx-auto">
-                      <img style="height:600px;" src="./img/loginPic.jpg" alt="">
+              <div class="col-lg-6 col-md-6 col-sm-5 col-xs-4 d-flex mx-auto .d-sm-none .d-md-block">
+                <iframe src="https://embed.lottiefiles.com/animation/26901" style="padding:0; width: 100%; height: 100%; margin: 0"></iframe>
               </div>
        
               <!-- right side -->
               <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 text-black">
-                  <div class="px-5 pt-1">
+                  <div class="pb-3">
                   <div class="rightBox centered-element" >
                       <form class="registerForm">
             
-                      <h1 class="registerWord mb-3 pb-3 text-center fw-normal">Register</h1>
+                      <h1 class="registerWord pt-5 pb-3 text-center fw-normal mt-3">Register</h1>
                       <p class="registersub text-center">Do you have an Account? <a href="login.html" class="link-info">Log in Here</a></p>
           
                       <hr class="lineBreak pb-2"></hr>
                             
-                      <div class="form-outline mb-4">
+                      <div class="form-outline mb-3">
                         <label class="nameLabel form-label" for="name">Name</label>
                         <input type="name" id="name" class="form-control form-control-lg" />
                       </div>
                       
-                      <div class="form-outline mb-4">
+                      <div class="form-outline mb-3">
                         <label class="usernameLabel form-label" for="username">Username</label>
                         <input type="name" id="username" class="form-control form-control-lg" />
                       </div>
   
-                      <div class="form-outline mb-4">
+                      <div class="form-outline mb-3">
                         <label class="emailLabel form-label" for="email">Email address</label>
                         <input type="email" id="email" class="form-control form-control-lg" />
                       </div>
           
-                      <div class="form-outline mb-4">
+                      <div class="form-outline mb-3">
                         <label class="passwordLabel form-label" for="password">Password</label>
                         <input type="password" id="password" class="form-control form-control-lg" />
                       </div>
           
-                      <div class="pt-5 mb-2 text-center">
-                          <button style="border-color:#a17d60;" id = "register" class="registerBtn btn btn-lg px-4" type="button">Sign up</button>
+                      <div class="mt-5  text-center">
+                          <button style="background-color:#a17d60; color:white" id = "register" class="registerBtn btn btn-lg" type="button">Sign up</button>
                       </div>
-                      </form>
-                    </br>
-                      <hr class="lineBreak pb-2"></hr>
-
-                      <div class=" mt-5 mb-2 text-center">
+          
+                      <div class=" mt-4 text-center">
                           <div class="line"></div>
-                          <p class="text-center fw-bold mx-3 mb-0 text-muted">OR</p>
+                          <p class="text-center fw-bold mx-3 text-muted">OR</p>
                         </div>
-                      <div class="text-center mt-3">
+                      <div class="text-center mt-4">
                           <button type="button" class="btn btn-link btn-floating mx-1">
                             <img style="width:150px"src="./img/allLogos.png" alt="">
                           </button>
           
                       
-                    
-                      </div>
-                    </br>
-
+                    </form>
+                  </div>
                   
                   </div>
           </div>
        </div>
        <hr>
        <!-- Footer -->
-       <footer class="py-3 my-4">
-          <p class="text-center text-muted">&copy; 2022 Easycook, Inc</p>
+       <footer class="py-3 my-2 mt-auto">
+          <p class="text-center text-muted pt-3">&copy; 2022 Easycook, Inc</p>
           <ul class="nav justify-content-center  mb-3">
               <li class="nav-item"><a href="home.html" class="nav-link px-2 text-muted">Home</a></li>
               <li class="nav-item"><a href="findRecipe.html" class="nav-link px-2 text-muted">Recipes</a></li>
@@ -173,6 +165,9 @@
         var email = document.getElementById('email').value
         var name = document.getElementById('name').value
         var password = document.getElementById('password').value
+
+
+        
         createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           // Signed in 
@@ -184,9 +179,17 @@
             email: email
           })
 
-
+          console.log(username)
           alert('Registration Complete!');
-          window.location = "login.html";
+
+            //Storing of user registration info to new page 
+            sessionStorage.setItem('name',name)
+            sessionStorage.setItem('username',username)
+            sessionStorage.setItem('email',email)
+            sessionStorage.setItem('uid',user.uid)
+
+
+          window.location = "registration2.html";
 
           // ...
         })

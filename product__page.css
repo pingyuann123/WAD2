@@ -1,0 +1,59 @@
+@charset "UTF-8";
+.header{
+    /* background-color: pink; */
+    color: black;
+    padding-left: 20px;
+    padding-right: 20px;
+
+}
+
+.body{
+  padding:20px;
+}
+#chatBtn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: black;
+    /* background-color:#565038; */
+    border: #565038 1px solid;
+    /* border-radius: 10px; */
+    /* box-shadow: 0 9px #999; */
+}
+
+#chatBtn:hover {
+    background-color: #565038;
+    color: white;
+}
+
+/* #chatBtn:active {
+    background-color:brown;
+    transform: translateY(4px);
+} */
+
+h1{
+  display:inline;
+}
+
+#map {
+  height: 300px;  
+  width: 500px; 
+}
+.profileIcon{
+  width: 25px;
+  height:25px;
+}
+
+body{
+  background-color: #F8F7F6;
+}
+.nav-item{
+    color:#a17d60;
+}
+.marketplaceName{
+    color:#a17d60;
+}

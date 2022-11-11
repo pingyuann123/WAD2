@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="comments.css">
+    <title>All Comments</title>
+       <!-- VUE -->
+   <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+
+    <!--NavBar-->
+    <div class = 'container-fluid'>
+        <div class="row navBar">
+        <div class="col ps-3">
+            <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <a class="marketplaceName navbar-brand" href="marketplace.html">Community MarketPlace</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNavbar" aria-controls="collapseNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse " id="collapseNavbar">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                
+                    <li class="nav-item px-2">
+                    <a class="nav-link" href="home" role="button">
+                        Home
+                    </a>
+                    </li>
+
+                    <li class="nav-item px-2">
+                    <a class="nav-link" href="profile" role="button">
+                        <img class="profileIcon" src="img/user.png" alt="Profile"/>
+                    </a>
+                    </li>
+
+                    <li class="nav-item px-2">
+                    <a class="nav-link" href="login.html" role="button">
+                        Log Out
+                    </a>
+                    </li>                  
+                </ul>                  
+                </div>
+            </div>
+            </nav>
+        </div>
+        </div>
+    </div>
+
+    <!--display comment-->
+    <div class = "container-fluid outline">
+        <div class="row">
+            <img class="postIcon" src="img/user.png" alt="profileicon">
+            <div class="col">
+                <div class="row comment m-0">
+                    <div class="col comment m-0" id="findName">
+                        name
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col comment m-0" id="findComment">
+                        comment
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        
+    </div>
+
+    <!--add comment-->
+    <form action="" id="addcomment">
+        <div class="form-control" id = 'app1'>
+            <div class="row">
+                <div class="col p-0">
+                    <div class="form-group">
+                        <textarea v-model = 'comment' class="newcomment" id="newcomment" rows="1" placeholder="add comment..." ></textarea>
+                    </div>
+                </div>
+                <div class="col-1 p-0">
+                    <button id="submitbtn" type="button" class="btn btn-info">post</button>
+                </div>
+            </div>
+                
+        </div>
+    </form>
+
+    
+    <footer class="mt-auto">
+        <hr>
+            <p class="text-center text-muted">&copy; 2022 Easycook, Inc</p>
+            <ul class="nav justify-content-center  mb-3">
+                <li class="nav-item"><a href="home.html" class="nav-link px-2 text-muted">Home</a></li>
+                <li class="nav-item"><a href="findRecipe.html" class="nav-link px-2 text-muted">Recipes</a></li>
+                <li class="nav-item"><a href="marketplace.html" class="nav-link px-2 text-muted">Marketplace</a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">FAQs</a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>
+            </ul>
+    </footer>
+
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-app.js";
+        import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-database.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCUwFb-W_pR0s_iO2tplBAxXXakhVWs8lM",
+            authDomain: "g2t5-wad2.firebaseapp.com",
+            databaseURL: "https://g2t5-wad2-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "g2t5-wad2",
+            storageBucket: "g2t5-wad2.appspot.com",
+            messagingSenderId: "634091812622",
+            appId: "1:634091812622:web:9c1e64920c60792226495f",
+            measurementId: "G-MJKTY27Q23"
+        };
+                     
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+
+        
+        //get username  
+        let useremail = localStorage.getItem('UserEmail');
+        // let useremail= localStorage.getItem('UserEmail');
+        let newcomment = document.getElementById("newcomment");
+
+        let submitbtn = document.getElementById("submitbtn");
+
+        // var username = localStorage.getItem('UserEmail'); //unique identifier
+        var  usernamearr = useremail.split("@");
+        const usersname = usernamearr[0];
+        console.log(usersname);
+
+        function insertComment(){
+            // localStorage.clear();
+
+            // console.log(username);
+            console.log(useremail);
+
+            //UPLOAD TO REALTIME DATABASE
+            set(ref(db,"Comments2/"+usersname+newcomment.value),{
+            // productId:productId,
+            commentID:usersname+newcomment.value,
+            commentusername:usersname,
+            commentuseremail:useremail,
+            comment:newcomment.value
+            // productImgURL:downloadURL
+            })
+            .then(()=>{
+            // console.log(productLoc);
+            alert("Created Successfully");
+            localStorage.setItem("commentid", usersname+newcomment.value);
+            console.log(usersname+newcomment.value);
+            // window.location = "marketplace.html";
+            // window.history.forward();
+            })
+            .catch((error)=>{
+            console.log(usersname+newcomment.value);
+            alert("Creation Unsuccessful" + error);
+            });
+        }
+        submitbtn.addEventListener("click",insertComment);
+
+
+
+    //     const app1 = Vue.createApp({
+    //         data(){
+    //             return{
+    //                 comment:'',
+    //                 username: 'ss',
+    //                 email: 'ss@gmail.com',
+    //                 userId: 111
+    //             }
+    //         },
+    //         methods:{
+    //             writeUserData() {
+    //                 console.log('please')
+    //                 console.log(this.comment)
+    //                 //writeNewUserData(this.userId, this.name, this.email, this.comment);
+    //                 set(ref(db, 'comments/' + this.userId), {
+    //                     username: this.name,
+    //                     email: this.email, 
+    //                     comment: this.comment
+    //     })
+    //     console.log(Error)
+        
+    //     console.log('write')
+    //     console.log(this.comment)
+    // }
+    //         }
+    //     }).mount('#app1');
+        
+        //var userId = localStorage.getItem('productid')
+        //console.log(userId)
+        `var name = 'kk'
+        var email = 'k@gmail.com'
+        var userId = 'new1'
+        //var comment = document.getElementById('newcomment').value
+        //console.log(comment)
+        var submit = document.getElementById('submit')
+        //submit.addEventListener('click', getcomment())
+       
+        function writeNewUserData(userId, name, email,comment) {
+            //var comment = document.getElementById('newcomment').value
+            console.log(comment)
+        set(ref(db, 'comments/' + userId), {
+            username: name,
+            email: email, 
+            comment: comment
+        })
+        console.log('write')
+        console.log(comment)
+    } 
+    submit.addEventListener('click', writeUserData(userId, name, email))
+        console.log('yes')`
+    </script>
+</body>
+</html>

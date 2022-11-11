@@ -15,7 +15,7 @@
         }
 
         body{
-            background-color:#F8F7F6;
+            background-color:rgb(255, 255, 255);
             font-weight: 300;
             line-height: 1.6;
             font-size: 1.05rem;
@@ -30,13 +30,11 @@
             margin-left: 15%;
             margin-right: 15%;
         }
-        .emailLabel,.passwordLabel,.nameLabel{
-            color:#565038;
-        }
+
         </style>
 
     </head>
-    <body>
+    <body class="d-flex flex-column min-vh-100">
         <!-- Navigation bar -->
         <nav class="navbar navbar-expand-lg  pb-5" id="headerNav">
             <div class="container-fluid">
@@ -52,20 +50,19 @@
          <!-- End of Navigation bar -->
     
          <div class="container-fluid">
-            <div class="row mb-2">
+            <div class="row">
                 <!-- left side -->
                 
-                <div class="col-lg-6 col-md-6 col-sm-5 col-xs-4 d-flex mx-auto">
-                        <img style="height:600px;" src="./img/loginPic.jpg" alt="">
+                <div class="col-lg-6 col-md-6 col-sm-5 col-xs-4 d-flex">
+                    <iframe src="https://embed.lottiefiles.com/animation/21268"style="padding:0; width: 100%; height: 100%; margin: 0"></iframe>
                 </div>
-         
                 <!-- right side -->
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 text-black">
-                    <div class="px-5 pt-1">
+                    <div class=" pt-1">
                     <div class="rightBox centered-element" >
                         <form class="loginForm">
             
-                            <h1 class="loginWord fw-normal mb-4 pb-4 text-center">Login</h1>
+                            <h1 class="loginWord fw-normal mb-4 text-center mt-5">Login</h1>
                             <p class="loginsub pb-2 text-center">Don't have an account? <a href="registration.html" class="link-info">Register Here</a></p>
                 
                             <hr class="lineBreak pb-2"></hr>
@@ -82,23 +79,22 @@
                             </div>
     
                 
-                            <div class="pt-5 mb-2 text-center">
-                                <button style="border-color:#a17d60;" id = "login" class="loginBtn btn btn-lg px-4" type="button">Login</button>
+                            <div class="pt-3 mb-2 text-center">
+                                <button style="background-color:#dcc5a5; color:white;" id = "login" class="loginBtn btn btn-lg" type="button">Login</button>
                             </div>
-                        </br>
-                            <hr class="lineBreak pb-2"></hr>
-                            <div class=" mt-5 mb-2 text-center">
+                        
+                            <div class=" mt-3 mb-2 text-center">
                                 <div class="line"></div>
                                 <p class="text-center fw-bold mx-3 mb-0 text-muted">OR</p>
-                              </div>
+                            </div>
                             <div class="text-center mt-3">
                                 <button type="button" class="btn btn-link btn-floating mx-1">
-                                  <img style="width:150px;"src="./img/allLogos.png" alt="">
+                                    <img style="width:150px"src="./img/allLogos.png" alt="">
                                 </button>
-              
+            
     
     
-                              </div>
+                            </div>
                         </form>
                     </div>
                     
@@ -106,9 +102,9 @@
             </div>
          </div>
     
-         <footer class="py-3 my-4">
+         <footer class="py-4 my-2 mt-auto">
           <hr>
-            <p class="text-center text-muted">&copy; 2022 Easycook, Inc</p>
+            <p class="text-center text-muted pt-3">&copy; 2022 Easycook, Inc</p>
             <ul class="nav justify-content-center  mb-3">
                 <li class="nav-item"><a href="home.html" class="nav-link px-2 text-muted">Home</a></li>
                 <li class="nav-item"><a href="findRecipe.html" class="nav-link px-2 text-muted">Recipes</a></li>
@@ -174,6 +170,8 @@
                     })
 
                     alert('Login Successful!');
+                    localStorage.setItem("UserEmail", email);
+                    console.log(email);
                     window.location = "home.html";
                     // ...
                 })

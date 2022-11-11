@@ -6,131 +6,172 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-    <link rel="stylesheet" href="reg2Css"/>
 
     <title>Register</title>
+
+    <style>
+
+        body{
+        background-color: #F8F7F6;
+        font-weight: 300;
+        line-height: 1.6;
+        font-size: 1.05rem;
+        }
+
+        .progress-bar{
+          background-color:#a17d60;
+          border-color:#F8F7F6;
+          width: 100%;
+          height: 5px;
+        }
+
+    </style>
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
+
+
     <!-- https://icons.getbootstrap.com/ -->
-
+    <div class="progress-bar" role="progressbar" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
     <div class="container-fluid">
+          <!-- Edit Profile Settings  -->
+  <div class="container">
+    <div class="register2Heading container-fluid">
+      <div class="row mt-5 pt-5">
+          <h1 class="pb-3">Profile Settings</h1>
+          <h6 class="lead">So that We can Better Understand You!</h6>
+      </div>
+  </div>
 
-        <div class="register2Heading container-fluid">
-            <div class="row">
-                <h2>(Questions)??</h2>
-                <h5>So that We can Better Understand You!</h5>
-            </div>
-        </div>
+  <hr class="lineBreak">
 
-        <hr class="lineBreak"></hr>
-
-        <div class="questions container-fluid">
-            <div class="row">
-                <p class="skillHeading">Select the Cooking Skill Level that Best Matches You:</p>
-                <div class="skillDrop dropdown">
-                    <button class="cookingSkillDropdown btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      Please Select
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                      <li><a class="Beginner dropdown-item" value="Beginner">Beginner</a></li>
-                      <li><a class="Intermediate dropdown-item" value="Intermediate">Intermediate</a></li>
-                      <li><a class="Advanced dropdown-item" value="Advanced">Advanced</a></li>
-                    </ul>
-                  </div>
-            </div>
-        </div>
-
-        <div class="questions container-fluid">
-            <div class="row">
-                <p class="cuisineHeading">What are some Cuisine(s) that Interest You? (Select All that Applies)</p>
-
-                <div class="cuisineSelect form-check ">
-                    <div class="cuisineSelect row">
-                        <div class="col-lg-4 col-md-4 col-sm-12">
-                            <input class="form-check-input" type="checkbox" value="Japanese" id="japCuisine">
-                            <label class="form-check-label" for="flexCheckDefault">
-                              Japanese
-                            </label>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-12">
-                            <input class="form-check-input" type="checkbox" value="Chinese" id="chiCuisine">
-                            <label class="form-check-label" for="flexCheckDefault">
-                              Chinese
-                            </label>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-12">
-                            <input class="form-check-input" type="checkbox" value="Western" id="wesCuisine">
-                            <label class="form-check-label" for="flexCheckDefault">
-                              Western
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="cuisineSelect row">
-                        <div class="col-lg-4 col-md-4 col-sm-12">
-                            <input class="form-check-input" type="checkbox" value="Indian" id="indCuisine">
-                            <label class="form-check-label" for="flexCheckDefault">
-                              Indian
-                            </label>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-12">
-                            <input class="form-check-input" type="checkbox" value="Malay" id="malCuisine">
-                            <label class="form-check-label" for="flexCheckDefault">
-                              Malay
-                            </label>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-12">
-                            <input class="form-check-input" type="checkbox" value="Thai" id="thaiCuisine">
-                            <label class="form-check-label" for="flexCheckDefault">
-                              Thai
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="cuisineSelect row">
-                        <div class="col-lg-4 col-md-4 col-sm-12">
-                            <input class="form-check-input" type="checkbox" value="Korean" id="korCuisine">
-                            <label class="form-check-label" for="flexCheckDefault">
-                              Korean
-                            </label>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-12">
-                            <input class="form-check-input" type="checkbox" value="Italian" id="itaCuisine">
-                            <label class="form-check-label" for="flexCheckDefault">
-                              Italian
-                            </label>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-12">
-                            <input class="form-check-input" type="checkbox" value="French" id="freCuisine">
-                            <label class="form-check-label" for="flexCheckDefault">
-                              French
-                            </label>
-                        </div>
-                    </div>
-
+    <div class="row">
+        <div class="col-md ">
+            <div class="p-2 py-2">
+                <div class="row my-3">
+                    <div class="col-md-12 mb-3"><label class="labels">Gender</label></div>
+                    <div class="col-md-6 form-check px-5 py-1"><input id="male" class="form-check-input" type="radio" name="gender" value="male"><label class="form-check-label" for="flexRadioDefault1">Male</label></div>
+                    <div class="col-md-6 form-check px-5 py-1"><input id="female" class="form-check-input" type="radio" name="gender" value="female"><label class="form-check-label" for="flexRadioDefault1">Female</label></div>
+                  
+                <div class="row my-3">
+                    <div class="col-md-12"><label class="labels pb-3">Experience Level</label><input id="exp" name="experience" type="text" class="form-control" placeholder="Beginner | Intermediate | Professional" value=""></div>
+                </div>
+                <!-- Description -->
+                <div class="row">
+                    <div class="col-md-12 pt-1"><label class="labels pb-3">Bio</label></div>
+                    <div class="col-md-12 input-group"><textarea name="bio" id="bio" class="form-control" placeholder="Enter bio" style="height: 100px;"></textarea></div>
                 </div>
             </div>
         </div>
-
-        <!-- <div class="container-fluid">
-          <div class="d-grid gap-2 col-6 mx-auto">
-          </br>
-          <a id="submitBtn" role="button" class="btn btn-outline-secondary" href="home.html">Continue</a>
-          </div>
-          <div class="d-grid gap-2 col-6 mx-auto">
-          </br>
-          <a id="skipBtn" role="button" class="btn btn-outline-secondary" href="home.html">Skip for now</a>
-          </div>
-        </div> -->
+</div>
+</div>   
+        </div>
       </br>
-        <div class="buttons container-fluid">
-          <a id="skipBtn" role="button" class="btn btn-outline-secondary" href="home.html">Skip for Now</a>
-          
-          <a id="submitBtn" role="button" class="btn btn-outline-secondary" href="home.html">Continue</a>
+        <div class="pt-5"style="text-align: center">
+          <button id="registerBtn" role="button" class="btn btn-lg px-4" style="background-color:#a17d60; color: white;" >Finish</button>
         </div>
 
 
     </div>
+         <!-- Footer -->
+         <footer class="py-3 my-4 mt-auto">
+          <hr>
+          <p class="text-center text-muted">&copy; 2022 Easycook, Inc</p>
+          <ul class="nav justify-content-center  mb-3">
+              <li class="nav-item"><a href="home.html" class="nav-link px-2 text-muted">Home</a></li>
+              <li class="nav-item"><a href="findRecipe.html" class="nav-link px-2 text-muted">Recipes</a></li>
+              <li class="nav-item"><a href="marketplace.html" class="nav-link px-2 text-muted">Marketplace</a></li>
+              <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">FAQs</a></li>
+              <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>
+            </ul>
+          
+        </footer>
+
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-analytics.js";
+      import { getStorage, ref} from "https://www.gstatic.com/firebasejs/9.12.1/firebase-storage.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+  
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      const firebaseConfig = {
+          apiKey: "AIzaSyCUwFb-W_pR0s_iO2tplBAxXXakhVWs8lM",
+          authDomain: "g2t5-wad2.firebaseapp.com",
+          databaseURL: "https://g2t5-wad2-default-rtdb.asia-southeast1.firebasedatabase.app",
+          projectId: "g2t5-wad2",
+          storageBucket: "g2t5-wad2.appspot.com",
+          messagingSenderId: "634091812622",
+          appId: "1:634091812622:web:9c1e64920c60792226495f",
+          measurementId: "G-MJKTY27Q23"
+          };
+      
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const analytics = getAnalytics(app);
+  
+      import{
+          getFirestore, doc, getDoc, setDoc, collection, addDoc, updateDoc, deleteDoc, deleteField
+      }
+      from "https://www.gstatic.com/firebasejs/9.12.1/firebase-firestore.js";
+  
+  
+      const db = getFirestore();
+      //retrieve registration information from session storage
+
+      let registerBtn = document.getElementById('registerBtn')
+  
+      //add into firestore with email as unique identifier 
+      async function AddDocument_CustomId(){
+        let username = sessionStorage.getItem('username')
+        let name = sessionStorage.getItem('name')
+        let email = sessionStorage.getItem('email')
+        let uid = sessionStorage.getItem('uid')
+        let gender =document.querySelector('input[name="gender"]:checked').value;
+        if (document.getElementById('male').checked==true){
+          let gender = 'male'
+        }else if (document.getElementById('female').checked==true){
+          let gender = 'female'
+        }
+        console.log(gender)
+        let exp = document.getElementById('exp').value
+        console.log(exp)
+        let bio = document.getElementById('bio').value
+        console.log(username)
+        console.log(name)
+        console.log(email)
+        console.log(uid)
+        
+
+          var ref = doc(db, "Users", email);
+          const docRef = await setDoc(
+              ref, {
+                  uid: uid,
+                  name: name,
+                  username: username,
+                  email: email,
+                  gender: gender,
+                  exp: exp,
+                  bio: bio,
+                  recipes: [],
+                  }
+              )
+          .then(()=>{
+              alert("Created Successfully");
+              sessionStorage.clear()
+              window.location = "login.html";
+              window.history.forward();
+              
+          })
+          .catch((error)=>{
+              alert("Creation Unsuccessful:" + error);
+          });
+          }
+          
+      registerBtn.addEventListener("click", AddDocument_CustomId);
+          
+  </script>
    <!-- Bootstrap Bundle with Popper -->
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 

@@ -1,19 +1,118 @@
-const searchBtn = document.getElementById('search-btn')
+const apiKey = '29fdb3549a0e4975a7cca6cb2a387c24'
+// const apiKey = 'bfdf9716b064437383509f5530dcfde9'
+
 const mealList = document.getElementById('meal')
 const mealDetailsContent = document.querySelector('.meal-intructions-content')
 const mealIngredientsContent = document.querySelector('.meal-ingredients-content')
 const recipeCloseBtn = document.getElementById('recipe-close-btn')
 const ingredientsCloseBtn = document.getElementById('ingredients-close-btn')
+let likedRecipes = JSON.parse(localStorage.getItem('likedRecipes'))
+if (likedRecipes === null) {
+    localStorage.setItem('likedRecipes', '[]')
+}
 
-// Add event listener
-var input = document.getElementById('search-input')
-input.addEventListener("keyup", function(event) {
-  if (event.key === "Enter") {
-    getRecipes()
-  }
-});
+const app = Vue.createApp({
+    data() {
+        return {
+            tempIngredients: '',
+            ingredients: []
+        }
+    }, 
 
-searchBtn.addEventListener('click', getRecipes) 
+    methods: {
+        addIngredients(e) {
+            if (e.key === 'Enter' && this.tempIngredients) {
+                if (!this.ingredients.includes(this.tempIngredients)) {
+                    this.ingredients.push(this.tempIngredients)
+                }
+                this.tempIngredients = ''
+            }
+        },
+
+        deleteIngredient(ingredient) {
+            this.ingredients = this.ingredients.filter((item) => {
+                return ingredient != item
+            })
+        },
+
+        getRecipes() {
+            let searchInputText = this.ingredients.join(',')
+            const url = "https://api.spoonacular.com/recipes/findByIngredients"
+            let n = 1
+            axios.get(url, {
+                params: {
+                    ingredients:  searchInputText,
+                    apiKey: apiKey,
+                    number:50
+                }
+            })
+                .then(response => {
+                    var liked = false
+                    console.log(response.data);
+                    let output = `<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">`
+                    if (response.data.length != 0) {
+                        response.data.forEach(meal => {
+
+                            output += `
+                            <div class = "col">
+                                <div class="card" data-id="${meal.id}">
+                                    <img src="${meal.image}" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title">${meal.title}</h5>
+                                        
+                                        <a href="#" class="recipe-btn">Recipe</a>
+                                        <a href="#" class="ingredients-btn">Ingredients</a>
+                                        `
+                                        
+                                        // let likedRecipes = JSON.parse(localStorage.getItem('likedRecipes'))
+                                        // if (likedRecipes === null) {
+                                        //     localStorage.setItem('likedRecipes', '[]')
+                                        // }
+                                        
+                                        for (let i=0; i<likedRecipes.length; i++){
+                                            if (meal.id == likedRecipes[i]['id']){
+                                                liked = true
+                                        }}
+    
+                                        if (liked == true){  
+                                            output += `<button id="like-btn${n}" style="color: red" class="like-btn" onclick="change({id:${meal.id},img:'${meal.image}',title:'${meal.title}'})"><i class="fa-brands fa-gratipay"></i></button>`
+                                            liked = false
+                                        }else{
+                                            output += `<button id="like-btn${n}" class="like-btn" onclick="change({id:${meal.id},img:'${meal.image}',title:'${meal.title}'})"><i class="fa-brands fa-gratipay"></i></button>`
+                                        }
+                                        
+                            output+= `       
+                                    </div> 
+                                </div>
+                            </div>
+                        `
+                            n += 1
+                        });
+                        output += `
+                            </div>
+                        `
+
+                        mealList.classList.remove('notFound')
+                    } else {
+                        output = "Please enter a valid ingredient!"
+                        this.ingredients = []
+                        mealList.classList.add('notFound')
+                    }
+
+                    mealList.innerHTML = output
+                })
+                .catch( error => {
+                    console.log(error.message);
+                });
+                }
+            }
+})
+
+const vm = app.mount('#app')
+
+
+///////////////////////////////////////////////////////////////////////////////
+
 mealList.addEventListener('click', getMealRecipe)
 recipeCloseBtn.addEventListener('click', () =>{
     mealDetailsContent.parentElement.classList.remove('showRecipe')
@@ -23,55 +122,9 @@ ingredientsCloseBtn.addEventListener('click', () =>{
 })
 
 
-const apiKey = '29fdb3549a0e4975a7cca6cb2a387c24'
-
-function getRecipes() {
-    let searchInputText = document.getElementById("search-input").value.trim()
-    const url = "https://api.spoonacular.com/recipes/findByIngredients"
-    let n = 1
-    axios.get(url, {
-        params: {
-            ingredients:  searchInputText,
-            apiKey: apiKey
-        }
-    })
-        .then(response => {
-            console.log(response.data);
-            let output = "" 
-            if (response.data.length != 0) {
-                response.data.forEach(meal => {
-                    output += `
-                                <div class="card mx-auto mb-3" data-id="${meal.id}" style="width: 25rem;">
-                                <img src="${meal.image}" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">${meal.title}</h5>
-                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                    <a href="#" class="recipe-btn">Recipe</a>
-                                    <a href="#" class="ingredients-btn">Ingredients</a>
-                                    <button id="like-btn${n}" class="like-btn" onclick='change(event)'><i class="fa-brands fa-gratipay"></i></button>
-                                </div>
-                                </div>
-                              `
-                    
-                    n += 1
-                });
-
-                mealList.classList.remove('notFound')
-            } else {
-                output = "Please enter a valid ingredient!"
-                mealList.classList.add('notFound')
-            }
-
-            mealList.innerHTML = output
-        })
-        .catch( error => {
-            console.log(error.message);
-        });
-
-}
-
 function getMealRecipe(e) {
     e.preventDefault()
+    // console.log(e)
     if (e.target.classList.contains('recipe-btn')) {
         let mealItem = e.target.parentElement.parentElement
         console.log(mealItem)
@@ -87,27 +140,11 @@ function getMealRecipe(e) {
             }
         })
             .then(response => {
-                // console.log(response.data);
-
-                // TITLE
                 let title = response.data.title
-                // console.log(title)
-
-                // SERVINGS INFO
                 let servings = response.data.servings
-                // console.log(servings)
-
-                // PREP TIME
                 let prepTime = response.data.readyInMinutes
-                // console.log(prepTime)
-
-                // SUMMARY INFO
                 let summary = response.data.summary
-                // console.log(summary)
-
-                // INSTRUCTIONS INFO
                 let recipeInstructionsArray = response.data.analyzedInstructions
-                // console.log(recipeInstructionsArray)
 
                 mealRecipeModel(title, servings, prepTime, recipeInstructionsArray, img)
 
@@ -127,7 +164,6 @@ function getMealRecipe(e) {
             }
         })
             .then(response => {
-                // INGREDIENTS
                 let ingredientsArray = response.data.extendedIngredients
                 mealIngredientsModel(ingredientsArray)
             })
@@ -139,6 +175,7 @@ function getMealRecipe(e) {
 
 }
 
+// Function to display ingredients
 function mealIngredientsModel(ingredientsArray) {
     let output = `<h3 class="title">Ingredients</h3><ul class="fa-ul">`
     for (ingredient of ingredientsArray) {
@@ -170,7 +207,6 @@ function mealRecipeModel(title, servings, prepTime, recipeInstructionsArray, img
 
     let output = `
                     <h2 class="recipe-title">${title}</h2>
-                    <p class="recipe-category">Category Name</p>
                     <p class="recipe-time"><i class="fa-solid fa-clock"></i> <span id="time-required">${prepTime}</span></p>
                     <p class="recipe-servings"><i class="fa-solid fa-utensils"></i> <span id="servings">${servings}</span></p>
 
@@ -189,12 +225,46 @@ function mealRecipeModel(title, servings, prepTime, recipeInstructionsArray, img
 }
 
 // Change heart to red when user clicks it, then change it back when user clicks on it again
-function change(event) {
-    console.log(event.target.parentElement.id)
-    likeButton = document.getElementById(event.target.parentElement.id)
-    if (likeButton.style.color == "red") {
-        likeButton.style.color = "grey"
+// Setting liked recipes to local storage
+function change(recipeObj) {
+    
+    console.log(recipeObj)
+    var likedButton = document.getElementById(event.target.parentElement.id)
+
+    let recipeID = recipeObj['id']
+    let likedRecipes = JSON.parse(localStorage.getItem('likedRecipes'))
+
+    if (likedButton.style.color == "red") {
+        likedButton.style.color = "grey"
+
+        for (let i=0; i< likedRecipes.length; i++) {
+            if(likedRecipes[i]['id']== recipeID){
+                likedRecipes.splice(i,1)
+                alert('Unsaved!')
+            }
+            // console.log(likedRecipes)
+        }
+        
     } else {
-        likeButton.style.color = "red"
+        likedButton.style.color = "red"
+
+        axios.get(`https://api.spoonacular.com/recipes/${recipeObj.id}/information?includeNutrition=false`, {
+            params: {
+                apiKey: apiKey
+            }
+        })
+            .then(response => {
+                recipeObj.url = response.data.sourceUrl
+                likedRecipes.push(recipeObj)
+                localStorage.setItem('likedRecipes', JSON.stringify(likedRecipes))
+                alert('Saved!')
+                
+            })
+            .catch( error => {
+                console.log(error.message);
+            });
+        
     }
+    localStorage.setItem('likedRecipes', JSON.stringify(likedRecipes))
+    console.log(likedRecipes)
 }

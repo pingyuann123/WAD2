@@ -54,10 +54,6 @@ body{
 }
 
 
-.meal-search cite {
-    font-size: 1rem;
-}
-
 .meal-search-box {
     margin: 1.2rem 0;
     display: flex;
@@ -153,27 +149,13 @@ body{
     color: #F8F7F6;
     background-color: #a17d60;
     border-radius: 1rem;
-    width: 90%;
-    height: 90%;
+    width: 70%;
+    height: 70%;
     overflow-y: scroll;
     display: none;
     padding: 2rem 0;
 }
 
-.meal-details {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: #F8F7F6;
-    background-color: #a17d60;
-    border-radius: 1rem;
-    width: 90%;
-    height: 90%;
-    overflow-y: scroll;
-    display: none;
-    padding: 2rem 0;
-}
 
 .ingredient-details {
     position: fixed;
@@ -261,44 +243,23 @@ ul {
 
 .notFound {
     grid-template-columns: 1fr!important;
-    color: #a17d60;
+    color: #dd7e7e;
     font-size: 1.8rem;
     font-weight: 600;
     width: 100%;
 }
 
-@media screen and (min-width: 600px){
-    .meal-search-box {
-        width: 540px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
+.pill {
+    display: inline-block;
+    margin: 20px 10px 0 0;
+    padding: 6px 12px;
+    background: #eee;
+    border-radius: 20px;
+    letter-spacing: 1px;
+    font-weight: bold;
+    color: #777;
+    cursor: pointer;
 }
 
-@media screen and (min-width: 768px){
-    #meal {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 2rem;
-    }
-
-    .meal-details {
-        width: 700px;
-    }
-
-    .ingredient-details {
-        width: 700px;
-    }
-
-}
-
-@media screen and (min-width: 992px){
-    #meal {
-        /* display: grid; */
-        grid-template-columns: repeat(3, 1fr);
-        /* gap: 2rem; */
-    }
-}
 
 
