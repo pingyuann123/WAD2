@@ -100,6 +100,7 @@
                     <br> -->
                     <small style = 'float:right'>BEST BY: {{date}}</small>
                     </section>
+
                     <section class = 'body'>
                         <!-- product info  -->
 
@@ -135,7 +136,6 @@
 
                         <div id="map" ></div>
                         <script>
-                          const address = localStorage.getItem('address'); //unique identifier
                             var geocoder;
                             var map;
                             function initMap() {
@@ -249,11 +249,36 @@
                         <!-- retrieve location input, connect w map api via axios, display map here-->
                         
                         <div class="buttons container-fluid">
-                          <button id ="chatBtn" class = 'btn btn-sm btn-block' type="button" onclick="window.location.href='comments3.html?productid=${vars}';">Commments</button>
-                          
+                            <br>
+                          <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                            Comments
+                          </button>
+                          <div class="collapse" id="collapseExample">
+                            <div class="card card-body" id = 'app3'>
+                                <div id  = 'comment'>
+
+                                </div>
+                                <div class="form-control">
+                                    <div class="row">
+                                        <div class="col p-0">
+                                            <div class="form-group">
+                                                <textarea class="newcomment" id="newcomment" rows="1" placeholder="add comment..." ></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col p-0">
+                                            <button id="submitbtn" type="button" class="btn btn-info">comment</button>
+                                        </div>
+                                    </div>   
+                                </div>
+                                
+                            </div>
+                        </div>
                           <button style = 'float:right' id = "chatBtn" class="bckBtn btn btn-md btn-block" type="button" onclick="window.location.href='marketplace.html';">Back</button>
                           <!-- <button style = 'float:right' id = "testbtn" class="bckBtn btn btn-md btn-block" type="button">test</button> -->
                         </div>
+
+                        <!-- comment section -->
+                        
                         <!-- profile pic and name in same inline as button -->
                     </section>
                 </div>
@@ -281,7 +306,7 @@
 
              // Import the functions you need from the SDKs you need
              import { initializeApp } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-app.js";
-             import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-database.js";
+             import { getDatabase, ref, onValue, set } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-database.js";
              import { getAuth } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-auth.js";
         
               // TODO: Add SDKs for Firebase products that you want to use
@@ -330,7 +355,12 @@
                   image: 'img/',
                   qty: 0,
                   lat:'',
-                  lng:''
+                  lng:'',
+
+                comment:'',
+                commentID:'',
+                commentuseremail: '',
+                commentusername:''
 
                 }}, 
 
@@ -362,7 +392,101 @@
 
         }).mount('#app')
 
+        function insertComment(){
+            //localStorage.clear();
+            let useremail= localStorage.getItem('UserEmail');
+            console.log(useremail)
+            let newcomment = document.getElementById("newcomment");
 
+            let submitbtn = document.getElementById("submitbtn");
+            console.log(submitbtn)
+            console.log(newcomment.innerText);
+
+
+            var username = localStorage.getItem('UserEmail'); //unique identifier
+            var usernamearr = useremail.split("@");
+            const usersname = usernamearr[0];
+            console.log(username)
+            //const usersname = 123
+
+            // console.log(username);
+            console.log(useremail);
+
+            //UPLOAD TO REALTIME DATABASE
+            getUrlVars();
+            console.log(vars)
+            var date = new Date()
+            //console.log(newcomment.value)
+            set(ref(db, vars+'/' +usersname+date),{
+            // productId:productId,
+                commentID:usersname+newcomment.value,
+                commentusername:usersname,
+                commentuseremail:useremail,
+                comment:newcomment.value
+            // productImgURL:downloadURL
+            })
+            .then(()=>{
+            // console.log(productLoc);
+            alert("Created Successfully");
+            console.log(comment);
+            localStorage.setItem("commentid", usersname+newcomment.value);
+            console.log(usersname+newcomment.value);
+            // window.location = "marketplace.html";
+            // window.history.forward();
+            })
+            .catch((error)=>{
+            console.log(usersname+newcomment.value);
+            alert("Creation Unsuccessful" + error);
+            });
+            };
+            
+        
+        const app3 = Vue.createApp({
+            data(){
+                return{
+                    comment:'',
+                    commentID:'',
+                    commentuseremail: '',
+                    commentusername:''
+                }
+            },
+            methods:{
+                async GetADocument(){
+                    //getUrlVars();
+                    // const productID =  'Admin1Strawberry'
+                    const dbRef = ref(db, vars);
+                        onValue(dbRef, (snapshot) => {
+                              snapshot.forEach((childSnapshot) => {
+                                  const childKey = childSnapshot.key;
+                                  const childData = childSnapshot.val();
+                                  console.log(childKey);
+                                  console.log(childData)
+                                  var comment = childData.comment;
+                                  console.log(comment)
+                                  var commentusername = childData.commentusername;    
+                                  addToHtml(comment, commentusername);
+                    })},
+                      {
+                        onlyOnce:true
+                      }
+                    );
+                }},
+            created(){
+                  this.GetADocument()
+                }
+        }).mount('#app3')
+        function addToHtml(comment, commentusername){
+            var comment_div =  document.getElementById('comment')
+            var para = document.createElement('p')
+            para.innerHTML += `
+            <span><img src = 'img/user.png' style = 'height: 20px; width:20px;'></span>
+            <span style= "font-weight:bold;"> ${commentusername}:</span>
+            <span>${comment}</span>
+            `
+            comment_div.appendChild(para)
+        }
+
+        submitbtn.addEventListener("click",insertComment)
             // testbtn.addEventListener("click",getUrlVars);
         </script>
            <!-- Bundled Bootstrap JS -->
@@ -386,9 +510,5 @@
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDAo304l1NlMbOwhtCNbbQEhuEd4NEmoTo&callback=initMap&v=weekly"
     defer>
     </script>
-    
-
         </body>
-
-
 </html>
