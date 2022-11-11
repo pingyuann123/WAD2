@@ -1,0 +1,38 @@
+@charset "UTF-8";
+
+/* Home Css */
+.profileIcon{
+    width: 25px;
+    height:25px;
+}
+body{
+    background-color: #F8F7F6;
+}
+.nav-item{
+    color:#a17d60;
+}
+.marketplaceName{
+    color:#a17d60;
+    /* font-weight: bolder; */
+}
+
+.subtext{
+    text-align: left;
+    margin-left: 10px;
+    font-size: 13px;
+    font-weight: bold;
+    color:#dcc5a5;
+}
+.createBtn,.chatBtn{
+    float:right;
+    background-color:#dcc5a5;
+    /* border: #dcc5a5 1px solid; */
+    color:white;
+}
+.chatBtn{
+    margin-right: 10px;
+}
+.marketplaceName:hover{
+    color:#dcc5a5;
+
+}

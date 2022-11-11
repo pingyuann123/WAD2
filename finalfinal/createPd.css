@@ -1,0 +1,46 @@
+@charset "UTF-8";
+
+/*create CSS*/
+body{
+    background-color: #F8F7F6;
+}
+.Maintitle{
+    font-weight:bold;
+    font-size: 70px;
+}
+#leftBox{
+    background-color: #e4d3d6;
+    padding:25px;
+}
+.rightBox{
+    background-color: #F8F7F6;
+}
+.submitBtn, .bckBtn{
+    color:#565038;
+    border: #565038 1px solid;
+    /* text-align: center; */
+}
+.selBtn{
+    color:black;
+    border: #565038 1px solid;
+}
+.createTitle, .uploadTitle{
+    letter-spacing: 1px;
+    color:#565038;
+    text-align: center;
+    font-weight: normal;
+}
+.buttons{
+    text-align: center;
+    
+}
+.submitBtn{
+    margin-left: 60px;
+    float:left;
+}
+.myImg{
+    height:300px;
+    width:300px;
+    /* border: 1px black; */
+
+}

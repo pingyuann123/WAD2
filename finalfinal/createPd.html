@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="stylesheet" href="createPd.Css"/>
+
+    <title>Create A Post</title>
+    
+    <style>
+      /* img{
+        height: 300px;
+        width:300px;
+        /* border:2px black solid;} */
+
+    </style>
+</head>
+<body>
+    <!-- https://icons.getbootstrap.com/ -->
+
+    <div class="container-fluid" >
+
+        <!-- <div class="register2Heading container-fluid">
+            <div class="row">
+                <h2 class="createTitle">Create Post:</h2>            
+            </div>
+        </div> -->
+
+        <!-- <hr class="lineBreak"></hr> -->
+
+        <div class="row" >
+          <div class="col-md-6 col-lg-6 d-sm-block form-outline mb-4" id = "leftBox" style ="height:100%">
+              <!-- <h1 class="Maintitle">Cooking,<br>
+                  made easy
+              </h1>
+                  <p>App Name</p> -->
+                  <br>
+                  <h3 class="uploadTitle">Upload Image</h3>
+                  </br>
+                  <label>Image Name:</label>
+                <p></p>
+                  <input type="text" id="imgName" class="form-control" />
+                  <label id="extlab"></label> <br>
+
+                  
+                  <button id="selBtn" class="selBtn btn btn-md">Select Image</button>
+                  </br></br>
+                  <!-- <button id="upBtn">Upload Image</button>
+                  <button id="downBtn">Download</button> -->
+
+                  <img id="myImg" class="myImg d-block w-100 mx-auto" />
+                  <label id="upprogress"></label> <br>
+
+
+                  <!-- <input id="imgfile" type="file" name="" /> -->
+                  <!-- <button id = "cfmBtn" class="cfmBtn btn btn-lg btn-block" type="button">Confirm Upload</button> -->
+          </div>
+
+          <div class="col-md-6 col-lg-6 text-black">
+              
+          <div class="rightBox d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
+  
+              <form class="createForm" action ="">
+                <h3 class="createTitle">List Details</h3>
+              </br>
+
+              <div class="form-outline mb-4">
+                <!-- <label class="userLabel form-label" for="User">Username</label>
+                <input type="text" id="listUser" class="form-control form-control-sm" placeholder="Your Unique Username"/> -->
+                <p id ="listUser" class="listUser" style='display:"hidden"'></p>
+              </div>
+
+              <div class="form-outline mb-4">
+                <label class="titleLabel form-label" for="Title">Listing Title</label>
+                <input type="text" id="listTitle" class="form-control form-control-sm" placeholder="Name of Your Item" />
+              </div>
+                <!-- <label class="emailLabel form-label" for="email">Email address</label> -->
+                <!-- <input type="text" id="listTitle" class="form-control form-control-lg" placeholder="Title of Your Listing"/> -->
+      
+                  <!-- <hr class="lineBreak"></hr> -->
+                
+                  <div class="form-outline mb-4">
+                      <label class="priceLabel form-label" for="Price">Price $</label>
+                      <input type="text" id="listPrice" class="form-control form-control-sm" placeholder="0" />
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <label class="qtyLabel form-label" for="Qty">Quantity</label>
+                    <input type="number" id="listQty" class="form-control form-control-sm" placeholder="0" />
+                  </div>
+      
+                  <div class="form-outline mb-4">
+                      <label class="dateLabel form-label" for="date">Date of Expiry</label>
+                      <input type="date" id="listDate" class="form-control form-control-sm" />
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <label class="descLabel form-label" for="desc">Description</label>
+                    </br>
+                    <textarea id="listDesc" class="form-control form-control-sm" name="desc" form="createForm" rows="4" cols="50" placeholder="Additional Details of Your Item"></textarea>
+                </div>
+
+                <div class="form-outline mb-4">
+                  <label class="locLabel form-label" for="loc">Preferred Pickup Location:</label>
+                  <button id = "pickBtn" class="bckBtn btn btn-sm btn-block" type="button">Choose Current Location</button>
+                  <p id ="statusDisplay" class="statusDisplay" style='display:"hidden"'></p>
+                  <input type="text" id="listLoc" class="form-control form-control-sm" placeholder="Input Other locations"></input>
+                  <p id ="latDisplay" class="latDisplay" style='display:none'></p>
+                  <p id ="lngDisplay" class="lngDisplay" style='display:none'></p>
+                </div>
+                
+              </br>
+
+              </form>
+  
+          </div>
+          <div class="buttons container-fluid">
+            <button id = "createBtn" class="submitBtn btn btn-md btn-block" type="button">Create New Listing</button>
+            
+            <button id = "bckBtn" class="bckBtn btn btn-md btn-block" type="button">Back</button>
+          </div>
+          
+          <!-- <div class="container">
+              <hr class="lineBreak"></hr>
+          </div>
+
+          </div> -->
+      </div>
+
+
+    </div>
+   <!-- Bootstrap Bundle with Popper -->
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+
+   <script type="module">
+    
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-analytics.js";
+    // import { getStorage, ref} from "https://www.gstatic.com/firebasejs/9.12.1/firebase-storage.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyCUwFb-W_pR0s_iO2tplBAxXXakhVWs8lM",
+      authDomain: "g2t5-wad2.firebaseapp.com",
+      databaseURL: "https://g2t5-wad2-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "g2t5-wad2",
+      storageBucket: "g2t5-wad2.appspot.com",
+      messagingSenderId: "634091812622",
+      appId: "1:634091812622:web:9c1e64920c60792226495f",
+      measurementId: "G-MJKTY27Q23"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    // const storage = getStorage();
+    // const storageRef = ref(storage);
+
+
+    import{
+        getFirestore, doc, getDoc, setDoc, collection, addDoc, updateDoc, deleteDoc, deleteField
+    }
+    from "https://www.gstatic.com/firebasejs/9.12.1/firebase-firestore.js";
+
+    import{
+      getStorage, ref as sRef, uploadBytesResumable, getDownloadURL, uploadBytes 
+    }
+    from "https://www.gstatic.com/firebasejs/9.12.1/firebase-storage.js";
+
+    //realtime database
+    import{
+      getDatabase, ref, set, child, get, update, remove 
+    }
+    from "https://www.gstatic.com/firebasejs/9.12.1/firebase-database.js";
+
+    //FIREBASE VARIABLES
+    const db = getFirestore();
+    const realdb = getDatabase();
+
+    var username = localStorage.getItem('UserEmail'); //unique identifier
+    var  usernamearr = username.split("@");
+    const usersname = usernamearr[0];
+    console.log(usersname);
+    // let userInput = username;
+    let userName = document.getElementById("listUser");
+    // userName.innerHTML = username;
+
+    // console.log(userName.textContent);
+    // let userInput = userName.textContent
+    // console.log(userInput);
+    // document.getElementById("listUser").textContent = username.innerText;
+
+    
+    // let userInput = document.getElementById("listUser");
+    // console.log(userInput);
+    let titleInput = document.getElementById("listTitle");
+    let priceInput = document.getElementById("listPrice");
+    let dateInput = document.getElementById("listDate");
+    let qtyInput = document.getElementById("listQty");
+    let descInput = document.getElementById("listDesc");
+    let locInput = document.getElementById("listLoc");
+    let currLoc = document.getElementById("statusDisplay");
+    let latInput = document.getElementById("latDisplay");
+    let lngInput = document.getElementById("lngDisplay");
+    
+    var currtime = JSON.stringify(new Date().getTime()); 
+    var currtime = currtime.split(" ");
+    var currtime = currtime.join();
+    console.log(currtime);
+    console.log(new Date());
+
+
+    // const email = localStorage.getItem('useremail'); //unique identifier
+    // console.log(email);
+    
+
+    let addbtn = document.getElementById("createBtn");
+    let bckbtn = document.getElementById("bckBtn");
+    let pickBtn = document.getElementById("pickBtn");
+    
+
+    // let updatebtn = document.getElementById("update");
+    // let delbtn = document.getElementById("del");
+    // let readbtn = document.getElementById("read");
+    // let custbtn = document.getElementById("addCust");
+
+    //add
+    // async function AddDocument_AutoID(){
+    //   var ref = collection(db, "ProductList");
+
+    //   const docRef = await addDoc(
+    //     ref, {
+    //       productTitle:titleInput.value,
+    //       productPrice:priceInput.value,
+    //       productDate:dateInput.value,
+    //       productQty:qtyInput.value,
+    //       productDesc:descInput.value,
+    //       productLoc:locInput.value
+    //         }
+    //     )
+    //   .then(()=>{
+    //     alert("Created Successfully");
+    //       window.location = "marketplace.html";
+    //       window.history.forward();
+    //   })
+    //   .catch((error)=>{
+    //     alert("Creation Unsuccessful" + error);
+    //   });
+    // }
+
+    //IMG VARIABLES
+    var files = [];
+    var reader = new FileReader();
+
+    var imgName = document.getElementById("imgName");
+    var extlab = document.getElementById("extlab");
+    var myImg = document.getElementById("myImg");
+    var progLab = document.getElementById("upprogress");
+    var selBtn = document.getElementById("selBtn");
+    // var upBtn = document.getElementById("upBtn");
+    // var downBtn = document.getElementById("downBtn");
+
+    var input = document.createElement('input');
+    input.type = 'file';
+
+    input.onchange = e =>{
+      files = e.target.files;
+
+      var extention = GetFileExt(files[0]);
+      var name = GetFileName(files[0]);
+
+      imgName.value = name;
+      extlab.innerHTML = extention;
+
+      reader.readAsDataURL(files[0]);
+      
+
+    }
+
+    reader.onload = function(){
+      myImg.src = reader.result;
+    }
+
+    //SELECT IMAGE FUNCTION
+    selBtn.onclick = function(){
+      input.click();
+    }
+
+    function GetFileExt(file){
+      var temp = file.name.split('.');
+      var ext = temp.slice((temp.length-1),(temp.length));
+
+      return '.' + ext[0];
+    }
+
+    function GetFileName(file){
+      var temp = file.name.split('.');
+      var fname = temp.slice(0,-1).join('.');
+
+      return fname;
+    }
+
+    //upload
+
+    // async function UploadProcess(){
+    //   var ImgToUpload = files[0];
+
+    //   var ImgName = imgName.value + extlab.innerHTML;
+
+    //   console.log(ImgName);
+
+
+    //   if(!validateName()){
+    //     alert('name cannot contain ".", "#", "$", "[", or "]"');
+    //     return;
+    //   }
+      
+    //   const metaData = {
+    //     contentType:ImgToUpload.type
+    //   }
+
+    //   const storage = getStorage();
+
+    //   const storageRef = sRef(storage,"Images/"+ImgName);
+
+    //   const UploadTask = uploadBytesResumable(storageRef, ImgToUpload, metaData);
+
+    //   UploadTask.on('state-changed',(snapshot)=>{
+    //     var progress = (snapshot.bytesTransferred / snapshot.totalBytes * 100)
+    //     progLab.innerHTML = "Upload" + progress + "%";
+    //   },
+    //   (error)=>{
+    //     alert("error: image not uploaded!");
+    //   },
+    //   ()=>{
+    //     getDownloadURL(UploadTask.snapshot.ref).then((downloadURL)=>{
+    //       console.log(downloadURL);
+    //     });
+    //   }
+    //   );
+    // }
+
+    // var productId = 0;
+    
+    //SELECT IMAGE AND UPLOAD
+    function InsertData(){
+      // for (productId = 0; productId < 1000;){
+        var ImgToUpload = files[0];
+
+        var ImgName = imgName.value + extlab.innerHTML;
+
+        console.log(ImgName);
+
+
+        if(!validateName()){
+          alert('name cannot contain ".", "#", "$", "[", or "]"');
+          return;
+        }
+
+        const metaData = {
+          contentType:ImgToUpload.type
+        }
+
+        const storage = getStorage();
+
+        const storageRef = sRef(storage,"Images/"+ImgName);
+
+        const UploadTask = uploadBytesResumable(storageRef, ImgToUpload, metaData);
+
+        UploadTask.on('state-changed',(snapshot)=>{
+          var progress = (snapshot.bytesTransferred / snapshot.totalBytes * 100)
+          progLab.innerHTML = "Upload" + progress.toFixed(2) + "%";
+          getDownloadURL(UploadTask.snapshot.ref).then((downloadURL)=>{
+            console.log(downloadURL);
+            var downloadURL = downloadURL;
+          });
+        },
+        (error)=>{
+          alert("Error: Image not Uploaded!" + " " + error);
+        },
+        // ()=>{
+        //   getDownloadURL(UploadTask.snapshot.ref).then((downloadURL)=>{
+        //     console.log(downloadURL);
+        //   });
+        // }
+        );
+
+        // let statusDisplay = document.getElementById("statusDisplay");
+
+        // const success =(position) => {
+        //   console.log(position);
+        //   const latitude = position.coords.latitude;
+        //   const longitude = position.coords.longitude;
+        //   console.log(latitude + ' ' + longitude);
+
+        //   const geoApiUrl = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`
+
+        //   fetch(geoApiUrl)
+        //   .then(res => res.json())
+        //   .then(data =>{
+        //     console.log(data);
+        //     locInput.innerHTML = data.locality;
+        //     let locInput = data.locality;
+        //     console.log(locInput);
+        //     document.getElementById("statusDisplay").style.display = "";
+        //     document.getElementById("statusDisplay").textContent= locInput ;
+        //     // document.createElement
+        //     // document.getElementById("listLoc").style.display = 'none';
+
+        //   })
+
+
+        // }
+        // const error = () =>{
+        //   locInput.textContent = "Unable to Retrive Location";
+        // }
+
+
+        // navigator.geolocation.getCurrentPosition(success, error);
+
+        // console.log(locInput);
+        // console.log(downloadURL);
+        // if(locInput !=''){
+        //   let locInput = currLoc.value;
+        // }
+        //UPLOAD TO REALTIME DATABASE
+        set(ref(realdb,"ProductLists/"+usersname+titleInput.value),{
+          // productId:productId,
+          productID:usersname+titleInput.value,
+          productUser:usersname,
+          productTitle:titleInput.value,
+          productPrice:priceInput.value,
+          productDate:dateInput.value,
+          productQty:qtyInput.value,
+          productDesc:descInput.value,
+          productLoc:locInput.textContent,
+          productImgName:ImgName,
+          productLat : latInput.textContent,
+          productLng: lngInput.textContent,
+          timelist: currtime
+          
+          // productImgURL:downloadURL
+        })
+        .then(()=>{
+          // console.log(productLoc);
+          alert("Created Successfully");
+          localStorage.setItem("productid", usersname+titleInput.value);
+          console.log(usersname+titleInput.value);
+          // localStorage.clear();
+
+          window.location = "marketplace.html";
+          window.history.forward();
+        })
+        .catch((error)=>{
+          console.log(locInput.textContent);
+          alert("Creation Unsuccessful" + error);
+          // localStorage.clear();y
+        });
+
+        // setTimeout(function(){
+        //   set();
+        // },5000);
+
+        // productId = productId + 1;
+      }
+      
+    // }
+    // //upload url to realtime database
+    // function SaveURLtoRealtimeDB(URL){
+    //   var name = imgName.value;
+    //   var ext = extlab.innerHTML;
+
+    //   set(ref(realdb,"ImagesLinks/"+name),{
+    //     ImageName: (name+ext),
+    //     ImgUrl:URL
+    //   });
+    // }
+
+    // function GetURLfromRealtimeDB(){
+    //   var name = imgName.value;
+    //   var dbRef = ref(realdb);
+    //   get(child(dbRef,"ImagesLinks/"+name)).then((snapshot)=>{
+    //     if(snapshot.exists()){
+    //       myImg.src = snapshot.val().ImgUrl;
+    //     }
+    //   })
+    // }
+    
+    //VALIDATE IMAGE NAME
+    function validateName(){
+      var regex = /[\.#$\[\]]/
+      return !(regex.test(imgName.value));
+    }
+
+    // FIND CURRENT LOCATION USING API 
+    const findMyState = () => {
+
+      // let statusDisplay = document.getElementById("statusDisplay");
+
+      const success =(position) => {
+        console.log(position);
+        let latitude = position.coords.latitude;
+        let longitude = position.coords.longitude;
+        console.log(latitude + ' ' + longitude);
+
+        //FREE Big Data Cloud Free Public API: https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=XXXXXXXXXXXX&longitude=XXXXXXXXXXXX&localityLanguage=en
+
+        const geoApiUrl = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`
+
+        fetch(geoApiUrl)
+        .then(res => res.json())
+        .then(data =>{
+          console.log(data);
+          locInput.innerHTML = data.locality;
+          latInput.textContent = latitude;
+          lngInput.textContent = longitude;
+          console.log(locInput);
+          console.log(latInput);
+          // document.getElementById("statusDisplay").style.display = "";
+          document.getElementById("statusDisplay").textContent = data.locality ;
+          // document.createElement
+          // document.getElementById("listLoc").style.display = 'none';
+
+        })
+
+
+      }
+      const error = () =>{
+        locInput.textContent = "Unable to Retrive Location. Please allow location service to retrieve current location or type location below.";
+      }
+
+
+      navigator.geolocation.getCurrentPosition(success, error);
+    }
+
+
+
+
+    // upBtn.onclick = UploadProcess;
+
+    // downBtn.onclick = GetURLfromRealtimeDB;
+
+    //BACK ALERT FUNCTION
+    function back(){
+      if (confirm("Important: Leaving This Page Will Not Save This Listing!") == true) {
+        window.location = "marketplace.html";
+      } else {
+      }
+      // alert("Important: Leaving This Page Will Not Save This Listing");
+      // window.location = "marketplace.html";
+
+    }
+    // function Redirect() {
+    //   window.location = "marketplace.html";
+    // }
+
+    //EVENT LISTENER
+    addbtn.addEventListener("click",InsertData);
+    bckbtn.addEventListener("click",back);
+    pickBtn.addEventListener("click",findMyState);
+
+
+
+
+    // addbtn.addEventListener("click",Redirect);
+
+    // console.log(imgInput);
+
+
+    
+    </script>
+
+<footer class="py-3 my-4">
+  
+    <p class="text-center text-muted">&copy; 2022 Easycook, Inc</p>
+    <ul class="nav justify-content-center  mb-3">
+        <li class="nav-item"><a href="home.html" class="nav-link px-2 text-muted">Home</a></li>
+        <li class="nav-item"><a href="findRecipe.html" class="nav-link px-2 text-muted">Recipes</a></li>
+        <li class="nav-item"><a href="marketplace.html" class="nav-link px-2 text-muted">Marketplace</a></li>
+        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">FAQs</a></li>
+        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>
+      </ul>
+    
+  </footer> 
+    
+</body>
+</html>
