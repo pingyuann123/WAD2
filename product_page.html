@@ -665,22 +665,22 @@
     submitbtn.addEventListener("click", insertComment)
     // Update database when user wants to logout
     async function logout() {
-      let email = localStorage.getItem("UserEmail")
-      console.log(email)
-      var ref = doc(db, "Users", email);
-      await updateDoc(
-        ref, {
-        recipes: JSON.parse(localStorage.getItem('likedRecipes')),
-      }
-      )
-        .then(() => {
+      // let email = localStorage.getItem("UserEmail")
+      // console.log(email)
+      // var ref = doc(db, "Users", email);
+      // await updateDoc(
+      //   ref, {
+      //   recipes: JSON.parse(localStorage.getItem('likedRecipes')),
+      // }
+      // )
+        // .then(() => {
           alert("Logout Successful");
           window.location = "login.html";
           window.history.forward();
-        })
-        .catch((error) => {
+        // })
+        // .catch((error) => {
           alert("Logout Unsuccessful" + error);
-        });
+        // });
     }
     logoutbtn.addEventListener("click", logout);
     logoutbtn2.addEventListener("click", logout);
