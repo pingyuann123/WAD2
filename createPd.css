@@ -9,7 +9,7 @@ body{
     font-size: 70px;
 }
 #leftBox{
-    background-color: #D2B6BA;
+    background-color: #e4d3d6;
     padding:25px;
 }
 .rightBox{
@@ -43,4 +43,36 @@ body{
     width:300px;
     /* border: 1px black; */
 
+}
+.info-tool-tip {
+    /* font-size: 1.4rem; */
+    color: #a17d60;
+    /* padding: 20px; */
+    cursor: pointer;
+}
+.info-tool-tipbox{
+        /* font-size: 1.4rem; */
+        /* color: #a17d60; */
+        /* padding: 20px; */
+        cursor: pointer;
+    
+}
+
+#tooltip-text {
+    background-color: #dcc5a5;    
+    color: white;
+    font-size: 0.88rem;
+    position: absolute;
+    padding: 10px 15px;
+    margin: 10px;
+    border-radius: 7px;
+    visibility: hidden;
+    top: 35px;
+    opacity: 0.5;
+    transition: all 0.4s linear;
+}
+
+.info-tool-tipbox:hover #tooltip-text {
+    visibility: visible;
+    opacity: 1;
 }

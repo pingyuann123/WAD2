@@ -14,54 +14,122 @@
     <script src="https://unpkg.com/vue@next"></script>
     <script type="text/javascript" src="https://unpkg.com/default-passive-events"></script>
     <link rel="stylesheet" href="product__page.css"/>
+    <link rel="stylesheet" href="nicepage.css" media="screen">
+    <link rel="stylesheet" href="Page-1.css" media="screen">
+    <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
+    <meta name="generator" content="Nicepage 4.21.5, nicepage.com">
+    <link id="u-theme-google-font" rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+    <link id="u-page-google-font" rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Oswald:200,300,400,500,600,700|Lato:100,100i,300,300i,400,400i,700,700i,900,900i|Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i">
+  
+    <!-- Add icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+     <!-- VUE -->
+     <script src="https://unpkg.com/vue@next"></script>
 
+     <style>
+      #logoutbtn{
+        border:white;
+        /* background-color:#F8F7F6; */
+        background: none;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      #submitbtn{
+        /* padding-left: 2%; */
+        background-color:#dcc5a5;
+        color:white;
+      }
+      #map {
+        width: 100%;
+        /* height: 100%; */
+      }
+      html {
+      scroll-behavior: smooth;
+      }
+  
+    </style>
     </head>
-    <body>
+    <body class="u-body u-xl-mode d-flex flex-column min-vh-100" data-lang="en" style='background-color:#F8F7F6'>
       <!-- nav bar missing -->
-        <div class = ' container-fluid'>
-          <div class="row navBar" >
-            <div class="col ps-3">
-              <nav class="navbar navbar-expand-lg">
-                <div class="container-fluid">
-                  <a class="marketplace navbar-brand" href="marketplace.html" style="color:#a17d60;">EasyCook</a>
-                  
-                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNavbar" aria-controls="collapseNavbar" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                  </button>
-                  <div class="collapse navbar-collapse " id="collapseNavbar">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                     
-                      <li class="nav-item px-2">
-                        <a class="nav-link" href="home" role="button">
-                          Home
-                        </a>
-                      </li>
-  
-                      <li class="nav-item px-2">
-                        <a class="nav-link" href="profile" role="button">
-                          Profile <img class="profileIcon" src="img/user.png" alt="Profile"/>
-                        </a>
-                      </li>
-  
-                      <li class="nav-item px-2">
-                        <a class="nav-link" href="img/login.html" role="button">
-                          Log Out
-                        </a>
-                      </li>                  
-                    </ul>                
-                  </div>
-                </div>
-              </nav>
-              <!-- <small style="color:#a17d60; padding-left:10px">Marketplace</small> -->
+      <header class="u-clearfix u-header u-header" id="sec-6f6c">
+        <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
+          <a href="home.html" class="u-image u-logo u-image-1">
+            <!-- <img src="images/default-logo.png" class="u-logo-image u-logo-image-1"> -->
+            Easycook
+          </a>
+          <nav class="u-menu u-menu-dropdown u-offcanvas u-menu-1">
+            <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px;">
+              <a class="u-button-style u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base"
+                href="#">
+                <svg class="u-svg-link" viewBox="0 0 24 24">
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#menu-hamburger"></use>
+                </svg>
+                <svg class="u-svg-content" version="1.1" id="menu-hamburger" viewBox="0 0 16 16" x="0px" y="0px"
+                  xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+                  <g>
+                    <rect y="1" width="16" height="2"></rect>
+                    <rect y="7" width="16" height="2"></rect>
+                    <rect y="13" width="16" height="2"></rect>
+                  </g>
+                </svg>
+              </a>
             </div>
-          </div>
+            <div class="u-nav-container">
+              <ul class="u-nav u-unstyled u-nav-1">
+                <li class="u-nav-item"><a class="u-button-style u-nav-link  u-text-hover-palette-1-base" href="home.html"
+                    style="padding: 10px 20px;">Home</a>
+                </li>
+                <li class="u-nav-item"><a class="u-button-style u-nav-link  u-text-hover-palette-1-base" href="findRecipe.html"
+                    style="padding: 10px 20px;">Recipes</a>
+                </li>
+                <li class="u-nav-item"><a class="u-button-style u-nav-link  u-text-hover-palette-1-base" href="marketplace.html"
+                    style="padding: 10px 20px;">Marketplace</a>
+                </li>
+                <li class="u-nav-item"><a class="u-button-style u-nav-link  u-text-hover-palette-1-base" href="profile.html"
+                    style="padding: 10px 20px;">Profile</a>
+                </li>
+                <li class="u-nav-item"><a class="u-button-style u-nav-link  u-text-hover-palette-1-base"
+                  style="padding: 10px 20px;"><button id="logoutbtn">Logout</button></a>
+                </li>
+              </ul>
+            </div>
+    
+            <div class="u-nav-container-collapse">
+              <div class="u-grey u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
+                <div class="u-inner-container-layout u-sidenav-overflow">
+                  <div class="u-menu-close"></div>
+                  <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2">
+                    <li class="u-nav-item"><a class="u-button-style u-nav-link" href="home.html">Home</a>
+                    </li>
+                    <li class="u-nav-item"><a class="u-button-style u-nav-link" href="findRecipe.html">Receipe</a>
+                    </li>
+                    <li class="u-nav-item"><a class="u-button-style u-nav-link" href="marketplace.html">Marketplace</a>
+                    </li>
+                    <li class="u-nav-item"><a class="u-button-style u-nav-link" href="profile.html">Profile</a>
+                    </li>
+                    <li class="u-nav-item"><a class=" u-button-style u-nav-link"><button id="logoutbtn">Logout</button></a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
+            </div>
+    
+          </nav>
+    
         </div>
-        </div>
+      </header>
+        
 
         <div class="container-fluid" id = 'app'>
           <div class = 'row'>
-              <div class = 'col-6 p-0' style = 'float: right;  height:100%;' >
-                <img  style = 'float: right;  height:100%;'  class="d-block w-100" :src='image' alt="{{Title}}">
+              <div class = 'col-lg-6 col-md-12 col-sm-12 p-0' style = 'height:100%;' >
+                <img  style = ' height:100%; text-align: center;'  class="d-block w-100 mx-auto" :src='image' alt="{{Title}}">
                 
                   <!-- carousel -->
                     <!-- <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
@@ -89,15 +157,14 @@
                       </button>
                     </div> -->
               </div>
-              <div class = 'col-6 p-0 ' style = 'float: right; height:100%;'>
+              <div class = 'col-lg-6 col-md-12 col-sm-12 p-0 ' style = 'float: right; height:100%;'>
                     <!-- product info -->
                     <!-- product name, price and expiry date-->
                     <section class ='header'>
                     <h3>{{title}}</h3>
-                    <hr style="width:20%;text-align:left;margin-left:0">
-                    <p style = 'float:left'>${{price}}</p>
-                    <!-- <br>
-                    <br> -->
+                    <span><hr style="width:20%;text-align:left;margin-left:0"></span>
+                    <p><small>Listed By: {{user}}</small></p>
+                    <span style = 'float:left'>${{price}}</span>
                     <small style = 'float:right'>BEST BY: {{date}}</small>
                     </section>
 
@@ -121,12 +188,12 @@
                         <b><p style = 'float:left'>Quantity: <p style = 'float:right'>{{qty}}</p> </p></b>
                         <br>
 
-                        <b><p style = 'float:left'>Pickup Location:</b> <p style = 'float:right'id = "address">{{location}}
-                          <button id = "pickBtn" class="button btn btn-sm btn-block" type="button" onclick="initMap()" title="Click to show location on map">
+                        <b><p style = 'text-align: left;'>Pickup Location:</b> <p style = 'float:center'id = "address">{{location}}
+                          <button id = "pickBtn" class="button btn btn-sm btn-block" type="button" onclick="initMap()" title="Click to show location on map"  data-bs-toggle="collapse" data-bs-target="#collapseMap" aria-expanded="false" aria-controls="collapseExample">
                             <img style = "height:14px; float:left"src="img/info.png"/>
                           </button>
-                          <p style = 'float:left' id = "lat">{{lat}}</p>
-                          <p style = 'float:left' id = "lng">{{lng}}</p>
+                          <p style = 'float:left; display:none;' id = "lat">{{lat}}</p>
+                          <p style = 'float:left;display:none;' id = "lng">{{lng}}</p>
                         </p>
                       </p>
                         <!-- map api -->
@@ -134,7 +201,10 @@
 
                         <!-- <br> -->
 
-                        <div id="map" ></div>
+                        <div class="collapse" id="collapseMap">
+                          <div id="map"></div>
+
+                        </div>
                         <script>
                             var geocoder;
                             var map;
@@ -171,7 +241,7 @@
                                 geocoder = new google.maps.Geocoder();
                                 var latlng = new google.maps.LatLng(1.290270, 103.851959);
                                 var mapOptions = {
-                                  zoom: 10.9,
+                                  zoom: 10.6,
                                   center: latlng
                                 }
                                 map = new google.maps.Map(document.getElementById('map'), mapOptions);
@@ -248,32 +318,39 @@
                         <br>
                         <!-- retrieve location input, connect w map api via axios, display map here-->
                         
-                        <div class="buttons container-fluid">
+                      <div class="container-fluid">
                             <br>
-                          <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                            Comments
+                          <button id="allcommentsbtn"class="btn btn btn-md btn-block" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                            All Comments
                           </button>
-                          <div class="collapse" id="collapseExample">
+                          
+                          <button id = "chatBtn" class="bckBtn btn btn-md btn-block" type="button" onclick="window.location.href='marketplace.html';">Back to Marketplace</button>
+
+                          <div class="collapse" id="collapseExample"style='overflow-y:auto;' >
                             <div class="card card-body" id = 'app3'>
                                 <div id  = 'comment'>
 
                                 </div>
-                                <div class="form-control">
+                                <div class="commentform">
                                     <div class="row">
-                                        <div class="col p-0">
-                                            <div class="form-group">
-                                                <textarea class="newcomment" id="newcomment" rows="1" placeholder="add comment..." ></textarea>
-                                            </div>
+                                        <div class="col-lg-6 col-md-12 col-sm-12 p-0 form-outline mb-4">
+                                            <!-- <div class="form-group"> -->
+                                                <textarea class="newcomment form-control form-control-sm" id="newcomment" rows="1" cols="20" placeholder="Add comment..." ></textarea>
+                                            <!-- </div> -->
+  
                                         </div>
-                                        <div class="col p-0">
-                                            <button id="submitbtn" type="button" class="btn btn-info">comment</button>
-                                        </div>
+
                                     </div>   
                                 </div>
+                                <div class="col-lg-6 col-md-12 col-sm-12 p-0  p-0">
+                                  <button id="submitbtn" type="button" class="btn btn-md btn-block">Comment</button>
+                              </div>
+                              <div id="commentAlert">
+
+                              </div>
                                 
                             </div>
                         </div>
-                          <button style = 'float:right' id = "chatBtn" class="bckBtn btn btn-md btn-block" type="button" onclick="window.location.href='marketplace.html';">Back</button>
                           <!-- <button style = 'float:right' id = "testbtn" class="bckBtn btn btn-md btn-block" type="button">test</button> -->
                         </div>
 
@@ -284,6 +361,18 @@
                 </div>
             </div>
           </div>
+
+            <!-- Footer -->
+  <footer class="py-2 mt-auto border-top-1 border">
+    <p class="text-center text-muted pt-2">&copy; 2022 Easycook, Inc</p>
+    <ul class="nav justify-content-center  mb-3">
+        <li class="nav-item"><a href="" class="nav-link px-2 text-muted">Home</a></li>
+        <li class="nav-item"><a href="" class="nav-link px-2 text-muted">Recipes</a></li>
+        <li class="nav-item"><a href="" class="nav-link px-2 text-muted">Marketplace</a></li>
+        <li class="nav-item"><a href="" class="nav-link px-2 text-muted">FAQs</a></li>
+        <li class="nav-item"><a href="" class="nav-link px-2 text-muted">About</a></li>
+      </ul>
+  </footer>
 <!--           
           <script>
 
@@ -306,7 +395,7 @@
 
              // Import the functions you need from the SDKs you need
              import { initializeApp } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-app.js";
-             import { getDatabase, ref, onValue, set } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-database.js";
+             import { getDatabase, ref, onValue, set, query, orderByValue } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-database.js";
              import { getAuth } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-auth.js";
         
               // TODO: Add SDKs for Firebase products that you want to use
@@ -368,7 +457,7 @@
                   async GetADocument(){
                     getUrlVars();
                     // const productID =  'Admin1Strawberry'
-                    const product_data = ref(db, 'ProductList/' + vars);
+                    const product_data = ref(db, 'ProductLists/' + vars);
                     onValue(product_data, (snapshot) => {
                       const data = snapshot.val();
                       this.price = data.productPrice;
@@ -394,8 +483,10 @@
 
         function insertComment(){
             //localStorage.clear();
-            let useremail= localStorage.getItem('UserEmail');
-            console.log(useremail)
+            var useremail = localStorage.getItem('UserEmail'); //unique identifier
+            var usernamearr = useremail.split("@");
+            const usersname = usernamearr[0];
+            console.log(usersname)
             let newcomment = document.getElementById("newcomment");
 
             let submitbtn = document.getElementById("submitbtn");
@@ -403,10 +494,7 @@
             console.log(newcomment.innerText);
 
 
-            var username = localStorage.getItem('UserEmail'); //unique identifier
-            var usernamearr = useremail.split("@");
-            const usersname = usernamearr[0];
-            console.log(username)
+
             //const usersname = 123
 
             // console.log(username);
@@ -415,28 +503,47 @@
             //UPLOAD TO REALTIME DATABASE
             getUrlVars();
             console.log(vars)
-            var date = new Date()
+            var commentdate = new Date().getTime();
+            var commentdate = JSON.stringify(commentdate);
+
+            var commentFullDate = JSON.stringify(new Date().getDate())+"-"+ JSON.stringify(new Date().getMonth())+ "-"+JSON.stringify(new Date().getFullYear());
+            // var commentFullDate = JSON.stcommentFullDate);
+            console.log(commentFullDate);
+
+            console.log(commentdate);
             //console.log(newcomment.value)
-            set(ref(db, vars+'/' +usersname+date),{
+            set(ref(db, vars+'/' +usersname+commentFullDate+newcomment.value),{
             // productId:productId,
                 commentID:usersname+newcomment.value,
                 commentusername:usersname,
                 commentuseremail:useremail,
-                comment:newcomment.value
+                comment:newcomment.value,
+                commentDate:commentdate,
+                commentFullDate:commentFullDate
             // productImgURL:downloadURL
             })
             .then(()=>{
             // console.log(productLoc);
-            alert("Created Successfully");
-            console.log(comment);
+            console.log("Created Successfully");
+            // console.log(comment);
+            console.log(commentdate);
             localStorage.setItem("commentid", usersname+newcomment.value);
             console.log(usersname+newcomment.value);
             // window.location = "marketplace.html";
             // window.history.forward();
+            var aler_div =  document.getElementById('commentAlert')
+            var alert_para = document.createElement('p')
+            alert_para.innerHTML += `<div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    <strong>Success!</strong> Remember to refresh to see the latest comments!
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                  </div>`
+              // console.log(para)
+            aler_div.appendChild(alert_para)
+
             })
             .catch((error)=>{
             console.log(usersname+newcomment.value);
-            alert("Creation Unsuccessful" + error);
+            console.log("Creation Unsuccessful" + error);
             });
             };
             
@@ -447,7 +554,9 @@
                     comment:'',
                     commentID:'',
                     commentuseremail: '',
-                    commentusername:''
+                    commentusername:'',
+                    commentDate:'',
+                    commentFullDate:''
                 }
             },
             methods:{
@@ -455,6 +564,7 @@
                     //getUrlVars();
                     // const productID =  'Admin1Strawberry'
                     const dbRef = ref(db, vars);
+                    // const mostViewedPosts = query(ref(db, vars+'/' +usersname+commentFullDate), orderByValue(commentDate));
                         onValue(dbRef, (snapshot) => {
                               snapshot.forEach((childSnapshot) => {
                                   const childKey = childSnapshot.key;
@@ -463,8 +573,9 @@
                                   console.log(childData)
                                   var comment = childData.comment;
                                   console.log(comment)
-                                  var commentusername = childData.commentusername;    
-                                  addToHtml(comment, commentusername);
+                                  var commentusername = childData.commentusername;
+                                  var commentFullDate = childData.commentFullDate;    
+                                  addToHtml(comment, commentusername,commentFullDate);
                     })},
                       {
                         onlyOnce:true
@@ -475,17 +586,26 @@
                   this.GetADocument()
                 }
         }).mount('#app3')
-        function addToHtml(comment, commentusername){
+        function addToHtml(comment, commentusername,commentFullDate){
             var comment_div =  document.getElementById('comment')
             var para = document.createElement('p')
             para.innerHTML += `
             <span><img src = 'img/user.png' style = 'height: 20px; width:20px;'></span>
             <span style= "font-weight:bold;"> ${commentusername}:</span>
             <span>${comment}</span>
+            <span style= "float:right;">${commentFullDate}</span>
             `
             comment_div.appendChild(para)
         }
+        let logoutbtn =  document.getElementById("logoutbtn");
 
+        function logout(){
+          localStorage.clear();
+          console.log('Logout Successful!');
+          window.location = "login.html";
+        }
+
+        logoutbtn.addEventListener("click",logout);
         submitbtn.addEventListener("click",insertComment)
             // testbtn.addEventListener("click",getUrlVars);
         </script>

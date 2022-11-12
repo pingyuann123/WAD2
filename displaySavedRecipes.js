@@ -1,12 +1,13 @@
 var displayRecipes = document.getElementById("display-recipe")
 let output = `<div class="row row-cols-auto g-2">`
 
+
 const savedRecipes = JSON.parse(localStorage.getItem('likedRecipes'))
 let n = 1
 for (let savedRecipe of savedRecipes) {
     output += `
-    <div class = "col">
-        <div class="card">
+    <div class = "col card-deck">
+        <div class="card text-center" style="width: 15rem;">
             <img src="${savedRecipe.img}" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title">${savedRecipe.title}</h5>
@@ -36,7 +37,7 @@ function unsave(recipeObj) {
     for (let i=0; i< savedRecipes.length; i++) {
         if(savedRecipes[i]['id']== recipeID){
             savedRecipes.splice(i,1)
-            alert('Unsaved!')
+            // alert('Unsaved!')
         }
         // console.log(likedRecipes)
     }

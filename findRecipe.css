@@ -10,25 +10,6 @@
     box-sizing: border-box;
 }
 
-/* Home Css */
-.profileIcon{
-    width: 25px;
-    height:25px;
-}
-body{
-    background-color: #F8F7F6;
-    font-weight: 300;
-    line-height: 1.6;
-    font-size: 1.05rem;
-}
-.nav-item{
-    color:#a17d60;
-}
-.appName{
-    color:#a17d60;
-}
-
-
 /* Find recipe styling starts here */
 
 .button {
@@ -57,12 +38,12 @@ body{
 .meal-search-box {
     margin: 1.2rem 0;
     display: flex;
-    
+    justify-content: center;
 }
 
 .search-control, 
 .search-btn {
-    width: 100%;
+    width: 80%;
 }
 
 .search-control {
@@ -94,6 +75,36 @@ body{
     border-bottom-left-radius: 0;
 }
 
+.search-btn:hover {
+    background-color: #cc9f7a;
+}
+
+.info-tool-tip {
+    font-size: 1.4rem;
+    color: black;
+    padding: 20px;
+    cursor: pointer;
+}
+
+#tooltip-text {
+    background-color: #333333;    
+    color: white;
+    font-size: 1rem;
+    position: absolute;
+    padding: 10px 15px;
+    margin: 10px;
+    border-radius: 7px;
+    visibility: hidden;
+    top: 35px;
+    opacity: 0;
+    transition: all 0.4s linear;
+}
+
+.info-tool-tip:hover #tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
 .like-btn {
     font-size: 2rem;
     background: transparent;
@@ -110,9 +121,6 @@ body{
     opacity: 0.6;
 }
 
-.search-btn:hover {
-    background-color: #c99e7a;
-}
 
 .meal-result {
     margin-top: 4rem;
@@ -132,12 +140,13 @@ body{
     display: block;
     width: 175px;
     margin: 1rem auto;
-    border-radius: 2rem;
-    transition: all 0.4s linear;
+    border-radius: 4px;
+    transition: ease-out 0.5s;
 }
 
 .recipe-btn:hover, .ingredients-btn:hover {
-    background-color: #c99e7a;
+    box-shadow: inset 175px 0 0 0 #333333;
+    cursor: pointer;
     color: white;
 }
 
@@ -176,11 +185,12 @@ body{
     display: block;
 }
 
-.meal-intructions-content, .ingredients-content {
+.meal-intructions-content, .meal-ingredients-content {
     margin: 2rem;
 }
 
 .recipe-close-btn, .ingredients-close-btn {
+    color: black;
     position: absolute;
     right: 2rem;
     top: 2rem;
@@ -210,26 +220,11 @@ body{
 }
 
 .recipe-meal-img img {
-    width: 100px;
-    height: 100px;
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
     margin: 0 auto;
     display: block;
-}
-
-.recipe-link {
-    margin: 1.4rem 0;
-}
-
-.recipe-link a{
-    color: aliceblue;
-    font-size: 1.2rem;
-    font-weight: 700;
-    transition: all 0.4s linear;
-}
-
-.recipe-link a:hover {
-    opacity: 0.7;
 }
 
 span.ingredient {
@@ -259,7 +254,18 @@ ul {
     font-weight: bold;
     color: #777;
     cursor: pointer;
+    transition: all 0.4s linear;
 }
 
+.pill:hover {
+    background-color: rgb(224, 223, 223);
+}
 
+.effect:hover {
+    transform: scale(1.1);
+}
 
+.recipe-instruct {
+    display: flex;
+    justify-content: center;
+}

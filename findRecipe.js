@@ -1,15 +1,16 @@
-const apiKey = '29fdb3549a0e4975a7cca6cb2a387c24'
+// const apiKey = '29fdb3549a0e4975a7cca6cb2a387c24'
 // const apiKey = 'bfdf9716b064437383509f5530dcfde9'
+const apiKey = 'bfdf9716b064437383509f5530dcfde9'
 
 const mealList = document.getElementById('meal')
 const mealDetailsContent = document.querySelector('.meal-intructions-content')
 const mealIngredientsContent = document.querySelector('.meal-ingredients-content')
 const recipeCloseBtn = document.getElementById('recipe-close-btn')
 const ingredientsCloseBtn = document.getElementById('ingredients-close-btn')
-let likedRecipes = JSON.parse(localStorage.getItem('likedRecipes'))
-if (likedRecipes === null) {
-    localStorage.setItem('likedRecipes', '[]')
-}
+// let likedRecipes = JSON.parse(localStorage.getItem('likedRecipes'))
+// if (likedRecipes === null) {
+//     localStorage.setItem('likedRecipes', '[]')
+// }
 
 const app = Vue.createApp({
     data() {
@@ -23,7 +24,35 @@ const app = Vue.createApp({
         addIngredients(e) {
             if (e.key === 'Enter' && this.tempIngredients) {
                 if (!this.ingredients.includes(this.tempIngredients)) {
+                    
                     this.ingredients.push(this.tempIngredients)
+
+                    axios.get('https://api.edamam.com/api/food-database/v2/parser', {
+                        params: {
+                            app_id: 'c45c7e6e',
+                            app_key: 'bdafa1941074f5dd5b3ac569a0ed0d60',
+                            ingr: this.tempIngredients
+
+                        }
+                    })
+                        .then(response => {
+                            // console.log(response.data);
+                            let output = ""
+                            if (response.data.parsed.length == 0) {
+                                output += `<div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                <strong>Holy guacamole!</strong> You should enter only valid ingredients.
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                              </div>`
+                                // alert('Please Enter A Valid Ingredient')
+                                // console.log(this.ingredients)
+                                mealList.innerHTML = output
+                                this.deleteIngredient(this.ingredients[this.ingredients.length - 1])
+                            }
+                        })
+                        .catch( error => {
+                            console.log(error.message);
+                        });
+
                 }
                 this.tempIngredients = ''
             }
@@ -49,25 +78,27 @@ const app = Vue.createApp({
                 .then(response => {
                     var liked = false
                     console.log(response.data);
-                    let output = `<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">`
+                    let output = `<div class="row row-cols-sm-1 row-cols-md-2 row-cols-lg-3 g-4">`
                     if (response.data.length != 0) {
                         response.data.forEach(meal => {
 
                             output += `
                             <div class = "col">
-                                <div class="card" data-id="${meal.id}">
+                                <div class="card effect shadow p-3 mb-5 bg-body rounded" data-id="${meal.id}" style='transition:1s;'>
                                     <img src="${meal.image}" class="card-img-top" alt="...">
-                                    <div class="card-body">
+                                    <div class="card-body ">
                                         <h5 class="card-title">${meal.title}</h5>
                                         
                                         <a href="#" class="recipe-btn">Recipe</a>
                                         <a href="#" class="ingredients-btn">Ingredients</a>
                                         `
                                         
-                                        // let likedRecipes = JSON.parse(localStorage.getItem('likedRecipes'))
-                                        // if (likedRecipes === null) {
-                                        //     localStorage.setItem('likedRecipes', '[]')
-                                        // }
+                                        var likedRecipes = localStorage.getItem('likedRecipes')
+                                        console.log(likedRecipes)
+                                        if (likedRecipes === null) {
+                                            localStorage.setItem('likedRecipes', '[]')
+                                        }
+                                        likedRecipes = JSON.parse(localStorage.getItem('likedRecipes'))
                                         
                                         for (let i=0; i<likedRecipes.length; i++){
                                             if (meal.id == likedRecipes[i]['id']){
@@ -75,10 +106,10 @@ const app = Vue.createApp({
                                         }}
     
                                         if (liked == true){  
-                                            output += `<button id="like-btn${n}" style="color: red" class="like-btn" onclick="change({id:${meal.id},img:'${meal.image}',title:'${meal.title}'})"><i class="fa-brands fa-gratipay"></i></button>`
+                                            output += `<button id="like-btn${n}" style="color: red" class="like-btn mx-auto" onclick="change({id:${meal.id},img:'${meal.image}',title:'${meal.title}'})"><i class="fa-brands fa-gratipay"></i></button>`
                                             liked = false
                                         }else{
-                                            output += `<button id="like-btn${n}" class="like-btn" onclick="change({id:${meal.id},img:'${meal.image}',title:'${meal.title}'})"><i class="fa-brands fa-gratipay"></i></button>`
+                                            output += `<button id="like-btn${n}" class="like-btn mx-auto" onclick="change({id:${meal.id},img:'${meal.image}',title:'${meal.title}'})"><i class="fa-brands fa-gratipay"></i></button>`
                                         }
                                         
                             output+= `       
@@ -92,11 +123,15 @@ const app = Vue.createApp({
                             </div>
                         `
 
-                        mealList.classList.remove('notFound')
+                        
                     } else {
-                        output = "Please enter a valid ingredient!"
+                        output = `<div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                    <strong>Holy guacamole!</strong> Remember to press enter key to add ingredients first before searching! And please enter only VALID ingredients!
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                  </div>`
+                        this.tempIngredients = ''
                         this.ingredients = []
-                        mealList.classList.add('notFound')
+                        // mealList.classList.add('notFound')
                     }
 
                     mealList.innerHTML = output
@@ -177,12 +212,12 @@ function getMealRecipe(e) {
 
 // Function to display ingredients
 function mealIngredientsModel(ingredientsArray) {
-    let output = `<h3 class="title">Ingredients</h3><ul class="fa-ul">`
+    let output = `<h3 class="title" style="font-family: 'Poppins', sans-serif;">Ingredients</h3><div style='display:flex; justify-content:center;'><ul class="fa-ul">`
     for (ingredient of ingredientsArray) {
         output += `<li> <i class="fa-solid fa-cart-shopping"></i><span class="ingredient">${ingredient.original}</span></li></li>`
     }
 
-    output += "</ul>"
+    output += "</ul></div>"
     mealIngredientsContent.innerHTML = output
     mealIngredientsContent.parentElement.classList.add('showIngredients')
 }
@@ -196,27 +231,26 @@ function mealRecipeModel(title, servings, prepTime, recipeInstructionsArray, img
         prepTime = 10
     }
 
-    directionOutput = ""
+    directionOutput = "<div style='width:50%;'>"
     for (let step of steps) {
         directions = step.step
         stepNumber = step.number
-        directionOutput += `
-                            <p style="text-align: left;"><span style="font-weight: 500;">${stepNumber}</span>: ${directions}</p>
-                            `
+        directionOutput += `<p style='text-align: left;'><span style="font-weight: 500;">${stepNumber}</span>: ${directions}</p>`
     }
+    directionOutput += `</div>`
 
     let output = `
-                    <h2 class="recipe-title">${title}</h2>
+                    <h2 class="recipe-title" style="font-family: 'Poppins', sans-serif;">${title}</h2>
                     <p class="recipe-time"><i class="fa-solid fa-clock"></i> <span id="time-required">${prepTime}</span></p>
                     <p class="recipe-servings"><i class="fa-solid fa-utensils"></i> <span id="servings">${servings}</span></p>
 
+                    <h3 style="font-family: 'Poppins', sans-serif;">Instructions</h3>
                     <div class="recipe-instruct">
-                    <h3>Instructions</h3>
-                    ${directionOutput}
+                        ${directionOutput}
                     </div>
 
                     <div class="recipe-meal-img">
-                    <img src="${img}" alt="" class="img-fluid">
+                        <img src="${img}" alt="" class="img-fluid">
                     </div>
                  `
     
@@ -240,7 +274,7 @@ function change(recipeObj) {
         for (let i=0; i< likedRecipes.length; i++) {
             if(likedRecipes[i]['id']== recipeID){
                 likedRecipes.splice(i,1)
-                alert('Unsaved!')
+                // alert('Unsaved!')
             }
             // console.log(likedRecipes)
         }
@@ -257,7 +291,7 @@ function change(recipeObj) {
                 recipeObj.url = response.data.sourceUrl
                 likedRecipes.push(recipeObj)
                 localStorage.setItem('likedRecipes', JSON.stringify(likedRecipes))
-                alert('Saved!')
+                // alert('Saved!')
                 
             })
             .catch( error => {

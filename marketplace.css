@@ -21,17 +21,39 @@ body{
     margin-left: 10px;
     font-size: 13px;
     font-weight: bold;
-    color:#a17d60;
+    color:#dcc5a5;
 }
 .createBtn,.chatBtn{
     float:right;
-    color:#565038;
-    border: #565038 1px solid;
+    text-decoration: none;
+    color: white;
+    background-color: #a17d60;
+    /* font-weight: 500; */
+    /* font-size: 1.1rem; */
+    padding: 0.5rem 0;
+    display: block;
+    width: 175px;
+    margin: 1rem auto;
+    border-radius: 4px;
+    transition: ease-out 0.5s;
+}
+.createBtn:hover{
+    background-color:#dcc5a5;
+    box-shadow: inset 175px 0 0 0 #dcc5a5;
+    cursor: pointer;
+    color: white;
 }
 .chatBtn{
     margin-right: 10px;
 }
 .marketplaceName:hover{
-    color:#565038;
+    color:#dcc5a5;
+
+}
+.effect:hover {
+    transform: scale(1.05);
+}
+.card{
+    transform: translate(0.5%, 0.5%);
 
 }
