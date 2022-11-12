@@ -77,7 +77,7 @@
               opacity: 0.6;
           }
 
-          #logoutbtn,#logoutbtn2{
+          #logoutbtn{
             border:white;
             /* background-color:#F8F7F6; */
             background: none;
@@ -101,9 +101,6 @@
             border:white;
             /* background-color:#F8F7F6; */
             background: none;
-          }
-          html {
-          scroll-behavior: smooth;
           }
 
 
@@ -155,7 +152,7 @@
         </div>
 
         <div class="u-nav-container-collapse">
-          <div class="u-grey u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
+          <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
             <div class="u-inner-container-layout u-sidenav-overflow">
               <div class="u-menu-close"></div>
               <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2">
@@ -167,7 +164,7 @@
                 </li>
                 <li class="u-nav-item"><a class="u-button-style u-nav-link" ><button id="profilebtn">Profile</button></a>
                 </li>
-                <li class="u-nav-item"><a class=" u-button-style u-nav-link"><button id="logoutbtn2">Logout</button></a>
+                <li class="u-nav-item"><a class=" u-button-style u-nav-link"><button id="logoutbtn">Logout</button></a>
                 </li>
               </ul>
             </div>
@@ -308,11 +305,9 @@
     //Retrieve information
     const email = sessionStorage.getItem('email'); //unique identifier
     console.log(email)
-    
+    let logoutbtn =  document.getElementById("logoutbtn");
 
     // Update database when user wants to logout
-    let logoutbtn =  document.getElementById("logoutbtn");
-    let logoutbtn2 =  document.getElementById("logoutbtn2");
     async function logout(){
       let email = localStorage.getItem("UserEmail")
       console.log(email)
@@ -323,17 +318,15 @@
               }
           )
           .then(()=>{
-              localStorage.clear()
-              console.log("Logout Successful");
+              alert("Logout Successful");
               window.location = "login.html";
               window.history.forward();
           })
           .catch((error)=>{
-              console.log("Logout Unsuccessful" + error);
+              alert("Logout Unsuccessful" + error);
       });
     }
 logoutbtn.addEventListener("click",logout);
-logoutbtn2.addEventListener("click",logout);
 
   // Update Database when user click onto recipe button in nav bar
   let recipebtn =  document.getElementById("recipebtn");
@@ -356,7 +349,7 @@ logoutbtn2.addEventListener("click",logout);
 
             })
             .catch((error)=>{
-                console.log("Recipes Updating Unsuccessful" + error);
+                alert("Recipes Updating Unsuccessful" + error);
             });
   }
   let profilebtn = document.getElementById("profilebtn");
@@ -378,7 +371,7 @@ logoutbtn2.addEventListener("click",logout);
                 window.history.forward()
             })
             .catch((error)=>{
-                console.log("Recipes Updating Unsuccessful" + error);
+                alert("Recipes Updating Unsuccessful" + error);
             });
   }
 
@@ -401,7 +394,7 @@ logoutbtn2.addEventListener("click",logout);
                 window.history.forward()
             })
             .catch((error)=>{
-                console.log("Recipes Updating Unsuccessful" + error);
+                alert("Recipes Updating Unsuccessful" + error);
             });
   }
 
@@ -424,7 +417,7 @@ logoutbtn2.addEventListener("click",logout);
                 window.history.forward()
             })
             .catch((error)=>{
-                console.log("Recipes Updating Unsuccessful" + error);
+                alert("Recipes Updating Unsuccessful" + error);
             });
   }
   profilebtn.addEventListener('click',UpdateRecipesWithProfileBtn)
@@ -466,9 +459,9 @@ logoutbtn2.addEventListener("click",logout);
     },
     profilePic(){
       if(this.gender =="female"){
-        return './img/Fchef.jpg'
+        return './img/femalechef.png'
       }else if( this.gender =="male"){
-        return './img/Mchef.jpg'
+        return './img/malechef.png'
       }
     }
   },
@@ -495,12 +488,12 @@ logoutbtn2.addEventListener("click",logout);
         this.recipes = JSON.parse(localStorage.getItem('recipes'))
         console.log(JSON.parse(localStorage.getItem('recipes')))
       }
-    }
-    // logout(){
-    //       localStorage.clear();
-    //       console.log('Logout Successful!');
-    //       window.location = "login.html";
-    //     }
+    },
+    logout(){
+          localStorage.clear();
+          alert('Logout Successful!');
+          window.location = "login.html";
+        }
       
   },
   
