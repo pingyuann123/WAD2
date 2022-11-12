@@ -1,142 +1,180 @@
 <!DOCTYPE html>
-    <head>
-        <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" 
-    rel="stylesheet" 
-    integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" 
-    crossorigin="anonymous">
-    
-    <!-- VUE -->
-    <script src="https://unpkg.com/vue@next"></script>
-    <script type="text/javascript" src="https://unpkg.com/default-passive-events"></script>
-    <link rel="stylesheet" href="product__page.css"/>
-    <link rel="stylesheet" href="nicepage.css" media="screen">
-    <link rel="stylesheet" href="Page-1.css" media="screen">
-    <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
-    <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
-    <meta name="generator" content="Nicepage 4.21.5, nicepage.com">
-    <link id="u-theme-google-font" rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
-    <link id="u-page-google-font" rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Oswald:200,300,400,500,600,700|Lato:100,100i,300,300i,400,400i,700,700i,900,900i|Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i">
-  
-    <!-- Add icon library -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  
-     <!-- VUE -->
-     <script src="https://unpkg.com/vue@next"></script>
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-     <style>
-      #logoutbtn{
-        border:white;
-        /* background-color:#F8F7F6; */
-        background: none;
-      }
-      html {
-        scroll-behavior: smooth;
-      }
-      #submitbtn{
-        /* padding-left: 2%; */
-        background-color:#dcc5a5;
-        color:white;
-      }
-      #map {
-        width: 100%;
-        /* height: 100%; */
-      }
-      html {
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+
+  <!-- VUE -->
+  <script src="https://unpkg.com/vue@next"></script>
+  <script type="text/javascript" src="https://unpkg.com/default-passive-events"></script>
+  <link rel="stylesheet" href="product__page.css" />
+  <link rel="stylesheet" href="nicepage.css" media="screen">
+  <link rel="stylesheet" href="Page-1.css" media="screen">
+  <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
+  <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
+  <meta name="generator" content="Nicepage 4.21.5, nicepage.com">
+  <link id="u-theme-google-font" rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+  <link id="u-page-google-font" rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Oswald:200,300,400,500,600,700|Lato:100,100i,300,300i,400,400i,700,700i,900,900i|Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i">
+
+  <!-- Add icon library -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <!-- VUE -->
+  <script src="https://unpkg.com/vue@next"></script>
+
+  <style>
+    /* #logoutbtn {
+      border: white;
+      background-color:#F8F7F6;
+      background: none;
+    } */
+
+    html {
       scroll-behavior: smooth;
-      }
-  
-    </style>
-    </head>
-    <body class="u-body u-xl-mode d-flex flex-column min-vh-100" data-lang="en" style='background-color:#F8F7F6'>
-      <!-- nav bar missing -->
-      <header class="u-clearfix u-header u-header" id="sec-6f6c">
-        <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
-          <a href="home.html" class="u-image u-logo u-image-1">
-            <!-- <img src="images/default-logo.png" class="u-logo-image u-logo-image-1"> -->
-            Easycook
+    }
+
+    #submitbtn {
+      /* padding-left: 2%; */
+      background-color: #dcc5a5;
+      color: white;
+    }
+
+    #map {
+      width: 100%;
+      /* height: 100%; */
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    #logoutbtn,
+    #logoutbtn2 {
+      border: white;
+      /* background-color:#F8F7F6; */
+      background: none;
+    }
+
+    #recipebtn,
+    #recipebtn2 {
+      border: white;
+      /* background-color:#F8F7F6; */
+      background: none;
+    }
+
+    #profilebtn,
+    #profilebtn2 {
+      border: white;
+      /* background-color:#F8F7F6; */
+      background: none;
+    }
+
+    #marketplacebtn,
+    #marketplacebtn2 {
+      border: white;
+      /* background-color:#F8F7F6; */
+      background: none;
+    }
+    #homebtn,#homebtn2{
+            border:white;
+            /* background-color:#F8F7F6; */
+            background: none;
+          }
+  </style>
+</head>
+
+<body class="u-body u-xl-mode d-flex flex-column min-vh-100" data-lang="en" style='background-color:#F8F7F6'>
+  <!-- nav bar missing -->
+  <header class="u-clearfix u-header u-header" id="sec-6f6c">
+    <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
+      <a href="home.html" class="u-image u-logo u-image-1">
+        <!-- <img src="images/default-logo.png" class="u-logo-image u-logo-image-1"> -->
+        Easycook
+      </a>
+      <nav class="u-menu u-menu-dropdown u-offcanvas u-menu-1">
+        <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px;">
+          <a class="u-button-style u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base"
+            href="#">
+            <svg class="u-svg-link" viewBox="0 0 24 24">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#menu-hamburger"></use>
+            </svg>
+            <svg class="u-svg-content" version="1.1" id="menu-hamburger" viewBox="0 0 16 16" x="0px" y="0px"
+              xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+              <g>
+                <rect y="1" width="16" height="2"></rect>
+                <rect y="7" width="16" height="2"></rect>
+                <rect y="13" width="16" height="2"></rect>
+              </g>
+            </svg>
           </a>
-          <nav class="u-menu u-menu-dropdown u-offcanvas u-menu-1">
-            <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px;">
-              <a class="u-button-style u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base"
-                href="#">
-                <svg class="u-svg-link" viewBox="0 0 24 24">
-                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#menu-hamburger"></use>
-                </svg>
-                <svg class="u-svg-content" version="1.1" id="menu-hamburger" viewBox="0 0 16 16" x="0px" y="0px"
-                  xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
-                  <g>
-                    <rect y="1" width="16" height="2"></rect>
-                    <rect y="7" width="16" height="2"></rect>
-                    <rect y="13" width="16" height="2"></rect>
-                  </g>
-                </svg>
-              </a>
-            </div>
-            <div class="u-nav-container">
-              <ul class="u-nav u-unstyled u-nav-1">
-                <li class="u-nav-item"><a class="u-button-style u-nav-link  u-text-hover-palette-1-base" 
-                    style="padding: 10px 20px;"><button id="homebtn">Home</button></a>
+        </div>
+        <div class="u-nav-container">
+          <ul class="u-nav u-unstyled u-nav-1">
+            <li class="u-nav-item"><a class="u-button-style u-nav-link  u-text-hover-palette-1-base"
+                style="padding: 10px 20px;"><button id="homebtn">Home</button></a>
+            </li>
+            <li class="u-nav-item"><a class="u-button-style u-nav-link  u-text-hover-palette-1-base"
+                style="padding: 10px 20px;"><button id="recipebtn">Recipes</button></a>
+            </li>
+            <li class="u-nav-item"><a class="u-button-style u-nav-link  u-text-hover-palette-1-base"
+                style="padding: 10px 20px;"><button id="marketplacebtn">Marketplace</button></a>
+            </li>
+            <li class="u-nav-item"><a class="u-button-style u-nav-link  u-text-hover-palette-1-base"
+                style="padding: 10px 20px;"><button id="profilebtn">Profile</button></a>
+            </li>
+            <li class="u-nav-item"><a class="u-button-style u-nav-link  u-text-hover-palette-1-base"
+                style="padding: 10px 20px;"><button id="logoutbtn">Logout</button></a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="u-nav-container-collapse">
+          <div class="u-grey u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
+            <div class="u-inner-container-layout u-sidenav-overflow">
+              <div class="u-menu-close"></div>
+              <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2">
+                <li class="u-nav-item"><a class="u-button-style u-nav-link"><button id="homebtn2">Home</button></a>
                 </li>
-                <li class="u-nav-item"><a class="u-button-style u-nav-link  u-text-hover-palette-1-base" 
-                    style="padding: 10px 20px;"><button id="recipebtn">Recipes</button></a>
+                <li class="u-nav-item"><a class="u-button-style u-nav-link"><button id="recipebtn2">Recipes</button></a>
                 </li>
-                <li class="u-nav-item"><a class="u-button-style u-nav-link  u-text-hover-palette-1-base" 
-                    style="padding: 10px 20px;"><button id="marketplacebtn">Marketplace</button></a>
+                <li class="u-nav-item"><a class="u-button-style u-nav-link"><button
+                      id="marketplacebtn2">Marketplace</button></a></a>
                 </li>
-                <li class="u-nav-item"><a class="u-button-style u-nav-link  u-text-hover-palette-1-base" 
-                    style="padding: 10px 20px;"><button id="profilebtn">Profile</button></a>
+                <li class="u-nav-item"><a class="u-button-style u-nav-link"><button
+                      id="profilebtn2">Profile</button></a>
                 </li>
-                <li class="u-nav-item"><a class="u-button-style u-nav-link  u-text-hover-palette-1-base"
-                  style="padding: 10px 20px;"><button id="logoutbtn">Logout</button></a>
+                <li class="u-nav-item"><a class=" u-button-style u-nav-link"><button id="logoutbtn2">Logout</button></a>
                 </li>
               </ul>
             </div>
-    
-            <div class="u-nav-container-collapse">
-              <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
-                <div class="u-inner-container-layout u-sidenav-overflow">
-                  <div class="u-menu-close"></div>
-                  <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2">
-                    <li class="u-nav-item"><a class="u-button-style u-nav-link" ><button id="homebtn2">Home</button></a>
-                    </li>
-                    <li class="u-nav-item"><a class="u-button-style u-nav-link" ><button id="recipebtn2">Recipes</button></a>
-                    </li>
-                    <li class="u-nav-item"><a class="u-button-style u-nav-link" ><button id="marketplacebtn2">Marketplace</button></a></a>
-                    </li>
-                    <li class="u-nav-item"><a class="u-button-style u-nav-link" ><button id="profilebtn2">Profile</button></a>
-                    </li>
-                    <li class="u-nav-item"><a class=" u-button-style u-nav-link"><button id="logoutbtn2">Logout</button></a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
-            </div>
-    
-          </nav>
-    
+          </div>
+          <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
         </div>
-      </header>
-        
 
-        <div class="container-fluid" id = 'app'>
-          <div class = 'row'>
-              <div class = 'col-lg-6 col-md-12 col-sm-12 p-0' style = 'height:100%;' >
-                <img  style = ' height:100%; text-align: center;'  class="d-block w-100 mx-auto" :src='image' alt="{{Title}}">
-                
-                  <!-- carousel -->
-                    <!-- <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+      </nav>
+
+    </div>
+  </header>
+
+
+  <div class="container-fluid" id='app'>
+    <div class='row'>
+      <div class='col-lg-6 col-md-12 col-sm-12 p-0' style='height:100%;'>
+        <img style=' height:100%; text-align: center;' class="d-block w-100 mx-auto" :src='image' alt="{{Title}}">
+
+        <!-- carousel -->
+        <!-- <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                       <div class="carousel-inner">
                           <div class="carousel-item active"> -->
-                              <!-- set 1 slide as default active -->
-                              <!-- <img class="d-block w-100" :src='image'>
+        <!-- set 1 slide as default active -->
+        <!-- <img class="d-block w-100" :src='image'>
                                   alt="food1">
                           </div>
                           <div class="carousel-item ">
@@ -144,8 +182,8 @@
                                   alt="food2">
                           </div>
                       </div> -->
-                      <!-- Controls -->
-                      <!-- <button class="carousel-control-prev" type="button"
+        <!-- Controls -->
+        <!-- <button class="carousel-control-prev" type="button"
                           data-bs-target="#carouselExampleControls" data-bs-slide="prev">
                           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                           <span class="visually-hidden">Previous</span>
@@ -156,148 +194,159 @@
                           <span class="visually-hidden">Next</span>
                       </button>
                     </div> -->
-              </div>
-              <div class = 'col-lg-6 col-md-12 col-sm-12 p-0 ' style = 'float: right; height:100%;'>
-                    <!-- product info -->
-                    <!-- product name, price and expiry date-->
-                    <section class ='header'>
-                    <h3>{{title}}</h3>
-                    <span><hr style="width:20%;text-align:left;margin-left:0"></span>
-                    <p><small>Listed By: {{user}}</small></p>
-                    <span style = 'float:left'>${{price}}</span>
-                    <small style = 'float:right'>BEST BY: {{date}}</small>
-                    </section>
+      </div>
+      <div class='col-lg-6 col-md-12 col-sm-12 p-0 ' style='float: right; height:100%;'>
+        <!-- product info -->
+        <!-- product name, price and expiry date-->
+        <section class='header'>
+          <h3>{{title}}</h3>
+          <span>
+            <hr style="width:20%;text-align:left;margin-left:0">
+          </span>
+          <p><small>Listed By: {{user}}</small></p>
+          <span style='float:left'>${{price}}</span>
+          <small style='float:right'>BEST BY: {{date}}</small>
+        </section>
 
-                    <section class = 'body'>
-                        <!-- product info  -->
+        <section class='body'>
+          <!-- product info  -->
 
-                        <!-- product title -->
+          <!-- product title -->
 
-                        <!-- <h4>Details</h4> -->
-                        <!-- bio area -->
-                        <br>
-                        <p><i>{{desc}}</i></p>
-                        <br>
-                        <!-- <div class="container-fluid">
+          <!-- <h4>Details</h4> -->
+          <!-- bio area -->
+          <br>
+          <p><i>{{desc}}</i></p>
+          <br>
+          <!-- <div class="container-fluid">
                           <div class="row">
                             <p>Quantity:</p>
                             <p style = 'float:right'>{{qty}}</p>
                           </div>
 
                         </div> -->
-                        <b><p style = 'float:left'>Quantity: <p style = 'float:right'>{{qty}}</p> </p></b>
-                        <br>
+          <b>
+            <p style='float:left'>Quantity:
+            <p style='float:right'>{{qty}}</p>
+            </p>
+          </b>
+          <br>
 
-                        <b><p style = 'text-align: left;'>Pickup Location:</b> <p style = 'float:center'id = "address">{{location}}
-                          <button id = "pickBtn" class="button btn btn-sm btn-block" type="button" onclick="initMap()" title="Click to show location on map"  data-bs-toggle="collapse" data-bs-target="#collapseMap" aria-expanded="false" aria-controls="collapseExample">
-                            <img style = "height:14px; float:left"src="img/info.png"/>
-                          </button>
-                          <p style = 'float:left; display:none;' id = "lat">{{lat}}</p>
-                          <p style = 'float:left;display:none;' id = "lng">{{lng}}</p>
-                        </p>
-                      </p>
-                        <!-- map api -->
-                        <!-- <br> -->
+          <b>
+            <p style='text-align: left;'>Pickup Location:
+          </b>
+          <p style='float:center' id="address">{{location}}
+            <button id="pickBtn" class="button btn btn-sm btn-block" type="button" onclick="initMap()"
+              title="Click to show location on map" data-bs-toggle="collapse" data-bs-target="#collapseMap"
+              aria-expanded="false" aria-controls="collapseExample">
+              <img style="height:14px; float:left" src="img/info.png" />
+            </button>
+          <p style='float:left; display:none;' id="lat">{{lat}}</p>
+          <p style='float:left;display:none;' id="lng">{{lng}}</p>
+          </p>
+          </p>
+          <!-- map api -->
+          <!-- <br> -->
 
-                        <!-- <br> -->
+          <!-- <br> -->
 
-                        <div class="collapse" id="collapseMap">
-                          <div id="map"></div>
+          <div class="collapse" id="collapseMap">
+            <div id="map"></div>
 
-                        </div>
-                        <script>
-                            var geocoder;
-                            var map;
-                            function initMap() {
-                              var locationAdd = document.getElementById('address').textContent;
-                              var maplat = document.getElementById('lat').textContent;
-                              var maplng = document.getElementById('lng').textContent;
-                              console.log(locationAdd);
-                              console.log(maplat);
-                              console.log(maplng);
+          </div>
+          <script>
+            var geocoder;
+            var map;
+            function initMap() {
+              var locationAdd = document.getElementById('address').textContent;
+              var maplat = document.getElementById('lat').textContent;
+              var maplng = document.getElementById('lng').textContent;
+              console.log(locationAdd);
+              console.log(maplat);
+              console.log(maplng);
 
-                              if (locationAdd != null && maplat!='' && maplng!=''){
-                                var latlng = new google.maps.LatLng(1.290270, 103.851959);
-                                var mapOptions = {
-                                  zoom: 10.6,
-                                  center: latlng
-                                }
-                                map = new google.maps.Map(document.getElementById('map'), mapOptions);
-                                var address = document.getElementById('address').textContent;
-                                var latitude = parseFloat(document.getElementById('lat').textContent);
-                                var longitude = parseFloat(document.getElementById('lng').textContent);
-                                console.log(latitude)
-                                // var latInt = parseInt(lat);
-                                // console.log(latitude.type)
-                                var marker = new google.maps.Marker({
-                                  map:map,
-                                  position:{lat:latitude,lng:longitude},
-                                  content:'<h3>' + address + '</h3>'
-                                });
-                                // var infowindow = new google.maps.InfoWindow({
-                                // content:'<h3>' + address + '</h3>'
-                                // });
-                              }else if( locationAdd != null &&  maplat=='' && maplng==''){
-                                geocoder = new google.maps.Geocoder();
-                                var latlng = new google.maps.LatLng(1.290270, 103.851959);
-                                var mapOptions = {
-                                  zoom: 10.6,
-                                  center: latlng
-                                }
-                                map = new google.maps.Map(document.getElementById('map'), mapOptions);
-                                var address = document.getElementById('address').textContent;
-                                console.log(address);
-                                geocoder.geocode( { 'address': address}, function(results, status) {
-                                  if (status == 'OK') {
-                                    map.setCenter(results[0].geometry.location);
-                                    var marker = new google.maps.Marker({
-                                        map: map,
-                                        position: results[0].geometry.location,
-                                        content:'<h3>' + address + '</h3>'
-                                    });
-                                  } else {
-                                    // alert('Geocode was not successful for the following reason: ' + status);
-                                  }
-                                });
-                                // var infowindow = new google.maps.InfoWindow({
-                                // content:'<h3>' + address + '</h3>'
-                                // });
+              if (locationAdd != null && maplat != '' && maplng != '') {
+                var latlng = new google.maps.LatLng(1.290270, 103.851959);
+                var mapOptions = {
+                  zoom: 10.6,
+                  center: latlng
+                }
+                map = new google.maps.Map(document.getElementById('map'), mapOptions);
+                var address = document.getElementById('address').textContent;
+                var latitude = parseFloat(document.getElementById('lat').textContent);
+                var longitude = parseFloat(document.getElementById('lng').textContent);
+                console.log(latitude)
+                // var latInt = parseInt(lat);
+                // console.log(latitude.type)
+                var marker = new google.maps.Marker({
+                  map: map,
+                  position: { lat: latitude, lng: longitude },
+                  content: '<h3>' + address + '</h3>'
+                });
+                // var infowindow = new google.maps.InfoWindow({
+                // content:'<h3>' + address + '</h3>'
+                // });
+              } else if (locationAdd != null && maplat == '' && maplng == '') {
+                geocoder = new google.maps.Geocoder();
+                var latlng = new google.maps.LatLng(1.290270, 103.851959);
+                var mapOptions = {
+                  zoom: 10.6,
+                  center: latlng
+                }
+                map = new google.maps.Map(document.getElementById('map'), mapOptions);
+                var address = document.getElementById('address').textContent;
+                console.log(address);
+                geocoder.geocode({ 'address': address }, function (results, status) {
+                  if (status == 'OK') {
+                    map.setCenter(results[0].geometry.location);
+                    var marker = new google.maps.Marker({
+                      map: map,
+                      position: results[0].geometry.location,
+                      content: '<h3>' + address + '</h3>'
+                    });
+                  } else {
+                    // alert('Geocode was not successful for the following reason: ' + status);
+                  }
+                });
+                // var infowindow = new google.maps.InfoWindow({
+                // content:'<h3>' + address + '</h3>'
+                // });
 
-                              }
-                              // geocoder = new google.maps.Geocoder();
-                              // var latlng = new google.maps.LatLng(1.290270, 103.851959);
-                              // var mapOptions = {
-                              //   zoom: 10.9,
-                              //   center: latlng
-                              // }
-                              // map = new google.maps.Map(document.getElementById('map'), mapOptions);
-                              // var address = document.getElementById('address').textContent;
-                              // var latitude = parseFloat(document.getElementById('lat').textContent);
-                              // var longitude = parseFloat(document.getElementById('lng').textContent);
-                              // console.log(latitude)
-                              // // var latInt = parseInt(lat);
-                              // console.log(latitude.type)
-                              // var marker = new google.maps.Marker({
-                              //   map:map,
-                              //   position:{lat:latitude,lng:longitude}
-                              // });
-
-
-                              // console.log(address);
-                              // geocoder.geocode( { 'address': address}, function(results, status) {
-                              //   if (status == 'OK') {
-                              //     map.setCenter(results[0].geometry.location);
-                              //     var marker = new google.maps.Marker({
-                              //         map: map,
-                              //         position: results[0].geometry.location
-                              //     });
-                              //   } else {
-                              //     // alert('Geocode was not successful for the following reason: ' + status);
-                              //   }
-                              // });
+              }
+              // geocoder = new google.maps.Geocoder();
+              // var latlng = new google.maps.LatLng(1.290270, 103.851959);
+              // var mapOptions = {
+              //   zoom: 10.9,
+              //   center: latlng
+              // }
+              // map = new google.maps.Map(document.getElementById('map'), mapOptions);
+              // var address = document.getElementById('address').textContent;
+              // var latitude = parseFloat(document.getElementById('lat').textContent);
+              // var longitude = parseFloat(document.getElementById('lng').textContent);
+              // console.log(latitude)
+              // // var latInt = parseInt(lat);
+              // console.log(latitude.type)
+              // var marker = new google.maps.Marker({
+              //   map:map,
+              //   position:{lat:latitude,lng:longitude}
+              // });
 
 
-                            }
+              // console.log(address);
+              // geocoder.geocode( { 'address': address}, function(results, status) {
+              //   if (status == 'OK') {
+              //     map.setCenter(results[0].geometry.location);
+              //     var marker = new google.maps.Marker({
+              //         map: map,
+              //         position: results[0].geometry.location
+              //     });
+              //   } else {
+              //     // alert('Geocode was not successful for the following reason: ' + status);
+              //   }
+              // });
+
+
+            }
 
                             // function codeAddress() {
                             //   var address = document.getElementById('address').value;
@@ -313,67 +362,70 @@
                             //     }
                             //   });
                             // }
-                      </script>
+          </script>
 
-                        <br>
-                        <!-- retrieve location input, connect w map api via axios, display map here-->
-                        
-                      <div class="container-fluid">
-                            <br>
-                          <button id="allcommentsbtn"class="btn btn btn-md btn-block" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                            All Comments
-                          </button>
-                          
-                          <button id = "chatBtn" class="bckBtn btn btn-md btn-block" type="button" onclick="window.location.href='marketplace.html';">Back to Marketplace</button>
+          <br>
+          <!-- retrieve location input, connect w map api via axios, display map here-->
 
-                          <div class="collapse" id="collapseExample"style='overflow-y:auto;' >
-                            <div class="card card-body" id = 'app3'>
-                                <div id  = 'comment'>
+          <div class="container-fluid">
+            <br>
+            <button id="allcommentsbtn" class="btn btn btn-md btn-block" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+              All Comments
+            </button>
 
-                                </div>
-                                <div class="commentform">
-                                    <div class="row">
-                                        <div class="col-lg-6 col-md-12 col-sm-12 p-0 form-outline mb-4">
-                                            <!-- <div class="form-group"> -->
-                                                <textarea class="newcomment form-control form-control-sm" id="newcomment" rows="1" cols="20" placeholder="Add comment..." ></textarea>
-                                            <!-- </div> -->
-  
-                                        </div>
+            <button id="chatBtn" class="bckBtn btn btn-md btn-block" type="button"
+              onclick="window.location.href='marketplace.html';">Back to Marketplace</button>
 
-                                    </div>   
-                                </div>
-                                <div class="col-lg-6 col-md-12 col-sm-12 p-0  p-0">
-                                  <button id="submitbtn" type="button" class="btn btn-md btn-block">Comment</button>
-                              </div>
-                              <div id="commentAlert">
+            <div class="collapse" id="collapseExample" style='overflow-y:auto;'>
+              <div class="card card-body" id='app3'>
+                <div id='comment'>
 
-                              </div>
-                                
-                            </div>
-                        </div>
-                          <!-- <button style = 'float:right' id = "testbtn" class="bckBtn btn btn-md btn-block" type="button">test</button> -->
-                        </div>
-
-                        <!-- comment section -->
-                        
-                        <!-- profile pic and name in same inline as button -->
-                    </section>
                 </div>
+                <div class="commentform">
+                  <div class="row">
+                    <div class="col-lg-6 col-md-12 col-sm-12 p-0 form-outline mb-4">
+                      <!-- <div class="form-group"> -->
+                      <textarea class="newcomment form-control form-control-sm" id="newcomment" rows="1" cols="20"
+                        placeholder="Add comment..."></textarea>
+                      <!-- </div> -->
+
+                    </div>
+
+                  </div>
+                </div>
+                <div class="col-lg-6 col-md-12 col-sm-12 p-0  p-0">
+                  <button id="submitbtn" type="button" class="btn btn-md btn-block">Comment</button>
+                </div>
+                <div id="commentAlert">
+
+                </div>
+
+              </div>
             </div>
+            <!-- <button style = 'float:right' id = "testbtn" class="bckBtn btn btn-md btn-block" type="button">test</button> -->
           </div>
 
-            <!-- Footer -->
+          <!-- comment section -->
+
+          <!-- profile pic and name in same inline as button -->
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
   <footer class="py-2 mt-auto border-top-1 border">
     <p class="text-center text-muted pt-2">&copy; 2022 Easycook, Inc</p>
     <ul class="nav justify-content-center  mb-3">
-        <li class="nav-item"><a href="" class="nav-link px-2 text-muted">Home</a></li>
-        <li class="nav-item"><a href="" class="nav-link px-2 text-muted">Recipes</a></li>
-        <li class="nav-item"><a href="" class="nav-link px-2 text-muted">Marketplace</a></li>
-        <li class="nav-item"><a href="" class="nav-link px-2 text-muted">FAQs</a></li>
-        <li class="nav-item"><a href="" class="nav-link px-2 text-muted">About</a></li>
-      </ul>
+      <li class="nav-item"><a href="" class="nav-link px-2 text-muted">Home</a></li>
+      <li class="nav-item"><a href="" class="nav-link px-2 text-muted">Recipes</a></li>
+      <li class="nav-item"><a href="" class="nav-link px-2 text-muted">Marketplace</a></li>
+      <li class="nav-item"><a href="" class="nav-link px-2 text-muted">FAQs</a></li>
+      <li class="nav-item"><a href="" class="nav-link px-2 text-muted">About</a></li>
+    </ul>
   </footer>
-<!--           
+  <!--           
           <script>
 
             let testbtn = document.getElementById("testbtn");
@@ -389,381 +441,387 @@
             }
             testbtn.addEventListener("click",getUrlVars);
           </script> -->
-          <!-- firebase -->
-          
-          <script type = 'module'>
+  <!-- firebase -->
 
-             // Import the functions you need from the SDKs you need
-             import { initializeApp } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-app.js";
-             import { getDatabase, ref, onValue, set, query, orderByValue } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-database.js";
-             import { getAuth } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-auth.js";
-        
-              // TODO: Add SDKs for Firebase products that you want to use
-              // https://firebase.google.com/docs/web/setup#available-libraries
-            
-              // Your web app's Firebase configuration
-              // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-              const firebaseConfig = {
-                apiKey: "AIzaSyCUwFb-W_pR0s_iO2tplBAxXXakhVWs8lM",
-                authDomain: "g2t5-wad2.firebaseapp.com",
-                databaseURL: "https://g2t5-wad2-default-rtdb.asia-southeast1.firebasedatabase.app",
-                projectId: "g2t5-wad2",
-                storageBucket: "g2t5-wad2.appspot.com",
-                messagingSenderId: "634091812622",
-                appId: "1:634091812622:web:9c1e64920c60792226495f",
-                measurementId: "G-MJKTY27Q23"
-              };
-            
-              // Initialize Firebase
-              initializeApp(firebaseConfig);
-              const db = getDatabase();
-              const auth = getAuth();
+  <script type='module'>
 
-              // let testbtn = document.getElementById("testbtn");
-              let vars = "";
-              function getUrlVars() {
-              
-                var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
-                vars = value;
-                });
-                // return vars;
-                // document.getElementById("write").innerHTML = window.location.search; 
-                // console.log("ok")
-                console.log(vars)
-              }
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-app.js";
+    import { getDatabase, ref, onValue, set, query, orderByValue } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-database.js";
+    import { getAuth } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-auth.js";
 
-              const app = Vue.createApp({
-                data(){
-                  return{
-                  title: '',
-                  desc: '',
-                  price: '',
-                  date: '',
-                  location: '', 
-                  user: '',
-                  image: 'img/',
-                  qty: 0,
-                  lat:'',
-                  lng:'',
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
 
-                comment:'',
-                commentID:'',
-                commentuseremail: '',
-                commentusername:''
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyCUwFb-W_pR0s_iO2tplBAxXXakhVWs8lM",
+      authDomain: "g2t5-wad2.firebaseapp.com",
+      databaseURL: "https://g2t5-wad2-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "g2t5-wad2",
+      storageBucket: "g2t5-wad2.appspot.com",
+      messagingSenderId: "634091812622",
+      appId: "1:634091812622:web:9c1e64920c60792226495f",
+      measurementId: "G-MJKTY27Q23"
+    };
 
-                }}, 
+    // Initialize Firebase
+    initializeApp(firebaseConfig);
+    const db = getDatabase();
+    const auth = getAuth();
 
-                methods:{
-                  async GetADocument(){
-                    getUrlVars();
-                    // const productID =  'Admin1Strawberry'
-                    const product_data = ref(db, 'ProductLists/' + vars);
-                    onValue(product_data, (snapshot) => {
-                      const data = snapshot.val();
-                      this.price = data.productPrice;
-                      this.title = data.productTitle;
-                      this.image += data.productImgName;
-                      this.date = data.productDate;
-                      this.qty = data.productQty;
-                      this.location = data.productLoc;
-                      this.desc = data.productDesc;
-                      this.user = data.productUser;
-                      this.lat = data.productLat;
-                      this.lng = data.productLng;
-                      console.log(data.productPrice);
-                      console.log(this.image);
-                      //updateStarCount(postElement, data);
-                    });
-                  }},
-                created(){
-                  this.GetADocument()
-                }
+    // let testbtn = document.getElementById("testbtn");
+    let vars = "";
+    function getUrlVars() {
 
-        }).mount('#app')
+      var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
+        vars = value;
+      });
+      // return vars;
+      // document.getElementById("write").innerHTML = window.location.search; 
+      // console.log("ok")
+      console.log(vars)
+    }
 
-        function insertComment(){
-            //localStorage.clear();
-            var useremail = localStorage.getItem('UserEmail'); //unique identifier
-            var usernamearr = useremail.split("@");
-            const usersname = usernamearr[0];
-            console.log(usersname)
-            let newcomment = document.getElementById("newcomment");
+    const app = Vue.createApp({
+      data() {
+        return {
+          title: '',
+          desc: '',
+          price: '',
+          date: '',
+          location: '',
+          user: '',
+          image: 'img/',
+          qty: 0,
+          lat: '',
+          lng: '',
 
-            let submitbtn = document.getElementById("submitbtn");
-            console.log(submitbtn)
-            console.log(newcomment.innerText);
+          comment: '',
+          commentID: '',
+          commentuseremail: '',
+          commentusername: ''
+
+        }
+      },
+
+      methods: {
+        async GetADocument() {
+          getUrlVars();
+          // const productID =  'Admin1Strawberry'
+          const product_data = ref(db, 'ProductLists/' + vars);
+          onValue(product_data, (snapshot) => {
+            const data = snapshot.val();
+            this.price = data.productPrice;
+            this.title = data.productTitle;
+            this.image += data.productImgName;
+            this.date = data.productDate;
+            this.qty = data.productQty;
+            this.location = data.productLoc;
+            this.desc = data.productDesc;
+            this.user = data.productUser;
+            this.lat = data.productLat;
+            this.lng = data.productLng;
+            console.log(data.productPrice);
+            console.log(this.image);
+            //updateStarCount(postElement, data);
+          });
+        }
+      },
+      created() {
+        this.GetADocument()
+      }
+
+    }).mount('#app')
+
+    function insertComment() {
+      //localStorage.clear();
+      var useremail = localStorage.getItem('UserEmail'); //unique identifier
+      var usernamearr = useremail.split("@");
+      const usersname = usernamearr[0];
+      console.log(usersname)
+      let newcomment = document.getElementById("newcomment");
+
+      let submitbtn = document.getElementById("submitbtn");
+      console.log(submitbtn)
+      console.log(newcomment.innerText);
 
 
 
-            //const usersname = 123
+      //const usersname = 123
 
-            // console.log(username);
-            console.log(useremail);
+      // console.log(username);
+      console.log(useremail);
 
-            //UPLOAD TO REALTIME DATABASE
-            getUrlVars();
-            console.log(vars)
-            var commentdate = new Date().getTime();
-            var commentdate = JSON.stringify(commentdate);
+      //UPLOAD TO REALTIME DATABASE
+      getUrlVars();
+      console.log(vars)
+      var commentdate = new Date().getTime();
+      var commentdate = JSON.stringify(commentdate);
 
-            var commentFullDate = JSON.stringify(new Date().getDate())+"-"+ JSON.stringify(new Date().getMonth())+ "-"+JSON.stringify(new Date().getFullYear());
-            // var commentFullDate = JSON.stcommentFullDate);
-            console.log(commentFullDate);
+      var commentFullDate = JSON.stringify(new Date().getDate()) + "-" + JSON.stringify(new Date().getMonth()) + "-" + JSON.stringify(new Date().getFullYear());
+      // var commentFullDate = JSON.stcommentFullDate);
+      console.log(commentFullDate);
 
-            console.log(commentdate);
-            //console.log(newcomment.value)
-            set(ref(db, vars+'/' +usersname+commentFullDate+newcomment.value),{
-            // productId:productId,
-                commentID:usersname+newcomment.value,
-                commentusername:usersname,
-                commentuseremail:useremail,
-                comment:newcomment.value,
-                commentDate:commentdate,
-                commentFullDate:commentFullDate
-            // productImgURL:downloadURL
-            })
-            .then(()=>{
-            // console.log(productLoc);
-            console.log("Created Successfully");
-            // console.log(comment);
-            console.log(commentdate);
-            localStorage.setItem("commentid", usersname+newcomment.value);
-            console.log(usersname+newcomment.value);
-            // window.location = "marketplace.html";
-            // window.history.forward();
-            var aler_div =  document.getElementById('commentAlert')
-            var alert_para = document.createElement('p')
-            alert_para.innerHTML += `<div class="alert alert-success alert-dismissible fade show" role="alert">
+      console.log(commentdate);
+      //console.log(newcomment.value)
+      set(ref(db, vars + '/' + usersname + commentFullDate + newcomment.value), {
+        // productId:productId,
+        commentID: usersname + newcomment.value,
+        commentusername: usersname,
+        commentuseremail: useremail,
+        comment: newcomment.value,
+        commentDate: commentdate,
+        commentFullDate: commentFullDate
+        // productImgURL:downloadURL
+      })
+        .then(() => {
+          // console.log(productLoc);
+          console.log("Created Successfully");
+          // console.log(comment);
+          console.log(commentdate);
+          localStorage.setItem("commentid", usersname + newcomment.value);
+          console.log(usersname + newcomment.value);
+          // window.location = "marketplace.html";
+          // window.history.forward();
+          var aler_div = document.getElementById('commentAlert')
+          var alert_para = document.createElement('p')
+          alert_para.innerHTML += `<div class="alert alert-success alert-dismissible fade show" role="alert">
                                     <strong>Success!</strong> Remember to refresh to see the latest comments!
                                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                   </div>`
-              // console.log(para)
-            aler_div.appendChild(alert_para)
+          // console.log(para)
+          aler_div.appendChild(alert_para)
 
+        })
+        .catch((error) => {
+          console.log(usersname + newcomment.value);
+          console.log("Creation Unsuccessful" + error);
+        });
+    };
+
+
+    const app3 = Vue.createApp({
+      data() {
+        return {
+          comment: '',
+          commentID: '',
+          commentuseremail: '',
+          commentusername: '',
+          commentDate: '',
+          commentFullDate: ''
+        }
+      },
+      methods: {
+        async GetADocument() {
+          //getUrlVars();
+          // const productID =  'Admin1Strawberry'
+          const dbRef = ref(db, vars);
+          // const mostViewedPosts = query(ref(db, vars+'/' +usersname+commentFullDate), orderByValue(commentDate));
+          onValue(dbRef, (snapshot) => {
+            snapshot.forEach((childSnapshot) => {
+              const childKey = childSnapshot.key;
+              const childData = childSnapshot.val();
+              console.log(childKey);
+              console.log(childData)
+              var comment = childData.comment;
+              console.log(comment)
+              var commentusername = childData.commentusername;
+              var commentFullDate = childData.commentFullDate;
+              addToHtml(comment, commentusername, commentFullDate);
             })
-            .catch((error)=>{
-            console.log(usersname+newcomment.value);
-            console.log("Creation Unsuccessful" + error);
-            });
-            };
-            
-        
-        const app3 = Vue.createApp({
-            data(){
-                return{
-                    comment:'',
-                    commentID:'',
-                    commentuseremail: '',
-                    commentusername:'',
-                    commentDate:'',
-                    commentFullDate:''
-                }
-            },
-            methods:{
-                async GetADocument(){
-                    //getUrlVars();
-                    // const productID =  'Admin1Strawberry'
-                    const dbRef = ref(db, vars);
-                    // const mostViewedPosts = query(ref(db, vars+'/' +usersname+commentFullDate), orderByValue(commentDate));
-                        onValue(dbRef, (snapshot) => {
-                              snapshot.forEach((childSnapshot) => {
-                                  const childKey = childSnapshot.key;
-                                  const childData = childSnapshot.val();
-                                  console.log(childKey);
-                                  console.log(childData)
-                                  var comment = childData.comment;
-                                  console.log(comment)
-                                  var commentusername = childData.commentusername;
-                                  var commentFullDate = childData.commentFullDate;    
-                                  addToHtml(comment, commentusername,commentFullDate);
-                    })},
-                      {
-                        onlyOnce:true
-                      }
-                    );
-                }},
-            created(){
-                  this.GetADocument()
-                }
-        }).mount('#app3')
-        function addToHtml(comment, commentusername,commentFullDate){
-            var comment_div =  document.getElementById('comment')
-            var para = document.createElement('p')
-            para.innerHTML += `
+          },
+            {
+              onlyOnce: true
+            }
+          );
+        }
+      },
+      created() {
+        this.GetADocument()
+      }
+    }).mount('#app3')
+    function addToHtml(comment, commentusername, commentFullDate) {
+      var comment_div = document.getElementById('comment')
+      var para = document.createElement('p')
+      para.innerHTML += `
             <span><img src = 'img/user.png' style = 'height: 20px; width:20px;'></span>
             <span style= "font-weight:bold;"> ${commentusername}:</span>
             <span>${comment}</span>
             <span style= "float:right;">${commentFullDate}</span>
             `
-            comment_div.appendChild(para)
-        }
-        // let logoutbtn =  document.getElementById("logoutbtn");
+      comment_div.appendChild(para)
+    }
+    // let logoutbtn =  document.getElementById("logoutbtn");
 
-        // function logout(){
-        //   localStorage.clear();
-        //   console.log('Logout Successful!');
-        //   window.location = "login.html";
-        // }
+    // function logout(){
+    //   localStorage.clear();
+    //   console.log('Logout Successful!');
+    //   window.location = "login.html";
+    // }
 
-        // logoutbtn.addEventListener("click",logout);
-        submitbtn.addEventListener("click",insertComment)
-            // Update database when user wants to logout
-    async function logout(){
+    // logoutbtn.addEventListener("click",logout);
+    submitbtn.addEventListener("click", insertComment)
+    // Update database when user wants to logout
+    async function logout() {
       let email = localStorage.getItem("UserEmail")
       console.log(email)
       var ref = doc(db, "Users", email);
       await updateDoc(
-          ref, {
-              recipes: JSON.parse(localStorage.getItem('likedRecipes')),
-              }
-          )
-          .then(()=>{
-              alert("Logout Successful");
-              window.location = "login.html";
-              window.history.forward();
-          })
-          .catch((error)=>{
-              alert("Logout Unsuccessful" + error);
-      });
+        ref, {
+        recipes: JSON.parse(localStorage.getItem('likedRecipes')),
+      }
+      )
+        .then(() => {
+          alert("Logout Successful");
+          window.location = "login.html";
+          window.history.forward();
+        })
+        .catch((error) => {
+          alert("Logout Unsuccessful" + error);
+        });
     }
-logoutbtn.addEventListener("click",logout);
-logoutbtn2.addEventListener("click",logout);
+    logoutbtn.addEventListener("click", logout);
+    logoutbtn2.addEventListener("click", logout);
 
 
-  // Update Database when user click onto recipe button in nav bar
-  let recipebtn =  document.getElementById("recipebtn");
-  let recipebtn2 =  document.getElementById("recipebtn2");
+    // Update Database when user click onto recipe button in nav bar
+    let recipebtn = document.getElementById("recipebtn");
+    let recipebtn2 = document.getElementById("recipebtn2");
 
-  async function UpdateRecipesWithRecipeBtn(){
-        let email = localStorage.getItem("UserEmail")
-        if (localStorage.getItem('recipes')===null){
-          let likedRecipes = []
-        }
-        let likedRecipes = JSON.parse(localStorage.getItem("likedRecipes"))
-        var ref = doc(db, "Users", email); 
-        await updateDoc(
-            ref, {
-                recipes: likedRecipes
-                }
-            )
-            .then(()=>{
-                console.log("Recipes Updated");
-                window.location = 'findRecipe.html'
-                window.history.forward()
+    async function UpdateRecipesWithRecipeBtn() {
+      let email = localStorage.getItem("UserEmail")
+      if (localStorage.getItem('recipes') === null) {
+        let likedRecipes = []
+      }
+      let likedRecipes = JSON.parse(localStorage.getItem("likedRecipes"))
+      var ref = doc(db, "Users", email);
+      await updateDoc(
+        ref, {
+        recipes: likedRecipes
+      }
+      )
+        .then(() => {
+          console.log("Recipes Updated");
+          window.location = 'findRecipe.html'
+          window.history.forward()
 
-            })
-            .catch((error)=>{
-                alert("Recipes Updating Unsuccessful" + error);
-            });
-  }
+        })
+        .catch((error) => {
+          alert("Recipes Updating Unsuccessful" + error);
+        });
+    }
 
-  let profilebtn = document.getElementById("profilebtn");
-  let profilebtn2 = document.getElementById("profilebtn2");
+    let profilebtn = document.getElementById("profilebtn");
+    let profilebtn2 = document.getElementById("profilebtn2");
 
-  async function UpdateRecipesWithProfileBtn(){
-        let email = localStorage.getItem("UserEmail")
-        if (localStorage.getItem('recipes')===null){
-          let likedRecipes = []
-        }
-        let likedRecipes = JSON.parse(localStorage.getItem("likedRecipes"))
-        var ref = doc(db, "Users", email);
-        await updateDoc(
-            ref, {
-                recipes: likedRecipes
-                }
-            )
-            .then(()=>{
-                console.log("Recipes Updated");
-                window.location = 'profile.html'
-                window.history.forward()
-            })
-            .catch((error)=>{
-                alert("Recipes Updating Unsuccessful" + error);
-            });
-  }
+    async function UpdateRecipesWithProfileBtn() {
+      let email = localStorage.getItem("UserEmail")
+      if (localStorage.getItem('recipes') === null) {
+        let likedRecipes = []
+      }
+      let likedRecipes = JSON.parse(localStorage.getItem("likedRecipes"))
+      var ref = doc(db, "Users", email);
+      await updateDoc(
+        ref, {
+        recipes: likedRecipes
+      }
+      )
+        .then(() => {
+          console.log("Recipes Updated");
+          window.location = 'profile.html'
+          window.history.forward()
+        })
+        .catch((error) => {
+          alert("Recipes Updating Unsuccessful" + error);
+        });
+    }
 
-  let marketplacebtn = document.getElementById("marketplacebtn");
-  let marketplacebtn2 = document.getElementById("marketplacebtn2");
+    let marketplacebtn = document.getElementById("marketplacebtn");
+    let marketplacebtn2 = document.getElementById("marketplacebtn2");
 
-  async function UpdateRecipesWithMarketplaceBtn(){
-        let email = localStorage.getItem("UserEmail")
-        if (localStorage.getItem('recipes')===null){
-          let likedRecipes = []
-        }
-        let likedRecipes = JSON.parse(localStorage.getItem("likedRecipes"))
-        var ref = doc(db, "Users", email);
-        await updateDoc(
-            ref, {
-                recipes: likedRecipes
-                }
-            )
-            .then(()=>{
-                console.log("Recipes Updated");
-                window.location = 'marketplace.html'
-                window.history.forward()
-            })
-            .catch((error)=>{
-                alert("Recipes Updating Unsuccessful" + error);
-            });
-  }
+    async function UpdateRecipesWithMarketplaceBtn() {
+      let email = localStorage.getItem("UserEmail")
+      if (localStorage.getItem('recipes') === null) {
+        let likedRecipes = []
+      }
+      let likedRecipes = JSON.parse(localStorage.getItem("likedRecipes"))
+      var ref = doc(db, "Users", email);
+      await updateDoc(
+        ref, {
+        recipes: likedRecipes
+      }
+      )
+        .then(() => {
+          console.log("Recipes Updated");
+          window.location = 'marketplace.html'
+          window.history.forward()
+        })
+        .catch((error) => {
+          alert("Recipes Updating Unsuccessful" + error);
+        });
+    }
 
-  let homebtn = document.getElementById("homebtn");
-  let homebtn2 = document.getElementById("homebtn2");
+    let homebtn = document.getElementById("homebtn");
+    let homebtn2 = document.getElementById("homebtn2");
 
-  async function UpdateRecipesWithHomeBtn(){
-        let email = localStorage.getItem("UserEmail")
-        if (localStorage.getItem('recipes')===null){
-          let likedRecipes = []
-        }
-        let likedRecipes = JSON.parse(localStorage.getItem("likedRecipes"))
-        var ref = doc(db, "Users", email);
-        await updateDoc(
-            ref, {
-                recipes: likedRecipes
-                }
-            )
-            .then(()=>{
-                console.log("Recipes Updated");
-                window.location = 'home.html'
-                window.history.forward()
-            })
-            .catch((error)=>{
-                alert("Recipes Updating Unsuccessful" + error);
-            });
-  }
-  profilebtn.addEventListener('click',UpdateRecipesWithProfileBtn)
-  profilebtn2.addEventListener('click',UpdateRecipesWithProfileBtn)
+    async function UpdateRecipesWithHomeBtn() {
+      let email = localStorage.getItem("UserEmail")
+      if (localStorage.getItem('recipes') === null) {
+        let likedRecipes = []
+      }
+      let likedRecipes = JSON.parse(localStorage.getItem("likedRecipes"))
+      var ref = doc(db, "Users", email);
+      await updateDoc(
+        ref, {
+        recipes: likedRecipes
+      }
+      )
+        .then(() => {
+          console.log("Recipes Updated");
+          window.location = 'home.html'
+          window.history.forward()
+        })
+        .catch((error) => {
+          alert("Recipes Updating Unsuccessful" + error);
+        });
+    }
+    profilebtn.addEventListener('click', UpdateRecipesWithProfileBtn)
+    profilebtn2.addEventListener('click', UpdateRecipesWithProfileBtn)
 
-  recipebtn.addEventListener('click',UpdateRecipesWithRecipeBtn);
-  recipebtn2.addEventListener('click',UpdateRecipesWithRecipeBtn);
+    recipebtn.addEventListener('click', UpdateRecipesWithRecipeBtn);
+    recipebtn2.addEventListener('click', UpdateRecipesWithRecipeBtn);
 
-  marketplacebtn.addEventListener('click',UpdateRecipesWithMarketplaceBtn)
-  marketplacebtn2.addEventListener('click',UpdateRecipesWithMarketplaceBtn)
+    marketplacebtn.addEventListener('click', UpdateRecipesWithMarketplaceBtn)
+    marketplacebtn2.addEventListener('click', UpdateRecipesWithMarketplaceBtn)
 
-  homebtn.addEventListener('click',UpdateRecipesWithHomeBtn)
-  homebtn2.addEventListener('click',UpdateRecipesWithHomeBtn)
+    homebtn.addEventListener('click', UpdateRecipesWithHomeBtn)
+    homebtn2.addEventListener('click', UpdateRecipesWithHomeBtn)
             // testbtn.addEventListener("click",getUrlVars);
-        </script>
-           <!-- Bundled Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" 
-    integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" 
+  </script>
+  <!-- Bundled Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
     crossorigin="anonymous"></script>
-    <!-- map api -->
-    
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+  <!-- map api -->
 
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    
-    <!-- <script 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+  <!-- <script 
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDAo304l1NlMbOwhtCNbbQEhuEd4NEmoTo&callback=initMap&v=weekly"
     defer
     ></script> -->
-    <script async
+  <script async
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDAo304l1NlMbOwhtCNbbQEhuEd4NEmoTo&callback=initMap&v=weekly"
     defer>
     </script>
-        </body>
+</body>
+
 </html>
