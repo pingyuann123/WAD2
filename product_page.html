@@ -81,17 +81,17 @@
             </div>
             <div class="u-nav-container">
               <ul class="u-nav u-unstyled u-nav-1">
-                <li class="u-nav-item"><a class="u-button-style u-nav-link  u-text-hover-palette-1-base" href="home.html"
-                    style="padding: 10px 20px;">Home</a>
+                <li class="u-nav-item"><a class="u-button-style u-nav-link  u-text-hover-palette-1-base" 
+                    style="padding: 10px 20px;"><button id="homebtn">Home</button></a>
                 </li>
-                <li class="u-nav-item"><a class="u-button-style u-nav-link  u-text-hover-palette-1-base" href="findRecipe.html"
-                    style="padding: 10px 20px;">Recipes</a>
+                <li class="u-nav-item"><a class="u-button-style u-nav-link  u-text-hover-palette-1-base" 
+                    style="padding: 10px 20px;"><button id="recipebtn">Recipes</button></a>
                 </li>
-                <li class="u-nav-item"><a class="u-button-style u-nav-link  u-text-hover-palette-1-base" href="marketplace.html"
-                    style="padding: 10px 20px;">Marketplace</a>
+                <li class="u-nav-item"><a class="u-button-style u-nav-link  u-text-hover-palette-1-base" 
+                    style="padding: 10px 20px;"><button id="marketplacebtn">Marketplace</button></a>
                 </li>
-                <li class="u-nav-item"><a class="u-button-style u-nav-link  u-text-hover-palette-1-base" href="profile.html"
-                    style="padding: 10px 20px;">Profile</a>
+                <li class="u-nav-item"><a class="u-button-style u-nav-link  u-text-hover-palette-1-base" 
+                    style="padding: 10px 20px;"><button id="profilebtn">Profile</button></a>
                 </li>
                 <li class="u-nav-item"><a class="u-button-style u-nav-link  u-text-hover-palette-1-base"
                   style="padding: 10px 20px;"><button id="logoutbtn">Logout</button></a>
@@ -100,19 +100,19 @@
             </div>
     
             <div class="u-nav-container-collapse">
-              <div class="u-grey u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
+              <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
                 <div class="u-inner-container-layout u-sidenav-overflow">
                   <div class="u-menu-close"></div>
                   <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2">
-                    <li class="u-nav-item"><a class="u-button-style u-nav-link" href="home.html">Home</a>
+                    <li class="u-nav-item"><a class="u-button-style u-nav-link" ><button id="homebtn2">Home</button></a>
                     </li>
-                    <li class="u-nav-item"><a class="u-button-style u-nav-link" href="findRecipe.html">Receipe</a>
+                    <li class="u-nav-item"><a class="u-button-style u-nav-link" ><button id="recipebtn2">Recipes</button></a>
                     </li>
-                    <li class="u-nav-item"><a class="u-button-style u-nav-link" href="marketplace.html">Marketplace</a>
+                    <li class="u-nav-item"><a class="u-button-style u-nav-link" ><button id="marketplacebtn2">Marketplace</button></a></a>
                     </li>
-                    <li class="u-nav-item"><a class="u-button-style u-nav-link" href="profile.html">Profile</a>
+                    <li class="u-nav-item"><a class="u-button-style u-nav-link" ><button id="profilebtn2">Profile</button></a>
                     </li>
-                    <li class="u-nav-item"><a class=" u-button-style u-nav-link"><button id="logoutbtn">Logout</button></a>
+                    <li class="u-nav-item"><a class=" u-button-style u-nav-link"><button id="logoutbtn2">Logout</button></a>
                     </li>
                   </ul>
                 </div>
@@ -597,16 +597,151 @@
             `
             comment_div.appendChild(para)
         }
-        let logoutbtn =  document.getElementById("logoutbtn");
+        // let logoutbtn =  document.getElementById("logoutbtn");
 
-        function logout(){
-          localStorage.clear();
-          console.log('Logout Successful!');
-          window.location = "login.html";
-        }
+        // function logout(){
+        //   localStorage.clear();
+        //   console.log('Logout Successful!');
+        //   window.location = "login.html";
+        // }
 
-        logoutbtn.addEventListener("click",logout);
+        // logoutbtn.addEventListener("click",logout);
         submitbtn.addEventListener("click",insertComment)
+            // Update database when user wants to logout
+    async function logout(){
+      let email = localStorage.getItem("UserEmail")
+      console.log(email)
+      var ref = doc(db, "Users", email);
+      await updateDoc(
+          ref, {
+              recipes: JSON.parse(localStorage.getItem('likedRecipes')),
+              }
+          )
+          .then(()=>{
+              alert("Logout Successful");
+              window.location = "login.html";
+              window.history.forward();
+          })
+          .catch((error)=>{
+              alert("Logout Unsuccessful" + error);
+      });
+    }
+logoutbtn.addEventListener("click",logout);
+logoutbtn2.addEventListener("click",logout);
+
+
+  // Update Database when user click onto recipe button in nav bar
+  let recipebtn =  document.getElementById("recipebtn");
+  let recipebtn2 =  document.getElementById("recipebtn2");
+
+  async function UpdateRecipesWithRecipeBtn(){
+        let email = localStorage.getItem("UserEmail")
+        if (localStorage.getItem('recipes')===null){
+          let likedRecipes = []
+        }
+        let likedRecipes = JSON.parse(localStorage.getItem("likedRecipes"))
+        var ref = doc(db, "Users", email); 
+        await updateDoc(
+            ref, {
+                recipes: likedRecipes
+                }
+            )
+            .then(()=>{
+                console.log("Recipes Updated");
+                window.location = 'findRecipe.html'
+                window.history.forward()
+
+            })
+            .catch((error)=>{
+                alert("Recipes Updating Unsuccessful" + error);
+            });
+  }
+
+  let profilebtn = document.getElementById("profilebtn");
+  let profilebtn2 = document.getElementById("profilebtn2");
+
+  async function UpdateRecipesWithProfileBtn(){
+        let email = localStorage.getItem("UserEmail")
+        if (localStorage.getItem('recipes')===null){
+          let likedRecipes = []
+        }
+        let likedRecipes = JSON.parse(localStorage.getItem("likedRecipes"))
+        var ref = doc(db, "Users", email);
+        await updateDoc(
+            ref, {
+                recipes: likedRecipes
+                }
+            )
+            .then(()=>{
+                console.log("Recipes Updated");
+                window.location = 'profile.html'
+                window.history.forward()
+            })
+            .catch((error)=>{
+                alert("Recipes Updating Unsuccessful" + error);
+            });
+  }
+
+  let marketplacebtn = document.getElementById("marketplacebtn");
+  let marketplacebtn2 = document.getElementById("marketplacebtn2");
+
+  async function UpdateRecipesWithMarketplaceBtn(){
+        let email = localStorage.getItem("UserEmail")
+        if (localStorage.getItem('recipes')===null){
+          let likedRecipes = []
+        }
+        let likedRecipes = JSON.parse(localStorage.getItem("likedRecipes"))
+        var ref = doc(db, "Users", email);
+        await updateDoc(
+            ref, {
+                recipes: likedRecipes
+                }
+            )
+            .then(()=>{
+                console.log("Recipes Updated");
+                window.location = 'marketplace.html'
+                window.history.forward()
+            })
+            .catch((error)=>{
+                alert("Recipes Updating Unsuccessful" + error);
+            });
+  }
+
+  let homebtn = document.getElementById("homebtn");
+  let homebtn2 = document.getElementById("homebtn2");
+
+  async function UpdateRecipesWithHomeBtn(){
+        let email = localStorage.getItem("UserEmail")
+        if (localStorage.getItem('recipes')===null){
+          let likedRecipes = []
+        }
+        let likedRecipes = JSON.parse(localStorage.getItem("likedRecipes"))
+        var ref = doc(db, "Users", email);
+        await updateDoc(
+            ref, {
+                recipes: likedRecipes
+                }
+            )
+            .then(()=>{
+                console.log("Recipes Updated");
+                window.location = 'home.html'
+                window.history.forward()
+            })
+            .catch((error)=>{
+                alert("Recipes Updating Unsuccessful" + error);
+            });
+  }
+  profilebtn.addEventListener('click',UpdateRecipesWithProfileBtn)
+  profilebtn2.addEventListener('click',UpdateRecipesWithProfileBtn)
+
+  recipebtn.addEventListener('click',UpdateRecipesWithRecipeBtn);
+  recipebtn2.addEventListener('click',UpdateRecipesWithRecipeBtn);
+
+  marketplacebtn.addEventListener('click',UpdateRecipesWithMarketplaceBtn)
+  marketplacebtn2.addEventListener('click',UpdateRecipesWithMarketplaceBtn)
+
+  homebtn.addEventListener('click',UpdateRecipesWithHomeBtn)
+  homebtn2.addEventListener('click',UpdateRecipesWithHomeBtn)
             // testbtn.addEventListener("click",getUrlVars);
         </script>
            <!-- Bundled Bootstrap JS -->

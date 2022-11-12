@@ -77,27 +77,27 @@
               opacity: 0.6;
           }
 
-          #logoutbtn{
+          #logoutbtn,#logoutbtn2{
             border:white;
             /* background-color:#F8F7F6; */
             background: none;
           }
-          #recipebtn{
+          #recipebtn,#recipebtn2{
             border:white;
             /* background-color:#F8F7F6; */
             background: none;
           }
-          #profilebtn{
+          #profilebtn,#profilebtn2{
             border:white;
             /* background-color:#F8F7F6; */
             background: none;
           }
-          #marketplacebtn{
+          #marketplacebtn,#marketplacebtn2{
             border:white;
             /* background-color:#F8F7F6; */
             background: none;
           }
-          #homebtn{
+          #homebtn,#homebtn2{
             border:white;
             /* background-color:#F8F7F6; */
             background: none;
@@ -156,15 +156,15 @@
             <div class="u-inner-container-layout u-sidenav-overflow">
               <div class="u-menu-close"></div>
               <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2">
-                <li class="u-nav-item"><a class="u-button-style u-nav-link" ><button id="homebtn">Home</button></a>
+                <li class="u-nav-item"><a class="u-button-style u-nav-link" ><button id="homebtn2">Home</button></a>
                 </li>
-                <li class="u-nav-item"><a class="u-button-style u-nav-link" ><button id="recipebtn">Recipes</button></a>
+                <li class="u-nav-item"><a class="u-button-style u-nav-link" ><button id="recipebtn2">Recipes</button></a>
                 </li>
-                <li class="u-nav-item"><a class="u-button-style u-nav-link" ><button id="marketplacebtn">Marketplace</button></a></a>
+                <li class="u-nav-item"><a class="u-button-style u-nav-link" ><button id="marketplacebtn2">Marketplace</button></a></a>
                 </li>
-                <li class="u-nav-item"><a class="u-button-style u-nav-link" ><button id="profilebtn">Profile</button></a>
+                <li class="u-nav-item"><a class="u-button-style u-nav-link" ><button id="profilebtn2">Profile</button></a>
                 </li>
-                <li class="u-nav-item"><a class=" u-button-style u-nav-link"><button id="logoutbtn">Logout</button></a>
+                <li class="u-nav-item"><a class=" u-button-style u-nav-link"><button id="logoutbtn2">Logout</button></a>
                 </li>
               </ul>
             </div>
@@ -306,6 +306,8 @@
     const email = sessionStorage.getItem('email'); //unique identifier
     console.log(email)
     let logoutbtn =  document.getElementById("logoutbtn");
+    let logoutbtn2 =  document.getElementById("logoutbtn2");
+
 
     // Update database when user wants to logout
     async function logout(){
@@ -327,9 +329,13 @@
       });
     }
 logoutbtn.addEventListener("click",logout);
+logoutbtn2.addEventListener("click",logout);
+
 
   // Update Database when user click onto recipe button in nav bar
   let recipebtn =  document.getElementById("recipebtn");
+  let recipebtn2 =  document.getElementById("recipebtn2");
+
   async function UpdateRecipesWithRecipeBtn(){
         let email = localStorage.getItem("UserEmail")
         if (localStorage.getItem('recipes')===null){
@@ -352,7 +358,10 @@ logoutbtn.addEventListener("click",logout);
                 alert("Recipes Updating Unsuccessful" + error);
             });
   }
+
   let profilebtn = document.getElementById("profilebtn");
+  let profilebtn2 = document.getElementById("profilebtn2");
+
   async function UpdateRecipesWithProfileBtn(){
         let email = localStorage.getItem("UserEmail")
         if (localStorage.getItem('recipes')===null){
@@ -376,6 +385,8 @@ logoutbtn.addEventListener("click",logout);
   }
 
   let marketplacebtn = document.getElementById("marketplacebtn");
+  let marketplacebtn2 = document.getElementById("marketplacebtn2");
+
   async function UpdateRecipesWithMarketplaceBtn(){
         let email = localStorage.getItem("UserEmail")
         if (localStorage.getItem('recipes')===null){
@@ -399,6 +410,8 @@ logoutbtn.addEventListener("click",logout);
   }
 
   let homebtn = document.getElementById("homebtn");
+  let homebtn2 = document.getElementById("homebtn2");
+
   async function UpdateRecipesWithHomeBtn(){
         let email = localStorage.getItem("UserEmail")
         if (localStorage.getItem('recipes')===null){
@@ -421,9 +434,17 @@ logoutbtn.addEventListener("click",logout);
             });
   }
   profilebtn.addEventListener('click',UpdateRecipesWithProfileBtn)
+  profilebtn2.addEventListener('click',UpdateRecipesWithProfileBtn)
+
   recipebtn.addEventListener('click',UpdateRecipesWithRecipeBtn);
+  recipebtn2.addEventListener('click',UpdateRecipesWithRecipeBtn);
+
   marketplacebtn.addEventListener('click',UpdateRecipesWithMarketplaceBtn)
+  marketplacebtn2.addEventListener('click',UpdateRecipesWithMarketplaceBtn)
+
   homebtn.addEventListener('click',UpdateRecipesWithHomeBtn)
+  homebtn2.addEventListener('click',UpdateRecipesWithHomeBtn)
+
 
 
   const app2 = Vue.createApp({
