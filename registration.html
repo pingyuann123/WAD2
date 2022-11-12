@@ -104,13 +104,13 @@
                       <label class="passwordLabel form-label" for="password">Password</label>
                       <input type="password" id="password" class="form-control form-control-lg" />
                     </div>
-        
-                    <div class="mt-5  text-center">
-                        <button style="background-color:#a17d60; color:white" id = "register" class="registerBtn btn btn-lg" type="button">Sign up</button>
-                    </div>
                     <div id="regalert">
 
                     </div>
+                    <div class="mt-5  text-center">
+                        <button style="background-color:#a17d60; color:white" id = "register" class="registerBtn btn btn-lg" type="button">Sign up</button>
+                    </div>
+
         
                     <div class=" mt-4 text-center">
                         <div class="line"></div>
@@ -217,7 +217,7 @@
             var aler_div =  document.getElementById('regalert')
             var alert_para = document.createElement('p')
             alert_para.innerHTML += `<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                    <strong>Error!</strong> Please input the correct details!
+                                    <strong>Error!</strong> Please input a valid email and password!
                                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                   </div>`
               // console.log(para)
