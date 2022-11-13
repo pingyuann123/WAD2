@@ -114,7 +114,7 @@
                 <div class="form-outline mb-4">
                   <label class="locLabel form-label" for="loc">Preferred Pickup Location:</label>
                   <button id = "pickBtn" class="bckBtn btn btn-sm btn-block" type="button">Choose Current Location</button>
-                  <p id ="statusDisplay" class="statusDisplay" style='display:"hidden"'></p>
+                  <p id ="statusDisplay" class="statusDisplay" style='display:none'></p>
                   <input type="text" id="listLoc" class="form-control form-control-sm" placeholder="Input Other locations"></input>
                   <p id ="latDisplay" class="latDisplay" style='display:none'></p>
                   <p id ="lngDisplay" class="lngDisplay" style='display:none'></p>
@@ -468,7 +468,7 @@
           productDate:dateInput.value,
           productQty:qtyInput.value,
           productDesc:descInput.value,
-          productLoc:locInput.textContent,
+          productLoc:locInput.value,
           productImgName:ImgName,
           productLat : latInput.textContent,
           productLng: lngInput.textContent,
@@ -481,11 +481,12 @@
           console.log("Created Successfully");
           localStorage.setItem("productid", usersname+titleInput.value);
           console.log(usersname+titleInput.value);
+          console.log(locInput.value);
           // localStorage.clear();
           var aler_div =  document.getElementById('commentAlert')
             var alert_para = document.createElement('p')
             alert_para.innerHTML += `<div class="alert alert-success alert-dismissible fade show" role="alert">
-                                    <strong>Success!</strong> Remember to refresh to see the latest comments!
+                                    <strong>Success!</strong> Listing Created! Check Marketplace!
                                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                   </div>`
               // console.log(para)
@@ -553,7 +554,7 @@
         .then(res => res.json())
         .then(data =>{
           console.log(data);
-          locInput.innerHTML = data.locality;
+          locInput.value = data.locality;
           latInput.textContent = latitude;
           lngInput.textContent = longitude;
           console.log(locInput);

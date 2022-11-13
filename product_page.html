@@ -255,59 +255,59 @@
 
           </div>
           <script>
-            var geocoder;
-            var map;
-            function initMap() {
-              var locationAdd = document.getElementById('address').textContent;
-              var maplat = document.getElementById('lat').textContent;
-              var maplng = document.getElementById('lng').textContent;
-              console.log(locationAdd);
-              console.log(maplat);
-              console.log(maplng);
+                            var geocoder;
+                            var map;
+                            function initMap() {
+                              var locationAdd = document.getElementById('address').textContent;
+                              var maplat = document.getElementById('lat').textContent;
+                              var maplng = document.getElementById('lng').textContent;
+                              console.log(locationAdd);
+                              console.log(maplat);
+                              console.log(maplng);
 
-              if (locationAdd != null && maplat != '' && maplng != '') {
-                var latlng = new google.maps.LatLng(1.290270, 103.851959);
-                var mapOptions = {
-                  zoom: 10.6,
-                  center: latlng
-                }
-                map = new google.maps.Map(document.getElementById('map'), mapOptions);
-                var address = document.getElementById('address').textContent;
-                var latitude = parseFloat(document.getElementById('lat').textContent);
-                var longitude = parseFloat(document.getElementById('lng').textContent);
-                console.log(latitude)
-                // var latInt = parseInt(lat);
-                // console.log(latitude.type)
-                var marker = new google.maps.Marker({
-                  map: map,
-                  position: { lat: latitude, lng: longitude },
-                  content: '<h3>' + address + '</h3>'
-                });
-                // var infowindow = new google.maps.InfoWindow({
-                // content:'<h3>' + address + '</h3>'
-                // });
-              } else if (locationAdd != null && maplat == '' && maplng == '') {
-                geocoder = new google.maps.Geocoder();
-                var latlng = new google.maps.LatLng(1.290270, 103.851959);
-                var mapOptions = {
-                  zoom: 10.6,
-                  center: latlng
-                }
-                map = new google.maps.Map(document.getElementById('map'), mapOptions);
-                var address = document.getElementById('address').textContent;
-                console.log(address);
-                geocoder.geocode({ 'address': address }, function (results, status) {
-                  if (status == 'OK') {
-                    map.setCenter(results[0].geometry.location);
-                    var marker = new google.maps.Marker({
-                      map: map,
-                      position: results[0].geometry.location,
-                      content: '<h3>' + address + '</h3>'
-                    });
-                  } else {
-                    // alert('Geocode was not successful for the following reason: ' + status);
-                  }
-                });
+                              if (locationAdd != null && maplat!='' && maplng!=''){
+                                var latlng = new google.maps.LatLng(1.290270, 103.851959);
+                                var mapOptions = {
+                                  zoom: 10.6,
+                                  center: latlng
+                                }
+                                map = new google.maps.Map(document.getElementById('map'), mapOptions);
+                                var address = document.getElementById('address').textContent;
+                                var latitude = parseFloat(document.getElementById('lat').textContent);
+                                var longitude = parseFloat(document.getElementById('lng').textContent);
+                                console.log(latitude)
+                                // var latInt = parseInt(lat);
+                                // console.log(latitude.type)
+                                var marker = new google.maps.Marker({
+                                  map:map,
+                                  position:{lat:latitude,lng:longitude},
+                                  content:'<h3>' + address + '</h3>'
+                                });
+                                // var infowindow = new google.maps.InfoWindow({
+                                // content:'<h3>' + address + '</h3>'
+                                // });
+                              }else if( locationAdd != null &&  maplat=='' && maplng==''){
+                                geocoder = new google.maps.Geocoder();
+                                var latlng = new google.maps.LatLng(1.290270, 103.851959);
+                                var mapOptions = {
+                                  zoom: 10.9,
+                                  center: latlng
+                                }
+                                map = new google.maps.Map(document.getElementById('map'), mapOptions);
+                                var address = document.getElementById('address').textContent;
+                                console.log(address);
+                                geocoder.geocode( { 'address': address}, function(results, status) {
+                                  if (status == 'OK') {
+                                    map.setCenter(results[0].geometry.location);
+                                    var marker = new google.maps.Marker({
+                                        map: map,
+                                        position: results[0].geometry.location,
+                                        content:'<h3>' + address + '</h3>'
+                                    });
+                                  } else {
+                                    // alert('Geocode was not successful for the following reason: ' + status);
+                                  }
+                                });
                 // var infowindow = new google.maps.InfoWindow({
                 // content:'<h3>' + address + '</h3>'
                 // });
