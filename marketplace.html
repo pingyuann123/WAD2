@@ -175,6 +175,32 @@
           </div> -->
     </div>
   </div>
+
+  <div class="container-fluid">
+    <div class="header2 row">
+      <!--FILTERS-->
+      <div class="col-lg-12 col-md-12 col-sm-12">
+        <button style="float:left;background-color:#a17d60;margin-right: 2px;font-size: 12px;" id="filtera" class="createBtn btn btn-md btn-block"
+        type="button">All Posts</button>
+        <button style="float:left;background-color:#a17d60;margin-right: 2px;font-size: 12px;" id="filters" class="createBtn btn btn-md btn-block"
+          type="button">Seafood Posts</button> 
+
+          <button style="float:left;background-color:#a17d60;margin-right: 2px;font-size: 12px;" id="filterv" class="createBtn btn btn-md btn-block"
+          type="button">Vegetables Posts</button>
+
+          <button style="float:left;background-color:#a17d60;margin-right: 2px;font-size: 12px;" id="filterm" class="createBtn btn btn-md btn-block"
+          type="button">Meat Posts</button>
+
+          <button style="float:left;background-color:#a17d60;margin-right: 2px;font-size: 12px;" id="filterf" class="createBtn btn btn-md btn-block"
+          type="button">Fruits Posts</button>
+
+          <button style="float:left;background-color:#a17d60;margin-right: 2px;font-size: 12px;" id="filtero" class="createBtn btn btn-md btn-block"
+          type="button">Others Posts</button>
+      </div>
+    </div>
+  </div>
+
+
   <div class="container-fluid">
     <!-- Lay Foo
           <div class="row"> -->
@@ -218,7 +244,7 @@
 
     // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-app.js";
-    import { getDatabase, ref, child, onValue, get, query, orderByValue,orderByChild } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-database.js";
+    import { getDatabase, ref, child, onValue, get, query,  orderByValue, equalTo, orderByChild, limitToFirst, orderByKey } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-database.js";
     // TODO: Add SDKs for Firebase products that you want to use
     // https://firebase.google.com/docs/web/setup#available-libraries
     // Your web app's Firebase configuration
@@ -242,6 +268,16 @@
     const db = getDatabase();
     const firedb = getFirestore();
 
+
+    
+    //TO GET ALL THE FILTER BUTTONS
+    let filterA = document.getElementById("filtera");
+    let filterS = document.getElementById("filters");
+    let filterV = document.getElementById("filterv");
+    let filterM = document.getElementById("filterm");
+    let filterF = document.getElementById("filterf");
+    let filterO = document.getElementById("filtero");
+
     //  var childkey = "";
     const app = Vue.createApp({
       data() {
@@ -261,6 +297,13 @@
 
       methods: {
         async GetADocument() {
+          // var filters = false
+
+          // console.log(filters)
+
+          // if (filter != false) {
+
+          //TO DISPLAY ALL THE POST WHEN ENTER MARKETPLACE
           const dbRef = ref(db, 'ProductLists');
           const mostViewedPosts = query(ref(db, 'ProductLists'), orderByChild('timelist'));
           console.log(mostViewedPosts)
@@ -284,7 +327,8 @@
                 title: childData.productTitle,
                 image: childData.productImgName,
                 expiry: childData.productDate,
-                childkey: childData.productID
+                childkey: childData.productID,
+                cat: childData.category
               })
 
 
@@ -298,11 +342,323 @@
             {
               onlyOnce: true
             });
+
+          
+          //TO DISPLAY POSTS THAT IS OF CATEGORY SEAFOOD
+          filterS.addEventListener('click', () => {
+            while (this.cardList.length) { 
+              this.cardList.pop(); 
+            }
+            let filters = true;
+            const dbRef = ref(db, 'ProductLists');
+            const mostViewedPosts2 = query(ref(db, 'ProductLists'), orderByChild('category'), equalTo('Seafood'));
+            console.log(mostViewedPosts2)
+            console.log(dbRef)
+            onValue(mostViewedPosts2, (snapshot) => {
+              snapshot.forEach((childSnapshot) => {
+                const childKey = childSnapshot.key;
+                const childData = childSnapshot.val();
+                console.log(childKey);
+                console.log(childData)
+
+
+                // var price = childData.productPrice;
+                // var title = childData.productTitle;
+                // var image = childData.productImgName;
+                // var expiry = childData.productDate;
+                // var childkey = childData.productID;
+                // addToList(price, expiry, title, image, childkey);
+                this.cardList.push({
+                  price: childData.productPrice,
+                  title: childData.productTitle,
+                  image: childData.productImgName,
+                  expiry: childData.productDate,
+                  childkey: childData.productID,
+                  cat: childData.category
+                })
+                // console.log(mostViewedPosts);
+
+
+                // let childkey = childKey;
+                // console.log(childkey);
+
+
+
+              });
+            },
+              {
+                onlyOnce: true
+              });
+            if (filters == true) {
+              console.log(mostViewedPosts)
+            }
+          });
+
+          //TO DISPLAY POSTS THAT IS OF CATEGORY VEGETABLES
+          filterV.addEventListener('click', () => {
+            while (this.cardList.length) { 
+              this.cardList.pop(); 
+            }
+            let filters = true;
+            const dbRef = ref(db, 'ProductLists');
+            const mostViewedPosts2 = query(ref(db, 'ProductLists'), orderByChild('category'), equalTo('Vegetables'));
+            console.log(mostViewedPosts2)
+            console.log(dbRef)
+            onValue(mostViewedPosts2, (snapshot) => {
+              snapshot.forEach((childSnapshot) => {
+                const childKey = childSnapshot.key;
+                const childData = childSnapshot.val();
+                console.log(childKey);
+                console.log(childData)
+
+
+                // var price = childData.productPrice;
+                // var title = childData.productTitle;
+                // var image = childData.productImgName;
+                // var expiry = childData.productDate;
+                // var childkey = childData.productID;
+                // addToList(price, expiry, title, image, childkey);
+                this.cardList.push({
+                  price: childData.productPrice,
+                  title: childData.productTitle,
+                  image: childData.productImgName,
+                  expiry: childData.productDate,
+                  childkey: childData.productID,
+                  cat: childData.category
+                })
+                // console.log(mostViewedPosts);
+
+
+                // let childkey = childKey;
+                // console.log(childkey);
+
+
+
+              });
+            },
+              {
+                onlyOnce: true
+              });
+            if (filters == true) {
+              console.log(mostViewedPosts)
+            }
+          });
+
+          //TO DISPLAY POSTS THAT IS OF CATEGORY MEAT
+          filterM.addEventListener('click', () => {
+            while (this.cardList.length) { 
+              this.cardList.pop(); 
+            }
+            let filters = true;
+            const dbRef = ref(db, 'ProductLists');
+            const mostViewedPosts2 = query(ref(db, 'ProductLists'), orderByChild('category'), equalTo('Meat'));
+            console.log(mostViewedPosts2)
+            console.log(dbRef)
+            onValue(mostViewedPosts2, (snapshot) => {
+              snapshot.forEach((childSnapshot) => {
+                const childKey = childSnapshot.key;
+                const childData = childSnapshot.val();
+                console.log(childKey);
+                console.log(childData)
+
+
+                // var price = childData.productPrice;
+                // var title = childData.productTitle;
+                // var image = childData.productImgName;
+                // var expiry = childData.productDate;
+                // var childkey = childData.productID;
+                // addToList(price, expiry, title, image, childkey);
+                this.cardList.push({
+                  price: childData.productPrice,
+                  title: childData.productTitle,
+                  image: childData.productImgName,
+                  expiry: childData.productDate,
+                  childkey: childData.productID,
+                  cat: childData.category
+                })
+                // console.log(mostViewedPosts);
+
+
+                // let childkey = childKey;
+                // console.log(childkey);
+
+
+
+              });
+            },
+              {
+                onlyOnce: true
+              });
+            if (filters == true) {
+              console.log(mostViewedPosts)
+            }
+          })
+
+          //TO DISPLAY POSTS THAT IS OF CATEGORY FRUITS
+          filterF.addEventListener('click', () => {
+            while (this.cardList.length) { 
+              this.cardList.pop(); 
+            }
+            let filters = true;
+            const dbRef = ref(db, 'ProductLists');
+            const mostViewedPosts2 = query(ref(db, 'ProductLists'), orderByChild('category'), equalTo('Fruits'));
+            console.log(mostViewedPosts2)
+            console.log(dbRef)
+            onValue(mostViewedPosts2, (snapshot) => {
+              snapshot.forEach((childSnapshot) => {
+                const childKey = childSnapshot.key;
+                const childData = childSnapshot.val();
+                console.log(childKey);
+                console.log(childData)
+
+
+                // var price = childData.productPrice;
+                // var title = childData.productTitle;
+                // var image = childData.productImgName;
+                // var expiry = childData.productDate;
+                // var childkey = childData.productID;
+                // addToList(price, expiry, title, image, childkey);
+                this.cardList.push({
+                  price: childData.productPrice,
+                  title: childData.productTitle,
+                  image: childData.productImgName,
+                  expiry: childData.productDate,
+                  childkey: childData.productID,
+                  cat: childData.category
+                })
+                // console.log(mostViewedPosts);
+
+
+                // let childkey = childKey;
+                // console.log(childkey);
+
+
+
+              });
+            },
+              {
+                onlyOnce: true
+              });
+            if (filters == true) {
+              console.log(mostViewedPosts)
+            }
+          });
+
+          //TO DISPLAY POSTS THAT IS OF CATEGORY OTHERS
+          filterO.addEventListener('click', () => {
+            while (this.cardList.length) { 
+              this.cardList.pop(); 
+            }
+            let filters = true;
+            const dbRef = ref(db, 'ProductLists');
+            const mostViewedPosts2 = query(ref(db, 'ProductLists'), orderByChild('category'), equalTo('Others'));
+            console.log(mostViewedPosts2)
+            console.log(dbRef)
+            onValue(mostViewedPosts2, (snapshot) => {
+              snapshot.forEach((childSnapshot) => {
+                const childKey = childSnapshot.key;
+                const childData = childSnapshot.val();
+                console.log(childKey);
+                console.log(childData)
+
+
+                // var price = childData.productPrice;
+                // var title = childData.productTitle;
+                // var image = childData.productImgName;
+                // var expiry = childData.productDate;
+                // var childkey = childData.productID;
+                // addToList(price, expiry, title, image, childkey);
+                this.cardList.push({
+                  price: childData.productPrice,
+                  title: childData.productTitle,
+                  image: childData.productImgName,
+                  expiry: childData.productDate,
+                  childkey: childData.productID,
+                  cat: childData.category
+                })
+                // console.log(mostViewedPosts);
+
+
+                // let childkey = childKey;
+                // console.log(childkey);
+
+
+
+              });
+            },
+              {
+                onlyOnce: true
+              });
+            if (filters == true) {
+              console.log(mostViewedPosts)
+            }
+          });
+
+          //TO DISPLAY POSTS THAT IS OF ALL CATEGORY WHEN CLICK ALL POSTS
+          filterA.addEventListener('click', () => {
+            while (this.cardList.length) { 
+              this.cardList.pop(); 
+            }
+            let filters = true;
+            const dbRef = ref(db, 'ProductLists');
+            const mostViewedPosts2 = query(ref(db, 'ProductLists'), orderByChild('timelist'));
+            console.log(mostViewedPosts2)
+            console.log(dbRef)
+            onValue(mostViewedPosts2, (snapshot) => {
+              snapshot.forEach((childSnapshot) => {
+                const childKey = childSnapshot.key;
+                const childData = childSnapshot.val();
+                console.log(childKey);
+                console.log(childData)
+
+
+                // var price = childData.productPrice;
+                // var title = childData.productTitle;
+                // var image = childData.productImgName;
+                // var expiry = childData.productDate;
+                // var childkey = childData.productID;
+                // addToList(price, expiry, title, image, childkey);
+                this.cardList.push({
+                  price: childData.productPrice,
+                  title: childData.productTitle,
+                  image: childData.productImgName,
+                  expiry: childData.productDate,
+                  childkey: childData.productID,
+                  cat: childData.category
+                })
+                // console.log(mostViewedPosts);
+
+
+                // let childkey = childKey;
+                // console.log(childkey);
+
+
+
+              });
+            },
+              {
+                onlyOnce: true
+              });
+            if (filters == true) {
+              console.log(mostViewedPosts)
+            }
+          })
+
+
+          // if (filters == true){
+          //   console.log("hi")
+          // }
+          // else if (filter == false) {
+
+          // }
+
         }
+
       },
 
       created() {
-        this.GetADocument()
+        // filter.addEventListener("click", this.GetADocument2)
+        this.GetADocument();
       }
 
     }).mount('#app')

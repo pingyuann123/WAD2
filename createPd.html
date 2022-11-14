@@ -85,6 +85,23 @@
                 </span>
                 <input type="text" id="listTitle" class="form-control form-control-sm" placeholder="Name of Your Item" />
               </div>
+
+              <div class="form-outline mb-4">
+                <span class="info-tool-tipbox">
+                  <label for="categories">Select a Category</label>
+                  <select name="categories" id="categories">
+                    <option value="Seafood" selected>Seafood</option>
+                    <option value="Vegetables">Vegetables</option>
+                    <option value="Meat" >Meat</option>
+                    <option value="Fruits" >Fruits</option>
+                    <option value="Others" >Others</option>
+                  </select>
+    
+                  <i class="info-tool-tip fa-solid fa-circle-info"></i>
+                  <span id="tooltip-text" style="text-align: left;">Meat includes egg</span>
+                </span>
+  
+              </div>
                 <!-- <label class="emailLabel form-label" for="email">Email address</label> -->
                 <!-- <input type="text" id="listTitle" class="form-control form-control-lg" placeholder="Title of Your Listing"/> -->
       
@@ -235,6 +252,9 @@
     let currLoc = document.getElementById("statusDisplay");
     let latInput = document.getElementById("latDisplay");
     let lngInput = document.getElementById("lngDisplay");
+
+    let cat = document.getElementById("categories");
+
     
     var currtime = JSON.stringify(new Date().getTime()); 
     var currtime = currtime.split(" ");
@@ -472,7 +492,9 @@
           productImgName:ImgName,
           productLat : latInput.textContent,
           productLng: lngInput.textContent,
-          timelist: currtime
+          timelist: currtime,
+          category:cat.value
+
           
           // productImgURL:downloadURL
         })

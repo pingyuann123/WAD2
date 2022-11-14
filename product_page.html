@@ -203,7 +203,8 @@
           <span>
             <hr style="width:20%;text-align:left;margin-left:0">
           </span>
-          <p><small>Listed By: {{user}}</small></p>
+          <p><small><b>Listed By: </b>{{user}}</small></p>
+          <p><small><b>Category: </b>{{cat}}</small></p>
           <span style='float:left'>${{price}}</span>
           <small style='float:right'>BEST BY: {{date}}</small>
         </section>
@@ -497,6 +498,7 @@
           qty: 0,
           lat: '',
           lng: '',
+          cat:'',
 
           comment: '',
           commentID: '',
@@ -523,6 +525,8 @@
             this.user = data.productUser;
             this.lat = data.productLat;
             this.lng = data.productLng;
+            this.cat = data.category;
+
             console.log(data.productPrice);
             console.log(this.image);
             //updateStarCount(postElement, data);
