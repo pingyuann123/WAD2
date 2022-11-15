@@ -564,7 +564,7 @@
       var commentdate = new Date().getTime();
       var commentdate = JSON.stringify(commentdate);
 
-      var commentFullDate = JSON.stringify(new Date().getDate()) + "-" + JSON.stringify(new Date().getMonth()) + "-" + JSON.stringify(new Date().getFullYear());
+      var commentFullDate = JSON.stringify(new Date().getDate()) + "-" + JSON.stringify(new Date().getMonth()+1) + "-" + JSON.stringify(new Date().getFullYear());
       // var commentFullDate = JSON.stcommentFullDate);
       console.log(commentFullDate);
 
