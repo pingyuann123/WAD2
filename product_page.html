@@ -230,8 +230,8 @@
           <br>
           <p><i>{{desc}}</i></p>
           <!-- <script async src="https://telegram.org/js/telegram-widget.js?21" data-telegram-share-url="https://main--cosmic-cat-98c4f5.netlify.app/product_page.html?productid={{id}}" data-comment="Check this out!"></script> -->
-          <a href="https://t.me/share/url?url=https://main--cosmic-cat-98c4f5.netlify.app/product_page.html?productid=id&text=Awesome%20blog!">Share on Telegram</a>
-
+          <!-- <a href="https://t.me/share/url?url=https://main--cosmic-cat-98c4f5.netlify.app/product_page.html?productid=${{id}}&text=Awesome%20blog!">Share on Telegram</a> -->
+          <a href="" id="fb_share">Share this page</a>
 
 <!-- Sharingbutton Telegram -->
 <!-- <a class="resp-sharing-button__link" href="https://telegram.me/share/url?text=Super%20fast%20and%20easy%20Social%20Media%20Sharing%20Buttons.%20No%20JavaScript.%20No%20tracking.&amp;url=https%3A%2F%2Fmain--cosmic-cat-98c4f5.netlify.app%2Fproduct_page.html%3Fproductid%3D{{user}}" target="_blank" rel="noopener" aria-label="">
@@ -762,6 +762,12 @@
     }
     homebtn.addEventListener("click", goHome);
     homebtn2.addEventListener("click", goHome);
+  </script>
+  <script>
+    window.onload = function() {
+        fb_share.href ='https://t.me/share/url?url=' + encodeURIComponent(location.href); 
+    }  
+
   </script>
   <!-- Bundled Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
