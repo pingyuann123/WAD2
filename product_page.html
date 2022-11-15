@@ -5,6 +5,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+
+  <!-- <meta property="og:url"           content="http://localhost/wAD2/Project/G2T5%20-%20Project%20Deliverables/G2T5%20-%20Project%20Deliverables/EasyCook%20Application/" />
+  <meta property="og:type"          content="website" />
+  <meta property="og:title"         content="{{}}" />
+  <meta property="og:description"   content="Your description" />
+  <meta property="og:image"         content="https://www.your-domain.com/path/image.jpg" /> -->
+
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
@@ -28,6 +35,9 @@
 
   <!-- VUE -->
   <script src="https://unpkg.com/vue@next"></script>
+  <!-- <script async src="https://telegram.org/js/telegram-widget.js?21" data-telegram-share-url="https://core.telegram.org/widgets/share"></script> -->
+
+
 
   <style>
     /* #logoutbtn {
@@ -369,6 +379,8 @@
           <!-- retrieve location input, connect w map api via axios, display map here-->
 
           <div class="container-fluid">
+            <script async src="https://telegram.org/js/telegram-widget.js?21" data-telegram-share-url="https://main--cosmic-cat-98c4f5.netlify.app/product_page.html?productid={{id}}" data-comment="Check this out!"></script>
+
             <br>
             <button id="allcommentsbtn" class="btn btn btn-md btn-block" type="button" data-bs-toggle="collapse"
               data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
@@ -406,6 +418,7 @@
             </div>
             <!-- <button style = 'float:right' id = "testbtn" class="bckBtn btn btn-md btn-block" type="button">test</button> -->
           </div>
+          <!-- <a href="https://t.me/share/url?url=blog.shahednasser.com&text=Awesome%20blog!">Share on Telegram</a> -->
 
           <!-- comment section -->
 
@@ -499,6 +512,7 @@
           lat: '',
           lng: '',
           cat:'',
+          id: '',
 
           comment: '',
           commentID: '',
@@ -526,6 +540,8 @@
             this.lat = data.productLat;
             this.lng = data.productLng;
             this.cat = data.category;
+            this.id = data.productID;
+
 
             console.log(data.productPrice);
             console.log(this.image);
@@ -690,119 +706,49 @@
     logoutbtn2.addEventListener("click", logout);
 
 
-    // Update Database when user click onto recipe button in nav bar
-    let recipebtn = document.getElementById("recipebtn");
-    let recipebtn2 = document.getElementById("recipebtn2");
+    let recipetbtn = document.getElementById("recipebtn");
+    let recipetbtn2 = document.getElementById("recipebtn2");
 
-    async function UpdateRecipesWithRecipeBtn() {
-      let email = localStorage.getItem("UserEmail")
-      if (localStorage.getItem('recipes') === null) {
-        let likedRecipes = []
-      }
-      let likedRecipes = JSON.parse(localStorage.getItem("likedRecipes"))
-      var ref = doc(db, "Users", email);
-      await updateDoc(
-        ref, {
-        recipes: likedRecipes
-      }
-      )
-        .then(() => {
-          console.log("Recipes Updated");
-          window.location = 'findRecipe.html'
-          window.history.forward()
-
-        })
-        .catch((error) => {
-          alert("Recipes Updating Unsuccessful" + error);
-        });
+    function goFindRecipe() {
+      // alert("Logout Successful");
+      window.location = "findRecipe.html";
+      window.history.forward();
     }
+    recipetbtn.addEventListener("click", goFindRecipe);
+    recipetbtn2.addEventListener("click", goFindRecipe);
 
     let profilebtn = document.getElementById("profilebtn");
     let profilebtn2 = document.getElementById("profilebtn2");
 
-    async function UpdateRecipesWithProfileBtn() {
-      let email = localStorage.getItem("UserEmail")
-      if (localStorage.getItem('recipes') === null) {
-        let likedRecipes = []
-      }
-      let likedRecipes = JSON.parse(localStorage.getItem("likedRecipes"))
-      var ref = doc(db, "Users", email);
-      await updateDoc(
-        ref, {
-        recipes: likedRecipes
-      }
-      )
-        .then(() => {
-          console.log("Recipes Updated");
-          window.location = 'profile.html'
-          window.history.forward()
-        })
-        .catch((error) => {
-          alert("Recipes Updating Unsuccessful" + error);
-        });
+    function goProfile() {
+      // alert("Logout Successful");
+      window.location = "profile.html";
+      window.history.forward();
     }
+    profilebtn.addEventListener("click", goProfile);
+    profilebtn2.addEventListener("click", goProfile);
 
     let marketplacebtn = document.getElementById("marketplacebtn");
     let marketplacebtn2 = document.getElementById("marketplacebtn2");
 
-    async function UpdateRecipesWithMarketplaceBtn() {
-      let email = localStorage.getItem("UserEmail")
-      if (localStorage.getItem('recipes') === null) {
-        let likedRecipes = []
-      }
-      let likedRecipes = JSON.parse(localStorage.getItem("likedRecipes"))
-      var ref = doc(db, "Users", email);
-      await updateDoc(
-        ref, {
-        recipes: likedRecipes
-      }
-      )
-        .then(() => {
-          console.log("Recipes Updated");
-          window.location = 'marketplace.html'
-          window.history.forward()
-        })
-        .catch((error) => {
-          alert("Recipes Updating Unsuccessful" + error);
-        });
+    function goMarket() {
+      // alert("Logout Successful");
+      window.location = "profile.html";
+      window.history.forward();
     }
+    marketplacebtn.addEventListener("click", goMarket);
+    marketplacebtn2.addEventListener("click", goMarket);
+            // testbtn.addEventListener("click",getUrlVars);
 
     let homebtn = document.getElementById("homebtn");
     let homebtn2 = document.getElementById("homebtn2");
-
-    async function UpdateRecipesWithHomeBtn() {
-      let email = localStorage.getItem("UserEmail")
-      if (localStorage.getItem('recipes') === null) {
-        let likedRecipes = []
-      }
-      let likedRecipes = JSON.parse(localStorage.getItem("likedRecipes"))
-      var ref = doc(db, "Users", email);
-      await updateDoc(
-        ref, {
-        recipes: likedRecipes
-      }
-      )
-        .then(() => {
-          console.log("Recipes Updated");
-          window.location = 'home.html'
-          window.history.forward()
-        })
-        .catch((error) => {
-          alert("Recipes Updating Unsuccessful" + error);
-        });
+    function goHome() {
+      // alert("Logout Successful");
+      window.location = "home.html";
+      window.history.forward();
     }
-    profilebtn.addEventListener('click', UpdateRecipesWithProfileBtn)
-    profilebtn2.addEventListener('click', UpdateRecipesWithProfileBtn)
-
-    recipebtn.addEventListener('click', UpdateRecipesWithRecipeBtn);
-    recipebtn2.addEventListener('click', UpdateRecipesWithRecipeBtn);
-
-    marketplacebtn.addEventListener('click', UpdateRecipesWithMarketplaceBtn)
-    marketplacebtn2.addEventListener('click', UpdateRecipesWithMarketplaceBtn)
-
-    homebtn.addEventListener('click', UpdateRecipesWithHomeBtn)
-    homebtn2.addEventListener('click', UpdateRecipesWithHomeBtn)
-            // testbtn.addEventListener("click",getUrlVars);
+    homebtn.addEventListener("click", goHome);
+    homebtn2.addEventListener("click", goHome);
   </script>
   <!-- Bundled Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"

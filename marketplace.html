@@ -24,6 +24,10 @@
     href="https://fonts.googleapis.com/css?family=Oswald:200,300,400,500,600,700|Lato:100,100i,300,300i,400,400i,700,700i,900,900i|Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i">
   <!-- Add icon library -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
   <!-- VUE -->
   <script src="https://unpkg.com/vue@next"></script>
   <style>
@@ -61,6 +65,79 @@
 
     html {
       scroll-behavior: smooth;
+    }
+
+    .info-tool-tip {
+      /* font-size: 1.4rem; */
+      color: #a17d60;
+      padding-top: 15px;
+      padding-left: 2px;
+
+      cursor: pointer;
+    }
+
+    .info-tool-tipbox {
+      /* font-size: 1.4rem; */
+      /* color: #a17d60; */
+      /* padding: 20px; */
+      cursor: pointer;
+      top: 60px;
+      /* margin-bottom:-20px */
+
+    }
+
+    #tooltip-text {
+      background-color: #dcc5a5;
+      color: white;
+      font-size: 0.88rem;
+      position: absolute;
+      padding: 10px 15px;
+      margin: 10px;
+      border-radius: 7px;
+      visibility: hidden;
+      /* bottom: 10px; */
+      opacity: 2;
+      transition: all 0.4s linear;
+    }
+
+    .info-tool-tipbox:hover #tooltip-text {
+      visibility: visible;
+      opacity: 2;
+    }
+
+    #topBtn {
+      display: none;
+      /* Hidden by default */
+      position: fixed;
+      /* Fixed/sticky position */
+      bottom: 20px;
+      /* Place the button at the bottom of the page */
+      right: 30px;
+      /* Place the button 30px from the right */
+      z-index: 99;
+      /* Make sure it does not overlap */
+      border: none;
+      /* Remove borders */
+      outline: none;
+      /* Remove outline */
+      background-color: #a17d60;
+      /* Set a background color */
+      color: white;
+      /* Text color */
+      cursor: pointer;
+      /* Add a mouse pointer on hover */
+      padding: 15px;
+      /* Some padding */
+      border-radius: 5px;
+      /* Rounded corners */
+      font-size: 12px;
+      /* Increase font size */
+    }
+
+    #topBtn:hover {
+      background-color: #dcc5a5;
+      color:black;
+      /* Add a dark-grey background on hover */
     }
   </style>
 
@@ -180,22 +257,29 @@
     <div class="header2 row">
       <!--FILTERS-->
       <div class="col-lg-12 col-md-12 col-sm-12">
-        <button style="float:left;background-color:#a17d60;margin-right: 2px;font-size: 12px;" id="filtera" class="createBtn btn btn-md btn-block"
-        type="button">All Posts</button>
-        <button style="float:left;background-color:#a17d60;margin-right: 2px;font-size: 12px;" id="filters" class="createBtn btn btn-md btn-block"
-          type="button">Seafood Posts</button> 
+        <button style="float:left;background-color:#a17d60;margin-right: 2px;font-size: 12px;" id="filtera"
+          class="createBtn btn btn-md btn-block" type="button">All Categories</button>
+        <button style="float:left;background-color:#a17d60;margin-right: 2px;font-size: 12px;" id="filters"
+          class="createBtn btn btn-md btn-block" type="button">Seafood</button>
 
-          <button style="float:left;background-color:#a17d60;margin-right: 2px;font-size: 12px;" id="filterv" class="createBtn btn btn-md btn-block"
-          type="button">Vegetables Posts</button>
+        <button style="float:left;background-color:#a17d60;margin-right: 2px;font-size: 12px;" id="filterv"
+          class="createBtn btn btn-md btn-block" type="button">Vegetables</button>
 
-          <button style="float:left;background-color:#a17d60;margin-right: 2px;font-size: 12px;" id="filterm" class="createBtn btn btn-md btn-block"
-          type="button">Meat Posts</button>
+        <button style="float:left;background-color:#a17d60;margin-right: 2px;font-size: 12px;" id="filterm"
+          class="createBtn btn btn-md btn-block" type="button">Meat/Protein</button>
 
-          <button style="float:left;background-color:#a17d60;margin-right: 2px;font-size: 12px;" id="filterf" class="createBtn btn btn-md btn-block"
-          type="button">Fruits Posts</button>
+        <button style="float:left;background-color:#a17d60;margin-right: 2px;font-size: 12px;" id="filterf"
+          class="createBtn btn btn-md btn-block" type="button">Fruits</button>
 
-          <button style="float:left;background-color:#a17d60;margin-right: 2px;font-size: 12px;" id="filtero" class="createBtn btn btn-md btn-block"
-          type="button">Others Posts</button>
+        <button style="float:left;background-color:#a17d60;margin-right: 2px;font-size: 12px;" id="filtero"
+          class="createBtn btn btn-md btn-block" type="button">Others</button>
+
+        <span class="info-tool-tipbox">
+          <i class="info-tool-tip fa-solid fa-circle-info" style='text-align:center;'></i>
+          <span id="tooltip-text" style="text-align: center;"><b>Click to Filter the Categories</b></span>
+        </span>
+
+        <button onclick="topFunction()" id="topBtn" title="Go to top">Go to Top ^</button>
       </div>
     </div>
   </div>
@@ -215,7 +299,14 @@
               <p class="card-text"><strong><small>GOOD TILL: {{card.expiry}}</small><strong></p>
               <input type="text" :value="card.childkey" name="productid" style='display:none' />
             </div>
-            <button id="passBtn" class="bckBtn btn btn-sm btn-block" type="submit">Details</button>
+            <span>
+              <button id="passBtn" class="bckBtn btn btn-sm btn-block" type="submit"
+                style='float:left;margin-left:5px;;margin-bottom:5px;'>Details</button>
+              <small class="card-text"
+                style='float:right;margin-right:5px;font-weight: normal; text-align: center;'>Catgeory:
+                {{card.cat}}</small>
+            </span>
+
           </form>
         </div>
       </div>
@@ -244,7 +335,7 @@
 
     // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-app.js";
-    import { getDatabase, ref, child, onValue, get, query,  orderByValue, equalTo, orderByChild, limitToFirst, orderByKey } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-database.js";
+    import { getDatabase, ref, child, onValue, get, query, orderByValue, equalTo, orderByChild, limitToFirst, orderByKey } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-database.js";
     // TODO: Add SDKs for Firebase products that you want to use
     // https://firebase.google.com/docs/web/setup#available-libraries
     // Your web app's Firebase configuration
@@ -269,7 +360,7 @@
     const firedb = getFirestore();
 
 
-    
+
     //TO GET ALL THE FILTER BUTTONS
     let filterA = document.getElementById("filtera");
     let filterS = document.getElementById("filters");
@@ -343,11 +434,11 @@
               onlyOnce: true
             });
 
-          
+
           //TO DISPLAY POSTS THAT IS OF CATEGORY SEAFOOD
           filterS.addEventListener('click', () => {
-            while (this.cardList.length) { 
-              this.cardList.pop(); 
+            while (this.cardList.length) {
+              this.cardList.pop();
             }
             let filters = true;
             const dbRef = ref(db, 'ProductLists');
@@ -396,8 +487,8 @@
 
           //TO DISPLAY POSTS THAT IS OF CATEGORY VEGETABLES
           filterV.addEventListener('click', () => {
-            while (this.cardList.length) { 
-              this.cardList.pop(); 
+            while (this.cardList.length) {
+              this.cardList.pop();
             }
             let filters = true;
             const dbRef = ref(db, 'ProductLists');
@@ -446,8 +537,8 @@
 
           //TO DISPLAY POSTS THAT IS OF CATEGORY MEAT
           filterM.addEventListener('click', () => {
-            while (this.cardList.length) { 
-              this.cardList.pop(); 
+            while (this.cardList.length) {
+              this.cardList.pop();
             }
             let filters = true;
             const dbRef = ref(db, 'ProductLists');
@@ -496,8 +587,8 @@
 
           //TO DISPLAY POSTS THAT IS OF CATEGORY FRUITS
           filterF.addEventListener('click', () => {
-            while (this.cardList.length) { 
-              this.cardList.pop(); 
+            while (this.cardList.length) {
+              this.cardList.pop();
             }
             let filters = true;
             const dbRef = ref(db, 'ProductLists');
@@ -546,8 +637,8 @@
 
           //TO DISPLAY POSTS THAT IS OF CATEGORY OTHERS
           filterO.addEventListener('click', () => {
-            while (this.cardList.length) { 
-              this.cardList.pop(); 
+            while (this.cardList.length) {
+              this.cardList.pop();
             }
             let filters = true;
             const dbRef = ref(db, 'ProductLists');
@@ -596,8 +687,8 @@
 
           //TO DISPLAY POSTS THAT IS OF ALL CATEGORY WHEN CLICK ALL POSTS
           filterA.addEventListener('click', () => {
-            while (this.cardList.length) { 
-              this.cardList.pop(); 
+            while (this.cardList.length) {
+              this.cardList.pop();
             }
             let filters = true;
             const dbRef = ref(db, 'ProductLists');
@@ -770,6 +861,26 @@
     //                         <br>
     //                         `
     //   div.appendChild(divcard);
+    // Get the button:
+    let mybutton = document.getElementById("topBtn");
+
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function () { scrollFunction() };
+
+    function scrollFunction() {
+      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        mybutton.style.display = "block";
+      } else {
+        mybutton.style.display = "none";
+      }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+      document.body.scrollTop = 0; // For Safari
+      document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+      behavior: "smooth";
+    }
 
   </script>
 

@@ -67,7 +67,7 @@ body{
     margin: 10px;
     border-radius: 7px;
     visibility: hidden;
-    top: 35px;
+    /* top: 70px; */
     opacity: 0.5;
     transition: all 0.4s linear;
 }
