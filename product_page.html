@@ -217,6 +217,7 @@
           <p><small><b>Category: </b>{{cat}}</small></p>
           <span style='float:left'>${{price}}</span>
           <small style='float:right'>BEST BY: {{date}}</small>
+          <!-- <p>{{id}}</p> -->
         </section>
 
         <section class='body'>
@@ -228,6 +229,8 @@
           <!-- bio area -->
           <br>
           <p><i>{{desc}}</i></p>
+          <script async src="https://telegram.org/js/telegram-widget.js?21" data-telegram-share-url="https://main--cosmic-cat-98c4f5.netlify.app/product_page.html?productid={{id}}" data-comment="Check this out!"></script>
+
           <br>
           <!-- <div class="container-fluid">
                           <div class="row">
@@ -379,7 +382,6 @@
           <!-- retrieve location input, connect w map api via axios, display map here-->
 
           <div class="container-fluid">
-            <script async src="https://telegram.org/js/telegram-widget.js?21" data-telegram-share-url="https://main--cosmic-cat-98c4f5.netlify.app/product_page.html?productid={{id}}" data-comment="Check this out!"></script>
 
             <br>
             <button id="allcommentsbtn" class="btn btn btn-md btn-block" type="button" data-bs-toggle="collapse"
