@@ -44,7 +44,7 @@
                   </br>
                   <label>Image Name:</label>
                 <p></p>
-                  <input type="text" id="imgName" class="form-control" />
+                  <input type="text" id="imgName" class="form-control" required/>
                   <label id="extlab"></label> <br>
 
                   
@@ -83,13 +83,13 @@
                   <label class="titleLabel form-label" for="Title">Listing Title</label> <i class="info-tool-tip fa-solid fa-circle-info"></i>
                   <span id="tooltip-text" style="text-align: left;"><b>For listing title, do not put spacing between each word. </b><br> Example of Acceptable Listing Titles: AcaiBowl</span>
                 </span>
-                <input type="text" id="listTitle" class="form-control form-control-sm" placeholder="Name of Your Item" />
+                <input type="text" id="listTitle" class="form-control form-control-sm" placeholder="Name of Your Item" required="required">
               </div>
 
               <div class="form-outline mb-4">
                 <span class="info-tool-tipbox">
                   <label for="categories">Select a Category</label>
-                  <select name="categories" id="categories">
+                  <select name="categories" id="categories" required>
                     <option value="Seafood" selected>Seafood</option>
                     <option value="Vegetables">Vegetables</option>
                     <option value="Meat" >Meat</option>
@@ -109,17 +109,17 @@
                 
                   <div class="form-outline mb-4">
                       <label class="priceLabel form-label" for="Price">Price $</label>
-                      <input type="text" id="listPrice" class="form-control form-control-sm" placeholder="0" />
+                      <input type="text" id="listPrice" class="form-control form-control-sm" placeholder="0" required/>
                   </div>
 
                   <div class="form-outline mb-4">
                     <label class="qtyLabel form-label" for="Qty">Quantity</label>
-                    <input type="number" id="listQty" class="form-control form-control-sm" placeholder="0" />
+                    <input type="number" id="listQty" class="form-control form-control-sm" placeholder="0" required />
                   </div>
       
                   <div class="form-outline mb-4">
                       <label class="dateLabel form-label" for="date">Date of Expiry</label>
-                      <input type="date" id="listDate" class="form-control form-control-sm" />
+                      <input type="date" id="listDate" class="form-control form-control-sm" required/>
                   </div>
 
                   <div class="form-outline mb-4">
@@ -519,6 +519,14 @@
         .catch((error)=>{
           console.log(locInput.textContent);
           console.log("Creation Unsuccessful" + error);
+          var aler_div =  document.getElementById('commentAlert')
+            var alert_para = document.createElement('p')
+            alert_para.innerHTML += `<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <strong>Success!</strong> Listing Created! Check Marketplace!
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                  </div>`
+              // console.log(para)
+            aler_div.appendChild(alert_para);
           // localStorage.clear();y
         });
 
